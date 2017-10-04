@@ -1,0 +1,2 @@
+A C variable cannot start with A special symbols other than underscore and A number.
+It can start with an Alphabet

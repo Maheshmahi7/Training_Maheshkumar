@@ -1,0 +1,1 @@
+The statement ch='A' will store both the character A and ASCII value of A
