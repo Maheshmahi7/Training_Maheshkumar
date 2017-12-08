@@ -3,6 +3,7 @@
 #include<iostream>
 #include<conio.h>
 #include<vector>
+#include<exception>
 
 /*Main method*/
 using namespace std;
@@ -20,8 +21,13 @@ void main(){
 CREATEEMPLOYEE:
 	//loop for creating employee 
 	do{
-	
-		company.createEmployee();
+		try{
+			status = company.createEmployee();
+			cout << status << endl;
+		}
+		catch (exception e){
+			cerr << "Exception Caught" << e.what() << endl;
+		}
 		cout << "Want to Add more Employee?(y/n)";
 		cin >> choice;
 	} while (choice == 'y' || choice=='Y');

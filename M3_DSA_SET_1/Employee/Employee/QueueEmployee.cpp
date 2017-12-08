@@ -17,7 +17,7 @@ string QueueEmployee::enqueue(Employee employee){
 	if (!this->isFull()){
 		benchV.push_back(employee);
 		++rear;
-		return "Added to Bench";
+		return "Successfull added";
 	}
 	else{
 		return "Bench Full";
@@ -39,8 +39,8 @@ string QueueEmployee::dequeue(){
 /*Display method to dispaly employee in the bench*/
 void QueueEmployee::display(){ 
 	if (!this->isEmpty()){ 
+		cout << "************************************************" << endl;
 		for (int k = front; k <= rear; k++)  {
-			cout << "************************************************" << endl;
 			cout << "Employee Id: " << '\t' << benchV[k].getId() << endl;
 			cout << "Employee name" << '\t' << benchV[k].getName() << endl;
 			cout << "Employee Sex" << '\t' << benchV[k].getSex() << endl;
@@ -56,6 +56,7 @@ void QueueEmployee::display(){
 			cout << "Employee Basic" << '\t' << benchV[k].getBasic() << endl;
 			cout << "Employee PF" << '\t' << benchV[k].getPf() << endl;
 			cout << "Employee Gross" << '\t' << benchV[k].getGross() << endl;
+			cout << "************************************************" << endl;
 		}
 	} else{
 		cout << "Bench is Empty" << endl; 

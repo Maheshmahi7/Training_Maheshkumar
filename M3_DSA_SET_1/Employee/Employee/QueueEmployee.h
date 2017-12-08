@@ -16,7 +16,6 @@ public:
 	~QueueEmployee();
 	string enqueue(Employee employee);
 	string dequeue();
-	
 	void display();
 	bool isEmpty();
 	bool isFull();

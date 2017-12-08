@@ -16,7 +16,7 @@ public:
 
 	Company();
 	~Company();
-	void createEmployee();
+	string createEmployee();
 	void display();
 	void display(string id);
 	void getHighestPayinDepartment(string department);

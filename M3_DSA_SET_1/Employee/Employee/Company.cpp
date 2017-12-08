@@ -21,145 +21,151 @@ Company::~Company()
 }
 
 /*Method to create Employees*/
-void Company::createEmployee(){
+string Company::createEmployee(){
 		cout << "**************SYSTEM IS CASE SENSITIVE USE UPPER CASE OR LOWER CASE*************" << endl;
 		cout << "Enter the employee details" << endl;
 		emp_id = "EMP" + to_string(id);
 		employee.setId(emp_id);
 		id++;
-		cout << "Employee name:" << endl;
-		cin>> name;
-		employee.setName(name);
+		try{
+			cout << "Employee name:" << endl;
+			cin >> name;
+			employee.setName(name);
 		SEX:
-		cout << "Employee Sex(MALE/FEMALE/TRANSGENDER)" << endl;
-		cin >> sex;
-		check = checkSex(sex);
-		if (check){
-			employee.setSex(sex);
-		}
-		else
-		{
-			cout << "Enter valid gender" << endl;
-			goto SEX;
-		}
-		cout << "Enter Date of Birth:" << endl;
+			cout << "Employee Sex(MALE/FEMALE/TRANSGENDER)" << endl;
+			cin >> sex;
+			check = checkSex(sex);
+			if (check){
+				employee.setSex(sex);
+			}
+			else
+			{
+				cout << "Enter valid gender" << endl;
+				goto SEX;
+			}
+			cout << "Enter Date of Birth:" << endl;
 		BYEAR:
-		cout << "Year:" << endl;
-		cin >> birthYear;
-		if (checkBirthYear(birthYear)){
-			employee.setBirthYear(birthYear);
-		}
-		else
-		{
-			cout << "Enter valid year" << endl;
-			goto BYEAR;
-		}
+			cout << "Year:" << endl;
+			cin >> birthYear;
+			if (checkBirthYear(birthYear)){
+				employee.setBirthYear(birthYear);
+			}
+			else
+			{
+				cout << "You are retired or not eligible for this company." << endl;
+				cout << "If you think your are eligible enter valid";
+				goto BYEAR;
+			}
 		BMONTH:
-		cout << "Month:" << endl;
-		cin >> birthMonth;
-		if (checkMonth(birthMonth)){
-			employee.setBirthMonth(birthMonth);
-		}
-		else
-		{
-			cout << "Enter valid month" << endl;
-			goto BMONTH;
-		}
+			cout << "Month(1-12):" << endl;
+			cin >> birthMonth;
+			if (checkMonth(birthMonth)){
+				employee.setBirthMonth(birthMonth);
+			}
+			else
+			{
+				cout << "Enter valid month" << endl;
+				goto BMONTH;
+			}
 		BDATE:
-		cout << "Date:" << endl;
-		cin >> birthDate;
-		check = checkDate(birthDate,birthMonth,birthYear);
-		if (check){
-			employee.setBirthDate(birthDate);
-		}
-		else
-		{
-			cout << "Enter valid Date" << endl;
-			goto BDATE;
-		}
-		cout << "Enter Date of Joining:" << endl;
+			cout << "Date:" << endl;
+			cin >> birthDate;
+			check = checkDate(birthDate, birthMonth, birthYear);
+			if (check){
+				employee.setBirthDate(birthDate);
+			}
+			else
+			{
+				cout << "Enter valid Date" << endl;
+				goto BDATE;
+			}
+			cout << "Enter Date of Joining:" << endl;
 		JYEAR:
-		cout << "Year:" << endl;
-		cin >> joiningYear;
-		if (checkJoiningYear(joiningYear, birthYear)){
-			employee.setJoiningYear(joiningYear);
-		}
-		else
-		{
-			cout << "Enter valid year" << endl;
-			goto JYEAR;
-		}
+			cout << "Year:" << endl;
+			cin >> joiningYear;
+			if (checkJoiningYear(joiningYear, birthYear)){
+				employee.setJoiningYear(joiningYear);
+			}
+			else
+			{
+				cout << "Your not eligible for this company" << endl;
+				goto JYEAR;
+			}
 		JMONTH:
-		cout << "Month:" << endl;
-		cin >> joiningMonth;
-		if (checkMonth(joiningMonth)){
-			employee.setJoiningMonth(joiningMonth);
-		}
-		else
-		{
-			cout << "Enter valid month" << endl;
-			cin.clear();
-			goto JMONTH;
-		}
+			cout << "Month(1-12):" << endl;
+			cin >> joiningMonth;
+			if (checkMonth(joiningMonth)){
+				employee.setJoiningMonth(joiningMonth);
+			}
+			else
+			{
+				cout << "Enter valid month" << endl;
+				cin.clear();
+				goto JMONTH;
+			}
 		JDATE:
-		cout << "Date:" << endl;
-		cin >> joiningDate;
-		if (checkDate(joiningDate,joiningMonth,joiningYear)){
-			employee.setJoiningDate(joiningDate);
-		}
-		else
-		{
-			cout << "Enter valid date" << endl;
-			goto JDATE;
-		}
-		cout << "Employee address" << endl;
-		cin >> address;
-		employee.setAddress(address);
-		cout << "Employee Phone number" << endl;
-		cin >> phoneNumber;
-		employee.setPhoneNumber(phoneNumber);
+			cout << "Date:" << endl;
+			cin >> joiningDate;
+			if (checkDate(joiningDate, joiningMonth, joiningYear)){
+				employee.setJoiningDate(joiningDate);
+			}
+			else
+			{
+				cout << "Enter valid date" << endl;
+				goto JDATE;
+			}
+			cout << "Employee address" << endl;
+			cin >> address;
+			employee.setAddress(address);
+			cout << "Employee Phone number" << endl;
+			cin >> phoneNumber;
+			employee.setPhoneNumber(phoneNumber);
 		EMAIL:
-		cout << "Employee Email Id" << endl;
-		cin >> EmailId;
-		if (checkEmailId(EmailId)){
-			employee.setEmailId(EmailId);
-		}
-		else
-		{
-			cout << "Enter valid Email must contain @domain.com" << endl;
-			goto EMAIL;
-		}
+			cout << "Employee Email Id" << endl;
+			cin >> EmailId;
+			if (checkEmailId(EmailId)){
+				employee.setEmailId(EmailId);
+			}
+			else
+			{
+				cout << "Enter valid Email must contain @domain.com" << endl;
+				goto EMAIL;
+			}
 		DEPARTMENT:
-		cout << "Employee department" << endl;
-		cin >> department;
-		check = checkDepartment(department);
-		if (check){
-			employee.setDepartment(department);
-		}
-		else
-		{
-			cout << "Enter valid Department" << endl;
-			goto DEPARTMENT;
-		}
+			cout << "Employee department" << endl;
+			cin >> department;
+			check = checkDepartment(department);
+			if (check){
+				employee.setDepartment(department);
+			}
+			else
+			{
+				cout << "Enter valid Department" << endl;
+				goto DEPARTMENT;
+			}
 		POSITION:
-		cout << "Employee position" << endl;
-		cin >> position;
-		check = checkPosition(position);
-		if (check){
-			employee.setPosition(position);
-		}
-		else
-		{
-			cout << "Enter valid position" << endl;
-			goto POSITION;
-		}
+			cout << "Employee position" << endl;
+			cin >> position;
+			check = checkPosition(position);
+			if (check){
+				employee.setPosition(position);
+			}
+			else
+			{
+				cout << "Enter valid position" << endl;
+				goto POSITION;
+			}
 
-		cout << "Employee Current Project Name or Bench" <<endl;
-		cin >> currentProject;
-		employee.setCurrentProject(currentProject);
-		cout << "Employee Basic Salary" << endl;
-		cin >> basic;
-		employee.setBasic(basic);
+			cout << "Employee Current Project Name or Bench" << endl;
+			cin >> currentProject;
+			employee.setCurrentProject(currentProject);
+			cout << "Employee Basic Salary" << endl;
+			cin >> basic;
+			employee.setBasic(basic);
+		}
+		catch (exception& e){
+			throw new exception;
+		}
 		HRA = (basic * 10) / 100;
 		employee.setHRA(HRA);
 		PF = 1800;
@@ -167,12 +173,20 @@ void Company::createEmployee(){
 		gross=basic+HRA;
 		employee.setGross(gross);
 
-		if (((employeeV[index].getCurrentProject()).compare("BENCH")) == 0 || ((employeeV[index].getCurrentProject()).compare("bench")) == 0){
-			status = bench.enqueue(employee);
-		}
 
 		//assigning employee object to vector
 		employeeV.push_back(employee);
+
+		if (((employee.getCurrentProject()).compare("BENCH")) == 0 || ((employee.getCurrentProject()).compare("bench")) == 0){
+			status = bench.enqueue(employee);
+			return status;
+		}
+		else
+		{
+			return "Successfully added";
+		}
+
+		
 }
 
 
@@ -389,7 +403,7 @@ bool Company::checkMonth(int month){
 	}
 }
 bool Company::checkBirthYear(int year){
-	if (2018-65 <= year && year <= (2018 - 21)){
+	if (2018-58 <= year && year <= (2018 - 21)){
 		return true;
 	}
 	else
