@@ -1,13 +1,11 @@
 #include "Company.h"
 #include<iostream>
 
-string name, sex, address, phoneNumber, EmailId, department, position, currentProject="Bench";
+string emp_id,name, sex, address, phoneNumber, EmailId, department, position, currentProject,status;
 
 unsigned int id = 101, birthDate, birthMonth, birthYear, joiningDate, joiningMonth, joiningYear, HRA, basic, PF, gross, index;
 
 bool check;
-
-size_t found[10];
 
 Employee employee;
 
@@ -24,15 +22,16 @@ Company::~Company()
 
 /*Method to create Employees*/
 void Company::createEmployee(){
-
+		cout << "**************SYSTEM IS CASE SENSITIVE USE UPPER CASE OR LOWER CASE*************" << endl;
 		cout << "Enter the employee details" << endl;
-		employee.setId(id);
+		emp_id = "EMP" + to_string(id);
+		employee.setId(emp_id);
 		id++;
-		cout << "Employee name" << endl;
+		cout << "Employee name:" << endl;
 		cin>> name;
 		employee.setName(name);
 		SEX:
-		cout << "Employee Sex" << endl;
+		cout << "Employee Sex(MALE/FEMALE/TRANSGENDER)" << endl;
 		cin >> sex;
 		check = checkSex(sex);
 		if (check){
@@ -43,20 +42,20 @@ void Company::createEmployee(){
 			cout << "Enter valid gender" << endl;
 			goto SEX;
 		}
-		BDATE:
-		cout << "Employee Date of birth(day)" << endl;
-		cin >> birthDate;
-		check = checkDate(birthDate);
-		if (check){
-			employee.setBirthDate(birthDate);
+		cout << "Enter Date of Birth:" << endl;
+		BYEAR:
+		cout << "Year:" << endl;
+		cin >> birthYear;
+		if (checkBirthYear(birthYear)){
+			employee.setBirthYear(birthYear);
 		}
 		else
 		{
-			cout << "Enter valid Date" << endl;
-			goto BDATE;
+			cout << "Enter valid year" << endl;
+			goto BYEAR;
 		}
 		BMONTH:
-		cout << "Date of birth(month)" << endl;
+		cout << "Month:" << endl;
 		cin >> birthMonth;
 		if (checkMonth(birthMonth)){
 			employee.setBirthMonth(birthMonth);
@@ -66,30 +65,32 @@ void Company::createEmployee(){
 			cout << "Enter valid month" << endl;
 			goto BMONTH;
 		}
-		BYEAR:
-		cout << "Date of birth(year)" << endl;
-		cin >> birthYear;
-		if (checkYear(birthYear)){
-			employee.setBirthYear(birthYear);
+		BDATE:
+		cout << "Date:" << endl;
+		cin >> birthDate;
+		check = checkDate(birthDate,birthMonth,birthYear);
+		if (check){
+			employee.setBirthDate(birthDate);
+		}
+		else
+		{
+			cout << "Enter valid Date" << endl;
+			goto BDATE;
+		}
+		cout << "Enter Date of Joining:" << endl;
+		JYEAR:
+		cout << "Year:" << endl;
+		cin >> joiningYear;
+		if (checkJoiningYear(joiningYear, birthYear)){
+			employee.setJoiningYear(joiningYear);
 		}
 		else
 		{
 			cout << "Enter valid year" << endl;
-			goto BYEAR;
-		}
-		JDATE:
-		cout << "Employee Joining date" << endl;
-		cin >> joiningDate;
-		if (checkDate(joiningDate)){
-			employee.setJoiningDate(joiningDate);
-		}
-		else
-		{
-			cout << "Enter valid date" << endl;
-			goto JDATE;
+			goto JYEAR;
 		}
 		JMONTH:
-		cout << "Joining month" << endl;
+		cout << "Month:" << endl;
 		cin >> joiningMonth;
 		if (checkMonth(joiningMonth)){
 			employee.setJoiningMonth(joiningMonth);
@@ -100,16 +101,16 @@ void Company::createEmployee(){
 			cin.clear();
 			goto JMONTH;
 		}
-		JYEAR:
-		cout << "Joining year" << endl;
-		cin >> joiningYear;
-		if (checkYear(joiningYear)){
-			employee.setJoiningYear(joiningYear);
+		JDATE:
+		cout << "Date:" << endl;
+		cin >> joiningDate;
+		if (checkDate(joiningDate,joiningMonth,joiningYear)){
+			employee.setJoiningDate(joiningDate);
 		}
 		else
 		{
-			cout << "Enter valid year" << endl;
-			goto JYEAR;
+			cout << "Enter valid date" << endl;
+			goto JDATE;
 		}
 		cout << "Employee address" << endl;
 		cin >> address;
@@ -125,7 +126,7 @@ void Company::createEmployee(){
 		}
 		else
 		{
-			cout << "Enter valid Email" << endl;
+			cout << "Enter valid Email must contain @domain.com" << endl;
 			goto EMAIL;
 		}
 		DEPARTMENT:
@@ -156,19 +157,20 @@ void Company::createEmployee(){
 		cout << "Employee Current Project Name or Bench" <<endl;
 		cin >> currentProject;
 		employee.setCurrentProject(currentProject);
-
-		cout << "Employee HRA" << endl;
-		cin >> HRA;
-		employee.setHRA(HRA);
-		cout << "Employee Basic" << endl;
+		cout << "Employee Basic Salary" << endl;
 		cin >> basic;
 		employee.setBasic(basic);
-		cout << "Employee PF" << endl;
-		cin >> PF;
+		HRA = (basic * 10) / 100;
+		employee.setHRA(HRA);
+		PF = 1800;
 		employee.setPF(PF);
-		cout << "Employee Gross" << endl;
-		cin >> gross;
+		gross=basic+HRA;
 		employee.setGross(gross);
+
+		if (((employeeV[index].getCurrentProject()).compare("BENCH")) == 0 || ((employeeV[index].getCurrentProject()).compare("bench")) == 0){
+			status = bench.enqueue(employee);
+		}
+
 		//assigning employee object to vector
 		employeeV.push_back(employee);
 }
@@ -178,24 +180,30 @@ void Company::createEmployee(){
 /*Method to fing the Highest pay in a particular department*/
 void Company::getHighestPayinDepartment(string department){
 	vector<Employee> departmentV;
-	int highestPay,id;
+	int highestPay;
+	string id;
 	for (int index = 0; index < (employeeV.size()); index++){
 		if (employeeV[index].getDepartment() == department){
 			departmentV.push_back(employeeV[index]);
 		}
 	}
 	//setting the first employee in the vector departmentV as highestpay
-	highestPay = departmentV[0].getGross();
-	id = departmentV[0].getId();
-	for (int index = 0; index < (departmentV.size()); index++){
-		if (departmentV[index].getGross() > highestPay){
-			highestPay = departmentV[index].getGross();
-			id = departmentV[index].getId();
+	if (departmentV.size() > 0){
+		highestPay = departmentV[0].getGross();
+		id = departmentV[0].getId();
+		for (int index = 0; index < (departmentV.size()); index++){
+			if (departmentV[index].getGross() > highestPay){
+				highestPay = departmentV[index].getGross();
+				id = departmentV[index].getId();
+			}
 		}
+		//displaying the Employee details with highest salary
+		display(id);
 	}
-	//displaying the Employee details with highest salary
-	display(id);
-
+	else
+	{
+		cout << "No Employee available in the department "<<department<<endl;
+	}
 }
 
 /*Method to get list of Employees Joined in a particular year*/
@@ -207,46 +215,77 @@ void Company::getByYear(int year){
 		}
 	}
 	//displaying the employee name of the given year
-	cout << "************************************************" << endl;
-	for (int k = 0; k < yearV.size(); k++){
-		cout << "Employee Id: " << '\t' << yearV[k].getId() << '\t' << "Employee Name:" << '\t' << yearV[k].getName() << endl;
+	if (yearV.size() > 0){
+		cout << "************************************************" << endl;
+		for (int k = 0; k < yearV.size(); k++){
+			cout << "Employee Id: " << '\t' << yearV[k].getId() << '\t' << "Employee Name:" << '\t' << yearV[k].getName() << endl;
+		}
+		cout << "************************************************" << endl;
 	}
-	cout << "************************************************" << endl;
+	else
+	{
+		cout << "No Employee joined in the year "<<year<<endl;
+	}
 
 }
 
 /*Method to Update A Employee Pay by 5%*/
-string Company::updatePayById(int id){
+string Company::updatePayById(string id){
 	index = searchEmployee.interpolation_search(employeeV, employeeV.size(), id);
-			int temp = employeeV[index].getGross();
-			temp += (temp * 5) / 100;
-			employeeV[index].setGross(temp);
-			return "Updated Successfully";
+	if (index != -1){
+		int temp = employeeV[index].getGross();
+		temp += (temp * 5) / 100;
+		employeeV[index].setGross(temp);
+		return "Updated Successfully";
+	}
+	else
+	{
+		return "Check the Employee id you have entered";
+	}
 }
 
 /*Method to Bench a working Employee*/
-string Company::benchEmployee(int id){
+string Company::benchEmployee(string id){
 	index = searchEmployee.interpolation_search(employeeV, employeeV.size(), id);
-	employeeV[index].setCurrentProject("Bench");
-		bench.push(employeeV[index]);
-		return "Added sucessfully";
+	if (index != -1){
+		if (((employeeV[index].getCurrentProject()).compare("BENCH"))==0 || ((employeeV[index].getCurrentProject()).compare("bench"))==0){
+			return "Employee is already in bench";
+		}
+		else
+		{
+			employeeV[index].setCurrentProject("BENCH");
+			status = bench.enqueue(employeeV[index]);
+			return status;
+		}
+	}
+	else
+	{
+		return "Employee not Found";
+	}
 	
 }
 
 /*Method to Assign Project to Bench Employee*/
 string Company::removeBenchEmployee(){
-	if (!bench.empty()){
-		int id=bench.front().getId();
-		index = searchEmployee.interpolation_search(employeeV, employeeV.size(), id);
-		employeeV[index].setCurrentProject("Project");
-		bench.pop();
-		return "Removed Sucessfully";
-	}
-	else
-	{
-		return "Bench is empty";
-	}
+	string project;
+	cout << "Enter the Project assigned to the Employee" << endl;
+	cin >> project;
+		emp_id = bench.dequeue();
+		if (emp_id.compare("-1")!=0){
+			index = searchEmployee.interpolation_search(employeeV, employeeV.size(), emp_id);
+			employeeV[index].setCurrentProject(project);
+			return "Removed from Bench";
+		}
+		else{
+			return "Bench is empty";
+		}
 
+
+}
+
+/*Method to view the Employee in the bench*/
+void Company::viewBench(){
+	bench.display();
 }
 
 
@@ -265,8 +304,8 @@ void Company::display(){
 		cout << "Employee department" << '\t' << employeeV[k].getDepartment() << endl;
 		cout << "Employee position" << '\t' << employeeV[k].getPosition() << endl;
 		cout << "Employee Current project / Bench" << '\t' << employeeV[k].getCurrentProject() << endl;
-		cout << "Employee HRA" << '\t' << employeeV[k].getHRA() << endl;
 		cout << "Employee Basic" << '\t' << employeeV[k].getBasic() << endl;
+		cout << "Employee HRA" << '\t' << employeeV[k].getHRA() << endl; 
 		cout << "Employee PF" << '\t' << employeeV[k].getPf() << endl;
 		cout << "Employee Gross" << '\t' << employeeV[k].getGross() << endl;
 		cout << "************************************************" << endl;
@@ -275,7 +314,7 @@ void Company::display(){
 
 
 /*Method to Display only particular Employee details*/
-void Company::display(int id){
+void Company::display(string id){
 	
 	index = searchEmployee.interpolation_search(employeeV, employeeV.size(), id);
 		cout << "************************************************" << endl;
@@ -290,22 +329,55 @@ void Company::display(int id){
 		cout << "Employee department" << '\t' << employeeV[index].getDepartment() << endl;
 		cout << "Employee position" << '\t' << employeeV[index].getPosition() << endl;
 		cout << "Employee Current project / Bench" << '\t' << employeeV[index].getCurrentProject() << endl;
-		cout << "Employee HRA" << '\t' << employeeV[index].getHRA() << endl;
 		cout << "Employee Basic" << '\t' << employeeV[index].getBasic() << endl;
+		cout << "Employee HRA" << '\t' << employeeV[index].getHRA() << endl; 
 		cout << "Employee PF" << '\t' << employeeV[index].getPf() << endl;
 		cout << "Employee Gross" << '\t' << employeeV[index].getGross() << endl;
 		cout << "************************************************" << endl;
 }
 
 /*Methods to validate the user input for date month year gender and email*/
-bool Company::checkDate(int date){
-	if (0 < date && date <= 31){
-		return true;
+bool Company::checkDate(int date,int month,int year){
+	if (month == 2){
+		if ((year % 4) != 0){
+				if (0 < date && date <= 28){
+					return true;
+				}
+				else
+				{
+					return false;
+				}
+		}
+		else
+		{
+				if (0 < date && date <= 29){
+					return true;
+				}
+				else
+				{
+					return false;
+				}
+			}
+		}
+	if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12){
+		if (0 < date && date <= 31){
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
-	else
-	{
-		return false;
+	else if (month == 4 || month == 6 || month == 9 || month == 11){
+		if (0 < date && date <= 30){
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
+
 }
 bool Company::checkMonth(int month){
 	if (0 < month && month <= 12){
@@ -316,8 +388,8 @@ bool Company::checkMonth(int month){
 		return false;
 	}
 }
-bool Company::checkYear(int year){
-	if (1950 <= year && year <= 2018){
+bool Company::checkBirthYear(int year){
+	if (2018-65 <= year && year <= (2018 - 21)){
 		return true;
 	}
 	else
@@ -325,21 +397,48 @@ bool Company::checkYear(int year){
 		return false;
 	}
 }
-bool Company::checkSex(string sex){
-	found[0] = sex.find("MALE");
-	found[1] = sex.find("male");
-	found[2] = sex.find("FEMALE");
-	found[3] = sex.find("female");
-	found[4] = sex.find("TRANSGENDER");
-	found[5] = sex.find("transgender");
-	if (found[0] != std::string::npos || found[1] != std::string::npos){
+
+bool Company::checkJoiningYear(int year,int bYear){
+	if ((bYear +21 ) <= year && year <= 2018){
 		return true;
 	}
-	else if (found[2] != std::string::npos || found[3] != std::string::npos)
+	else
+	{
+		return false;
+	}
+}
+
+bool Company::checkJoiningYear(int year){
+	if (1980 <= year && year <= 2018){
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool Company::checkId(string id){
+	size_t found[2];
+	found[0] = id.find_first_of("EMP");
+	if (found[0] != string::npos){
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool Company::checkSex(string sex){
+	if ((sex.compare("MALE") == 0) || (sex.compare("male") == 0)){
+		return true;
+	}
+	else if ((sex.compare("FEMALE") == 0) || (sex.compare("female") == 0))
 	{	
 		return true;
 	}
-	else if (found[4] != std::string::npos || found[5] != std::string::npos)
+	else if ((sex.compare("TRANSGENDER") == 0) || (sex.compare("transgender") == 0))
 	{	
 		return true;
 	}
@@ -350,7 +449,7 @@ bool Company::checkSex(string sex){
 
 }
 bool Company::checkEmailId(string email){
-	
+	size_t found[2];
 	found[0] = email.find_first_of('@');
 	found[1] = email.find_first_of('.');
 	if (found[0] != std::string::npos && found[1] != std::string::npos){
@@ -363,31 +462,21 @@ bool Company::checkEmailId(string email){
 }
 
 bool Company::checkDepartment(string department){
-	found[0] = department.find("DEVELOPMENT");
-	found[1] = department.find("development");
-	found[2] = department.find("TESTING");
-	found[3] = department.find("testing");
-	found[4] = department.find("HR");
-	found[5] = department.find("hr");
-	found[6] = department.find("IT");
-	found[7] = department.find("it");
-	found[8] = department.find("ADMIN");
-	found[9] = department.find("admin");
-	if (found[0] != std::string::npos || found[1] != std::string::npos){
+	if ((department.compare("DEVELOPMENT") == 0) || (department.compare("development") == 0)){
 		return true;
 	}
-	else if (found[2] != std::string::npos || found[3] != std::string::npos)
+	else if ((department.compare("TESTING") == 0) || (department.compare("testing") == 0))
 	{
 		return true;
 	}
-	else if (found[4] != std::string::npos || found[5] != std::string::npos)
+	else if ((department.compare("HR") == 0) || (department.compare("hr") == 0))
 	{
 		return true;
 	}
-	else if (found[6] != std::string::npos || found[7] != std::string::npos){
+	else if ((department.compare("IT") == 0) || (department.compare("it") == 0)){
 		return true;
 	}
-	else if (found[8] != std::string::npos || found[9] != std::string::npos)
+	else if ((department.compare("ADMIN") == 0) || (department.compare("admin") == 0))
 	{
 		return true;
 	}
@@ -400,31 +489,21 @@ bool Company::checkDepartment(string department){
 
 
 bool Company::checkPosition(string position){
-	found[0] = position.find("ENGINEER");
-	found[1] = position.find("engineer");
-	found[2] = position.find("TESTER");
-	found[3] = position.find("tester");
-	found[4] = position.find("MANAGER");
-	found[5] = position.find("manager");
-	found[6] = position.find("TEAMLEAD");
-	found[7] = position.find("teamlead");
-	found[8] = position.find("ADMIN");
-	found[9] = position.find("admin");
-	if (found[0] != std::string::npos || found[1] != std::string::npos){
+	if ((position.compare("ENGINEER") == 0) || (position.compare("engineer") == 0)){
 		return true;
 	}
-	else if (found[2] != std::string::npos || found[3] != std::string::npos)
+	else if ((position.compare("TESTER") == 0) || (position.compare("tester") == 0))
 	{
 		return true;
 	}
-	else if (found[4] != std::string::npos || found[5] != std::string::npos)
+	else if ((position.compare("MANAGER") == 0) || (position.compare("manager") == 0))
 	{
 		return true;
 	}
-	else if (found[6] != std::string::npos || found[7] != std::string::npos){
+	else if ((position.compare("TEAMLEAD") == 0) || (position.compare("teamlead") == 0)){
 		return true;
 	}
-	else if (found[8] != std::string::npos || found[9] != std::string::npos)
+	else if ((position.compare("ADMIN") == 0) || (position.compare("admin") == 0))
 	{
 		return true;
 	}
