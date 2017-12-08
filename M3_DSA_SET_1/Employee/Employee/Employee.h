@@ -9,7 +9,7 @@ using namespace std;
 class Employee{
 
 private:
-	int id;
+	string id;
 
 	string name;
 
@@ -54,8 +54,8 @@ public:
 
 	~Employee();
 
-	void setId(int id);
-	int getId();
+	void setId(string id);
+	string getId();
 	void setName(string name);
 	string getName();
 	void setSex(string sex);

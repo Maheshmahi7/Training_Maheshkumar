@@ -3,7 +3,7 @@
 
 #pragma once
 #include<vector>
-#include<queue>
+#include "QueueEmployee.h"
 #include "Employee.h"
 #include "SearchEmployee.h"
 
@@ -18,15 +18,19 @@ public:
 	~Company();
 	void createEmployee();
 	void display();
-	void display(int id);
+	void display(string id);
 	void getHighestPayinDepartment(string department);
 	void getByYear(int year);
-	string updatePayById(int id);
-	string benchEmployee(int id);
+	string updatePayById(string id);
+	string benchEmployee(string id);
 	string removeBenchEmployee();
-	bool checkDate(int);
+	void viewBench();
+	bool checkId(string);
+	bool checkDate(int,int,int);
 	bool checkMonth(int);
-	bool checkYear(int);
+	bool checkBirthYear(int);
+	bool checkJoiningYear(int,int);
+	bool checkJoiningYear(int);
 	bool checkSex(string);
 	bool checkEmailId(string);
 	bool checkDepartment(string);
@@ -35,7 +39,7 @@ public:
 private:
 	vector<Employee> employeeV;
 
-	queue<Employee> bench;
+	QueueEmployee bench;
 
 };
 

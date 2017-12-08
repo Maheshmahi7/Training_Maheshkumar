@@ -12,12 +12,12 @@ Employee::~Employee()
 
 /*Getter and Setter methods for the class Employee variables*/
 
-void Employee::setId(int id){
+void Employee::setId(string id){
 	this->id = id;
 }
 
 
-int Employee::getId(){
+string Employee::getId(){
 
 	return this->id;
 

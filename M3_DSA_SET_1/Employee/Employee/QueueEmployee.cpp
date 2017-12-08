@@ -15,7 +15,6 @@ QueueEmployee::~QueueEmployee()
 /*Enqueue method to add the employee to the queue*/
 string QueueEmployee::enqueue(Employee employee){ 
 	if (!this->isFull()){
-		employee.setCurrentProject("BENCH");
 		benchV.push_back(employee);
 		++rear;
 		return "Added to Bench";
@@ -28,11 +27,12 @@ string QueueEmployee::enqueue(Employee employee){
 /*Dequeue method to remove the first added employee in the bench*/
 string QueueEmployee::dequeue(){
 	if (!this->isEmpty()){
-		benchV[front++].setCurrentProject("PROJECT");
-		return "Removed from Bench";
+		string id = benchV[front++].getId();
+		benchV.erase(benchV.begin());
+		return id;
 	}
 	else{
-		return "Bench is Empty";
+		return "-1";
 	}
 }
 

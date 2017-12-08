@@ -8,7 +8,7 @@ class SearchEmployee
 public:
 	SearchEmployee();
 	~SearchEmployee();
-	int interpolation_search(vector<Employee> employee, int size, int key);
+	int interpolation_search(vector<Employee> employee, int size, string key);
 
 };
 

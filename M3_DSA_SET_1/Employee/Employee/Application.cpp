@@ -11,9 +11,9 @@ void main(){
 	//local variable decalaration
 	char choice = 'n';
 
-	string department,status;
+	string department,status,empId;
 
-	unsigned int empId,year;
+	unsigned int year;
 
 	Company company;
 	//label for creating employee
@@ -37,41 +37,77 @@ CREATEEMPLOYEE:
 		cout << "5.Update Employee pay by 5%" << endl;
 		cout << "6.Employee to bench" << endl;
 		cout << "7.Assign Bench employee to project" << endl;
-		cout << "8.Exit" << endl;
+		cout << "8.View Benched Employee" << endl;
+		cout << "9.Exit" << endl;
 		cin >> value;
 		system("cls");
 		switch (value){
 		case 1: goto CREATEEMPLOYEE;//jumping statement
 			break;
 		case 2:
+			YEAR:
 			cout << "Enter the Year" << endl;
 			cin >> year;
-			company.getByYear(year);
+			if (company.checkJoiningYear(year)){
+				company.getByYear(year);
+			}
+			else
+			{
+				cout << "Enter valid joining year"<<endl;
+				goto YEAR;
+			}
 			break;
 		case 3: 
+			DEPARTMENT:
 			cout << "Enter the department"<<endl;
 			cin >> department;
-			company.getHighestPayinDepartment(department);
+			if (company.checkDepartment(department)){
+				company.getHighestPayinDepartment(department);
+			}
+			else
+			{
+				cout << "Enter valid department:" << endl;
+				goto DEPARTMENT;
+			}
 			break;
 		case 4: company.display();
 			break;
 		case 5:
-			cout << "Enter the Employee id" << endl;
+			UPDATE:
+			cout << "Enter the Employee id(UPPER CASE)" << endl;
 			cin >> empId;
-			status = company.updatePayById(empId);
-			cout << status << endl;
+			if (company.checkId(empId)){
+				status = company.updatePayById(empId);
+				cout << status << endl;
+			}
+			else
+			{
+				cout << "Enter valid Employee Id:" << endl;
+				goto UPDATE;
+			}
 			break;
 		case 7:
 			status = company.removeBenchEmployee();
 			cout << status << endl;
 			break;
 		case 6:
-			cout << "Enter the Employee id" << endl;
+			BENCH:
+			cout << "Enter the Employee id(UPPER CASE)" << endl;
 			cin >> empId;
-			status = company.benchEmployee(empId);
+			if (company.checkId(empId)){
+				status = company.benchEmployee(empId);
 			cout << status << endl;
+			}
+			else
+			{
+				cout << "Enter valid Employee Id:" << endl;
+				goto BENCH;
+			}
 			break;
-		case 8: exit(0);//exiting the application
+		case 9: exit(0);//exiting the application
+		case 8:
+			company.viewBench();
+			break;
 			
 		default:
 			cout << "Invalid value Enter correct value" << endl;
