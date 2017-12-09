@@ -24,6 +24,7 @@ public:
 	string updatePayById(string id);
 	string benchEmployee(string id);
 	string removeBenchEmployee();
+	int checkUserInput();
 	void viewBench();
 	bool checkId(string);
 	bool checkDate(int,int,int);

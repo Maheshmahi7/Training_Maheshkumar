@@ -46,6 +46,10 @@ CREATEEMPLOYEE:
 		cout << "8.View Benched Employee" << endl;
 		cout << "9.Exit" << endl;
 		cin >> value;
+		if (cin.fail())
+		{
+			value = company.checkUserInput();
+		}
 		system("cls");
 		switch (value){
 		case 1: goto CREATEEMPLOYEE;//jumping statement
@@ -54,6 +58,11 @@ CREATEEMPLOYEE:
 			YEAR:
 			cout << "Enter the Year" << endl;
 			cin >> year;
+			if (cin.fail())
+			{
+				year = company.checkUserInput();
+			}
+
 			if (company.checkJoiningYear(year)){
 				company.getByYear(year);
 			}

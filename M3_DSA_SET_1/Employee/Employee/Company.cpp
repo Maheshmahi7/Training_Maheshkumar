@@ -27,7 +27,6 @@ string Company::createEmployee(){
 		emp_id = "EMP" + to_string(id);
 		employee.setId(emp_id);
 		id++;
-		try{
 			cout << "Employee name:" << endl;
 			cin >> name;
 			employee.setName(name);
@@ -47,6 +46,10 @@ string Company::createEmployee(){
 		BYEAR:
 			cout << "Year:" << endl;
 			cin >> birthYear;
+			if (cin.fail())
+			{
+				birthYear = checkUserInput();
+			}
 			if (checkBirthYear(birthYear)){
 				employee.setBirthYear(birthYear);
 			}
@@ -59,6 +62,10 @@ string Company::createEmployee(){
 		BMONTH:
 			cout << "Month(1-12):" << endl;
 			cin >> birthMonth;
+			if (cin.fail())
+			{
+				birthMonth = checkUserInput();
+			}
 			if (checkMonth(birthMonth)){
 				employee.setBirthMonth(birthMonth);
 			}
@@ -70,6 +77,10 @@ string Company::createEmployee(){
 		BDATE:
 			cout << "Date:" << endl;
 			cin >> birthDate;
+			if (cin.fail())
+			{
+				birthDate = checkUserInput();
+			}
 			check = checkDate(birthDate, birthMonth, birthYear);
 			if (check){
 				employee.setBirthDate(birthDate);
@@ -83,6 +94,10 @@ string Company::createEmployee(){
 		JYEAR:
 			cout << "Year:" << endl;
 			cin >> joiningYear;
+			if (cin.fail())
+			{
+				joiningYear = checkUserInput();
+			}
 			if (checkJoiningYear(joiningYear, birthYear)){
 				employee.setJoiningYear(joiningYear);
 			}
@@ -93,7 +108,12 @@ string Company::createEmployee(){
 			}
 		JMONTH:
 			cout << "Month(1-12):" << endl;
-			cin >> joiningMonth;
+			cin >> joiningMonth;			
+			if (cin.fail())
+			{
+				joiningMonth = checkUserInput();
+			}
+
 			if (checkMonth(joiningMonth)){
 				employee.setJoiningMonth(joiningMonth);
 			}
@@ -106,6 +126,11 @@ string Company::createEmployee(){
 		JDATE:
 			cout << "Date:" << endl;
 			cin >> joiningDate;
+			if (cin.fail())
+			{
+				joiningDate = checkUserInput();
+			}
+
 			if (checkDate(joiningDate, joiningMonth, joiningYear)){
 				employee.setJoiningDate(joiningDate);
 			}
@@ -161,11 +186,12 @@ string Company::createEmployee(){
 			employee.setCurrentProject(currentProject);
 			cout << "Employee Basic Salary" << endl;
 			cin >> basic;
+			if (cin.fail())
+			{
+				basic = checkUserInput();
+			}
+
 			employee.setBasic(basic);
-		}
-		catch (exception& e){
-			throw new exception;
-		}
 		HRA = (basic * 10) / 100;
 		employee.setHRA(HRA);
 		PF = 1800;
@@ -529,5 +555,20 @@ bool Company::checkPosition(string position){
 }
 
 
-
-
+int Company::checkUserInput() {
+	int input;
+	while (1)
+	{
+		if (cin.fail())
+		{
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cout << "You have entered wrong input" << endl;
+			cin >> input;
+		}
+		else if (!cin.fail()) {
+			return input;
+			break;
+		}
+	}
+}
