@@ -1,6 +1,5 @@
 #ifndef QueueEmployee_HEADER
 #define QueueEmployee_HEADER
-#define MAX_SIZE 10
 
 #include "Employee.h"
 #include<iostream>
@@ -18,7 +17,6 @@ public:
 	string dequeue();
 	void display();
 	bool isEmpty();
-	bool isFull();
 private:
 	vector<Employee> benchV;
 	int rear, front;

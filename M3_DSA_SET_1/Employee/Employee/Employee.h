@@ -29,7 +29,7 @@ private:
 
 	string address;
 
-	string phoneNumber;
+	long int phoneNumber;
 
 	string EmailId;
 
@@ -43,7 +43,13 @@ private:
 
 	int basic;
 
+	int allowance;
+
 	int PF;
+
+	int net;
+
+	int gratuity; 
 
 	int gross;
 
@@ -62,8 +68,8 @@ public:
 	string getSex();
 	void setAddress(string address);
 	string getAddress();
-	void setPhoneNumber(string phoneNumber);
-	string getPhoneNumber();
+	void setPhoneNumber(long int phoneNumber);
+	long int getPhoneNumber();
 	void setEmailId(string emailId);
 	string getEmailId();
 	void setBirthDate(int date);
@@ -88,8 +94,14 @@ public:
 	int getHRA();
 	void setBasic(int basic);
 	int getBasic();
+	void setAllowance(int allowance);
+	int getAllowance();
 	void setPF(int pf);
-	int getPf();
+	int getPF();
+	void setNet(int net);
+	int getNet();
+	void setGratuity(int gratuity);
+	int getGratuity();
 	void setGross(int gross);
 	int getGross();
 

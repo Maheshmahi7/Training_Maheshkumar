@@ -1,9 +1,11 @@
 #include "Company.h"
 #include<iostream>
 
-string emp_id,name, sex, address, phoneNumber, EmailId, department, position, currentProject,status;
+string emp_id,name, sex, address, EmailId, department, position, currentProject,status;
 
-unsigned int id = 101, birthDate, birthMonth, birthYear, joiningDate, joiningMonth, joiningYear, HRA, basic, PF, gross, index;
+long int phoneNumber;
+
+unsigned int id = 101, birthDate, birthMonth, birthYear, joiningDate, joiningMonth, joiningYear, HRA, basic, PF, gross, index,net,allowance,gratuity;
 
 bool check;
 
@@ -108,12 +110,11 @@ string Company::createEmployee(){
 			}
 		JMONTH:
 			cout << "Month(1-12):" << endl;
-			cin >> joiningMonth;			
+			cin >> joiningMonth;
 			if (cin.fail())
 			{
 				joiningMonth = checkUserInput();
 			}
-
 			if (checkMonth(joiningMonth)){
 				employee.setJoiningMonth(joiningMonth);
 			}
@@ -130,7 +131,6 @@ string Company::createEmployee(){
 			{
 				joiningDate = checkUserInput();
 			}
-
 			if (checkDate(joiningDate, joiningMonth, joiningYear)){
 				employee.setJoiningDate(joiningDate);
 			}
@@ -144,6 +144,10 @@ string Company::createEmployee(){
 			employee.setAddress(address);
 			cout << "Employee Phone number" << endl;
 			cin >> phoneNumber;
+			if (cin.fail())
+			{
+				phoneNumber = checkUserPhoneNumber();
+			}
 			employee.setPhoneNumber(phoneNumber);
 		EMAIL:
 			cout << "Employee Email Id" << endl;
@@ -158,6 +162,7 @@ string Company::createEmployee(){
 			}
 		DEPARTMENT:
 			cout << "Employee department" << endl;
+			cout << "List of departments are:" << '\n' << "DEVELOPMENT, TESTING, HR, IT" << endl;
 			cin >> department;
 			check = checkDepartment(department);
 			if (check){
@@ -170,6 +175,7 @@ string Company::createEmployee(){
 			}
 		POSITION:
 			cout << "Employee position" << endl;
+			cout << "List of positions are:" << '\n' << "DEVELOPER, TESTER, ADMIN, TEAMLEAD, HR" << endl; 
 			cin >> position;
 			check = checkPosition(position);
 			if (check){
@@ -190,14 +196,9 @@ string Company::createEmployee(){
 			{
 				basic = checkUserInput();
 			}
-
 			employee.setBasic(basic);
-		HRA = (basic * 10) / 100;
-		employee.setHRA(HRA);
-		PF = 1800;
-		employee.setPF(PF);
-		gross=basic+HRA;
-		employee.setGross(gross);
+
+			employee = calculateSalary(employee);
 
 
 		//assigning employee object to vector
@@ -213,6 +214,23 @@ string Company::createEmployee(){
 		}
 
 		
+}
+
+
+Employee Company::calculateSalary(Employee employee){
+	HRA = (employee.getBasic() * 10) / 100;
+	employee.setHRA(HRA);
+	PF = (employee.getBasic() * 8.3) / 100;;
+	employee.setPF(PF);
+	allowance = (employee.getBasic() * 6.6) / 100;
+	employee.setAllowance(allowance);
+	net = (employee.getBasic() + employee.getHRA() + employee.getAllowance() - employee.getPF());
+	employee.setNet(net);
+	gratuity = ((employee.getBasic()*4.8) / 100) * 12;
+	employee.setGratuity(gratuity);
+	gross = ((employee.getNet() * 12) + (employee.getPF() * 12 *2) + (employee.getGratuity()));
+	employee.setGross(gross);
+	return employee;
 }
 
 
@@ -273,9 +291,10 @@ void Company::getByYear(int year){
 string Company::updatePayById(string id){
 	index = searchEmployee.interpolation_search(employeeV, employeeV.size(), id);
 	if (index != -1){
-		int temp = employeeV[index].getGross();
+		int temp = employeeV[index].getBasic();
 		temp += (temp * 5) / 100;
-		employeeV[index].setGross(temp);
+		employeeV[index].setBasic(temp);
+		employeeV[index] = calculateSalary(employeeV[index]);
 		return "Updated Successfully";
 	}
 	else
@@ -346,7 +365,10 @@ void Company::display(){
 		cout << "Employee Current project / Bench" << '\t' << employeeV[k].getCurrentProject() << endl;
 		cout << "Employee Basic" << '\t' << employeeV[k].getBasic() << endl;
 		cout << "Employee HRA" << '\t' << employeeV[k].getHRA() << endl; 
-		cout << "Employee PF" << '\t' << employeeV[k].getPf() << endl;
+		cout << "Employee ALLOWANCE" << '\t' << employeeV[k].getAllowance() << endl; 
+		cout << "Employee PF" << '\t' << employeeV[k].getPF() << endl;
+		cout << "Employee NET" << '\t' << employeeV[k].getNet() << endl; 
+		cout << "Employee GRATUITY" << '\t' << employeeV[k].getGratuity() << endl; 
 		cout << "Employee Gross" << '\t' << employeeV[k].getGross() << endl;
 		cout << "************************************************" << endl;
 	}
@@ -370,8 +392,11 @@ void Company::display(string id){
 		cout << "Employee position" << '\t' << employeeV[index].getPosition() << endl;
 		cout << "Employee Current project / Bench" << '\t' << employeeV[index].getCurrentProject() << endl;
 		cout << "Employee Basic" << '\t' << employeeV[index].getBasic() << endl;
-		cout << "Employee HRA" << '\t' << employeeV[index].getHRA() << endl; 
-		cout << "Employee PF" << '\t' << employeeV[index].getPf() << endl;
+		cout << "Employee HRA" << '\t' << employeeV[index].getHRA() << endl;
+		cout << "Employee ALLOWANCE" << '\t' << employeeV[index].getAllowance() << endl;
+		cout << "Employee PF" << '\t' << employeeV[index].getPF() << endl;
+		cout << "Employee NET" << '\t' << employeeV[index].getNet() << endl;
+		cout << "Employee GRATUITY" << '\t' << employeeV[index].getGratuity() << endl;
 		cout << "Employee Gross" << '\t' << employeeV[index].getGross() << endl;
 		cout << "************************************************" << endl;
 }
@@ -557,6 +582,25 @@ bool Company::checkPosition(string position){
 
 int Company::checkUserInput() {
 	int input;
+	while (1)
+	{
+		if (cin.fail())
+		{
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cout << "You have entered wrong input" << endl;
+			cin >> input;
+		}
+		else if (!cin.fail()) {
+			return input;
+			break;
+		}
+	}
+}
+
+
+long int Company::checkUserPhoneNumber() {
+	long int input;
 	while (1)
 	{
 		if (cin.fail())

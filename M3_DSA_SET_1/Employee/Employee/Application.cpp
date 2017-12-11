@@ -21,13 +21,8 @@ void main(){
 CREATEEMPLOYEE:
 	//loop for creating employee 
 	do{
-		try{
 			status = company.createEmployee();
 			cout << status << endl;
-		}
-		catch (exception e){
-			cerr << "Exception Caught" << e.what() << endl;
-		}
 		cout << "Want to Add more Employee?(y/n)";
 		cin >> choice;
 	} while (choice == 'y' || choice=='Y');
@@ -47,9 +42,10 @@ CREATEEMPLOYEE:
 		cout << "9.Exit" << endl;
 		cin >> value;
 		if (cin.fail())
-		{
-			value = company.checkUserInput();
-		}
+ 		{
+ 			value = company.checkUserInput();
+ 		}
+
 		system("cls");
 		switch (value){
 		case 1: goto CREATEEMPLOYEE;//jumping statement
@@ -62,7 +58,6 @@ CREATEEMPLOYEE:
 			{
 				year = company.checkUserInput();
 			}
-
 			if (company.checkJoiningYear(year)){
 				company.getByYear(year);
 			}

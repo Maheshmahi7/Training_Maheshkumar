@@ -59,13 +59,13 @@ string Employee::getAddress(){
 
 }
 
-void Employee::setPhoneNumber(string phoneNumber){
+void Employee::setPhoneNumber(long int phoneNumber){
 
 	this->phoneNumber = phoneNumber;
 
 }
 
-string Employee::getPhoneNumber(){
+long int Employee::getPhoneNumber(){
 
 	return this->phoneNumber;
 
@@ -214,15 +214,51 @@ int Employee::getBasic(){
 
 }
 
+void Employee::setAllowance(int allowance){
+
+	this->allowance = allowance;
+
+}
+
+int Employee::getAllowance(){
+
+	return this->allowance;
+
+}
+
 void Employee::setPF(int pf){
 
 	this->PF = pf;
 
 }
 
-int Employee::getPf(){
+int Employee::getPF(){
 
 	return this->PF;
+
+}
+
+void Employee::setNet(int net){
+
+	this->net = net;
+
+}
+
+int Employee::getNet(){
+
+	return this->net;
+
+}
+
+void Employee::setGratuity(int gratuity){
+
+	this->gratuity = gratuity;
+
+}
+
+int Employee::getGratuity(){
+
+	return this->gratuity;
 
 }
 

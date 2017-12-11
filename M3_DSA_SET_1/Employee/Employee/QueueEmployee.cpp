@@ -14,14 +14,9 @@ QueueEmployee::~QueueEmployee()
 
 /*Enqueue method to add the employee to the queue*/
 string QueueEmployee::enqueue(Employee employee){ 
-	if (!this->isFull()){
 		benchV.push_back(employee);
 		++rear;
 		return "Successfull added";
-	}
-	else{
-		return "Bench Full";
-	}
 }
 
 /*Dequeue method to remove the first added employee in the bench*/
@@ -52,9 +47,12 @@ void QueueEmployee::display(){
 			cout << "Employee department" << '\t' << benchV[k].getDepartment() << endl;
 			cout << "Employee position" << '\t' << benchV[k].getPosition() << endl;
 			cout << "Employee Current project / Bench" << '\t' << benchV[k].getCurrentProject() << endl;
-			cout << "Employee HRA" << '\t' << benchV[k].getHRA() << endl;
 			cout << "Employee Basic" << '\t' << benchV[k].getBasic() << endl;
-			cout << "Employee PF" << '\t' << benchV[k].getPf() << endl;
+			cout << "Employee HRA" << '\t' << benchV[k].getHRA() << endl;
+			cout << "Employee ALLOWANCE" << '\t' << benchV[k].getAllowance() << endl;
+			cout << "Employee PF" << '\t' << benchV[k].getPF() << endl;
+			cout << "Employee NET" << '\t' << benchV[k].getNet() << endl;
+			cout << "Employee GRATUITY" << '\t' << benchV[k].getGratuity() << endl;
 			cout << "Employee Gross" << '\t' << benchV[k].getGross() << endl;
 			cout << "************************************************" << endl;
 		}
@@ -73,11 +71,3 @@ bool QueueEmployee::isEmpty(){
 	} 
 }
 
-/*method to check the queue is full or not*/
-bool QueueEmployee::isFull(){
-	if (benchV.size() >= MAX_SIZE){ 
-		return true; 
-	} else{
-		return false; 
-	} 
-}

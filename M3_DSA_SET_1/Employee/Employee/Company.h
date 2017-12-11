@@ -17,6 +17,7 @@ public:
 	Company();
 	~Company();
 	string createEmployee();
+	Employee calculateSalary(Employee);
 	void display();
 	void display(string id);
 	void getHighestPayinDepartment(string department);
@@ -36,6 +37,7 @@ public:
 	bool checkEmailId(string);
 	bool checkDepartment(string);
 	bool checkPosition(string);
+	long int checkUserPhoneNumber();
 	
 private:
 	vector<Employee> employeeV;
