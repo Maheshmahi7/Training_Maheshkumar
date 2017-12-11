@@ -1,12 +1,33 @@
-﻿  Company.cpp
-c:\users\mahi\documents\github\training_maheshkumar\m3_dsa_set_1\employee\employee\company.cpp(225): warning C4018: '<': signed/unsigned mismatch
-c:\users\mahi\documents\github\training_maheshkumar\m3_dsa_set_1\employee\employee\company.cpp(234): warning C4018: '<': signed/unsigned mismatch
-c:\users\mahi\documents\github\training_maheshkumar\m3_dsa_set_1\employee\employee\company.cpp(252): warning C4018: '<': signed/unsigned mismatch
-c:\users\mahi\documents\github\training_maheshkumar\m3_dsa_set_1\employee\employee\company.cpp(260): warning C4018: '<': signed/unsigned mismatch
-c:\users\mahi\documents\github\training_maheshkumar\m3_dsa_set_1\employee\employee\company.cpp(335): warning C4018: '<': signed/unsigned mismatch
-  Application.cpp
-  Generating Code...
-c:\users\mahi\documents\github\training_maheshkumar\m3_dsa_set_1\employee\employee\company.cpp(421): warning C4715: 'Company::checkDate': not all control paths return a value
-  Skipping... (no relevant changes detected)
-  SearchEmployee.cpp
-  Employee.vcxproj -> C:\Users\Mahi\Documents\GitHub\Training_Maheshkumar\M3_DSA_SET_1\Employee\Debug\Employee.exe
+﻿Build started 12/11/2017 12:13:05 PM.
+     1>Project "C:\Users\jayaraj-1\Documents\Visual Studio 2013\Projects\Employee\Employee\Employee.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Application.cpp dynamicarray.cpp Employee.cpp Company.cpp QueueEmployee.cpp SearchEmployee.cpp
+         SearchEmployee.cpp
+         QueueEmployee.cpp
+         Company.cpp
+     1>c:\users\jayaraj-1\documents\visual studio 2013\projects\employee\employee\company.cpp(223): warning C4244: '=' : conversion from 'double' to 'unsigned int', possible loss of data
+     1>c:\users\jayaraj-1\documents\visual studio 2013\projects\employee\employee\company.cpp(225): warning C4244: '=' : conversion from 'double' to 'unsigned int', possible loss of data
+     1>c:\users\jayaraj-1\documents\visual studio 2013\projects\employee\employee\company.cpp(229): warning C4244: '=' : conversion from 'double' to 'unsigned int', possible loss of data
+     1>c:\users\jayaraj-1\documents\visual studio 2013\projects\employee\employee\company.cpp(243): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\jayaraj-1\documents\visual studio 2013\projects\employee\employee\company.cpp(252): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\jayaraj-1\documents\visual studio 2013\projects\employee\employee\company.cpp(270): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\jayaraj-1\documents\visual studio 2013\projects\employee\employee\company.cpp(278): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\jayaraj-1\documents\visual studio 2013\projects\employee\employee\company.cpp(354): warning C4018: '<' : signed/unsigned mismatch
+         Employee.cpp
+         dynamicarray.cpp
+         Application.cpp
+         Generating Code...
+     1>c:\users\jayaraj-1\documents\visual studio 2013\projects\employee\employee\company.cpp(446): warning C4715: 'Company::checkDate' : not all control paths return a value
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\jayaraj-1\Documents\Visual Studio 2013\Projects\Employee\Debug\Employee.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\jayaraj-1\Documents\Visual Studio 2013\Projects\Employee\Debug\Employee.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\jayaraj-1\Documents\Visual Studio 2013\Projects\Employee\Debug\Employee.lib" /MACHINE:X86 Debug\Application.obj
+         Debug\dynamicarray.obj
+         Debug\Employee.obj
+         Debug\Company.obj
+         Debug\QueueEmployee.obj
+         Debug\SearchEmployee.obj
+         Employee.vcxproj -> C:\Users\jayaraj-1\Documents\Visual Studio 2013\Projects\Employee\Debug\Employee.exe
+     1>Done Building Project "C:\Users\jayaraj-1\Documents\Visual Studio 2013\Projects\Employee\Employee\Employee.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:03.96
