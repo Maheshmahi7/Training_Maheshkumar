@@ -27,6 +27,7 @@ public:
 	Avl_node *insert(Avl_node *,double,string);
 	Avl_node updatePrice(Avl_node *, double);
 	void display(Avl_node *);
+	void display(Avl_node *,int);
 	int max(int, int);
 	Avl_node *mirrorTree(Avl_node *);
 

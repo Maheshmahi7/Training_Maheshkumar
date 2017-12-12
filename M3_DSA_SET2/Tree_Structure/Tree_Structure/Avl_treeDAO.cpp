@@ -67,14 +67,24 @@ void Avl_treeDAO::getNoOfProduct(){
 
 /*DAO method for mirror tree*/
 void Avl_treeDAO::mirrorTree(){
+	Avl_node *temp1;
 	if (avlTree.root != NULL){
-		temp = avlTree.mirrorTree(avlTree.root);
-		if (temp != NULL){
-			avlTree.display(temp);
+		temp1 = avlTree.root;
+		temp1 = avlTree.mirrorTree(temp1);
+		if (temp1 != NULL){
+			cout << "Mirror of the given tree" << endl;
+			avlTree.display(temp1, 1);
+			cout << endl;
 		}
 		else{
 			cout << "Mirror Tree is empty" << endl;
 		}
+		temp1 = avlTree.root;
+		temp1 = avlTree.mirrorTree(temp1);
+		cout << "Given tree" << endl;
+		if (temp1 != NULL)
+			avlTree.display(temp1, 1);
+		cout << endl;
 	}
 	else{
 		cout << "Need to Create tree inorder to display tree" << endl;
@@ -84,7 +94,8 @@ void Avl_treeDAO::mirrorTree(){
 /*DAO method for displaying the tree*/
 void Avl_treeDAO::display(){
 	if (avlTree.root != NULL){
-		avlTree.display(avlTree.root);
+		avlTree.display(avlTree.root,1);
+		cout << endl;
 	}
 	else{
 		cout << "Need to Create tree inorder to display tree" << endl;

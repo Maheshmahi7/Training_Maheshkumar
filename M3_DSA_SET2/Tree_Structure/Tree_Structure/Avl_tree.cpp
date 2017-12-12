@@ -135,6 +135,8 @@ Avl_node *Avl_tree::getNoOfProduct(Avl_node *temp,double price){
 }
 
 Avl_node *Avl_tree::mirrorTree(Avl_node *tree){
+		if (tree == NULL)
+				return tree;
 			/*Recursively calling the mirror function*/
 			mirrorTree(tree->left);
 			mirrorTree(tree->right);
@@ -151,4 +153,19 @@ void Avl_tree::display(Avl_node *temp){
 	display(temp->left);
 	cout << temp->price << endl;
 	display(temp->right);
+}
+
+void Avl_tree::display(Avl_node *temp,int level){
+	int i;
+    if (temp!=NULL)
+    {
+        display(temp->right, level + 1);
+        printf("\n");
+        if (temp == root)
+        cout<<"Root -> ";
+        for (i = 0; i < level && temp != root; i++)
+            cout<<"        ";
+        cout<<temp->price;
+        display(temp->left, level + 1);
+    }
 }
