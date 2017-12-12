@@ -39,19 +39,19 @@ private:
 
 	string currentProject;
 
-	int HRA;
+	float HRA;
 
-	int basic;
+	float basic;
 
-	int allowance;
+	float allowance;
 
-	int PF;
+	float PF;
 
-	int net;
+	float net;
 
-	int gratuity; 
+	float gratuity;
 
-	int gross;
+	float gross;
 
 
 public:
@@ -90,20 +90,20 @@ public:
 	string getPosition();
 	void setCurrentProject(string currentProject);
 	string getCurrentProject();
-	void setHRA(int hra);
-	int getHRA();
-	void setBasic(int basic);
-	int getBasic();
-	void setAllowance(int allowance);
-	int getAllowance();
-	void setPF(int pf);
-	int getPF();
-	void setNet(int net);
-	int getNet();
-	void setGratuity(int gratuity);
-	int getGratuity();
-	void setGross(int gross);
-	int getGross();
+	void setHRA(float hra);
+	float getHRA();
+	void setBasic(float basic);
+	float getBasic();
+	void setAllowance(float allowance);
+	float getAllowance();
+	void setPF(float pf);
+	float getPF();
+	void setNet(float net);
+	float getNet();
+	void setGratuity(float gratuity);
+	float getGratuity();
+	void setGross(float gross);
+	float getGross();
 
 };
 

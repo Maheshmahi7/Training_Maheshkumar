@@ -18,7 +18,7 @@ void main(){
 
 	Company company;
 	//label for creating employee
-CREATEEMPLOYEE:
+	CREATEEMPLOYEE:
 	//loop for creating employee 
 	do{
 			status = company.createEmployee();

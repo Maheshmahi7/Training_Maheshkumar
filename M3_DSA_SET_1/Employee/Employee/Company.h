@@ -26,6 +26,7 @@ public:
 	string benchEmployee(string id);
 	string removeBenchEmployee();
 	int checkUserInput();
+	float checkBasic();
 	void viewBench();
 	bool checkId(string);
 	bool checkDate(int,int,int);

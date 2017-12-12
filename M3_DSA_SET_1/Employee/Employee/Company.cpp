@@ -5,7 +5,9 @@ string emp_id,name, sex, address, EmailId, department, position, currentProject,
 
 long int phoneNumber;
 
-unsigned int id = 101, birthDate, birthMonth, birthYear, joiningDate, joiningMonth, joiningYear, HRA, basic, PF, gross, index,net,allowance,gratuity;
+unsigned int id = 101, birthDate, birthMonth, birthYear, joiningDate, joiningMonth, joiningYear, index;
+
+float HRA, basic, PF, gross, net, allowance, gratuity;
 
 bool check;
 
@@ -175,7 +177,7 @@ string Company::createEmployee(){
 			}
 		POSITION:
 			cout << "Employee position" << endl;
-			cout << "List of positions are:" << '\n' << "DEVELOPER, TESTER, ADMIN, TEAMLEAD, HR" << endl; 
+			cout << "List of positions are:" << '\n' << "ENGINEER, TESTER, ADMIN, TEAMLEAD, MANAGER" << endl; 
 			cin >> position;
 			check = checkPosition(position);
 			if (check){
@@ -194,7 +196,7 @@ string Company::createEmployee(){
 			cin >> basic;
 			if (cin.fail())
 			{
-				basic = checkUserInput();
+				basic = checkBasic();
 			}
 			employee.setBasic(basic);
 
@@ -216,7 +218,7 @@ string Company::createEmployee(){
 		
 }
 
-
+/*Method to calculate salary of the employee*/
 Employee Company::calculateSalary(Employee employee){
 	HRA = (employee.getBasic() * 10) / 100;
 	employee.setHRA(HRA);
@@ -238,7 +240,7 @@ Employee Company::calculateSalary(Employee employee){
 /*Method to fing the Highest pay in a particular department*/
 void Company::getHighestPayinDepartment(string department){
 	vector<Employee> departmentV;
-	int highestPay;
+	float highestPay;
 	string id;
 	for (int index = 0; index < (employeeV.size()); index++){
 		if (employeeV[index].getDepartment() == department){
@@ -291,7 +293,7 @@ void Company::getByYear(int year){
 string Company::updatePayById(string id){
 	index = searchEmployee.interpolation_search(employeeV, employeeV.size(), id);
 	if (index != -1){
-		int temp = employeeV[index].getBasic();
+		float temp = employeeV[index].getBasic();
 		temp += (temp * 5) / 100;
 		employeeV[index].setBasic(temp);
 		employeeV[index] = calculateSalary(employeeV[index]);
@@ -481,6 +483,8 @@ bool Company::checkJoiningYear(int year){
 	{
 		return false;
 	}
+
+	//return (1980 <= year && year <= 2018);
 }
 
 bool Company::checkId(string id){
@@ -582,6 +586,24 @@ bool Company::checkPosition(string position){
 
 int Company::checkUserInput() {
 	int input;
+	while (1)
+	{
+		if (cin.fail())
+		{
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cout << "You have entered wrong input" << endl;
+			cin >> input;
+		}
+		else if (!cin.fail()) {
+			return input;
+			break;
+		}
+	}
+}
+
+float Company::checkBasic() {
+	float input;
 	while (1)
 	{
 		if (cin.fail())

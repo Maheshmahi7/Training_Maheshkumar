@@ -190,85 +190,85 @@ string Employee::getCurrentProject(){
 
 }
 
-void Employee::setHRA(int hra){
+void Employee::setHRA(float hra){
 
 	this->HRA = hra;
 
 }
 
-int Employee::getHRA(){
+float Employee::getHRA(){
 
 	return this->HRA;
 
 }
 
-void Employee::setBasic(int basic){
+void Employee::setBasic(float basic){
 
 	this->basic = basic;
 
 }
 
-int Employee::getBasic(){
+float Employee::getBasic(){
 
 	return this->basic;
 
 }
 
-void Employee::setAllowance(int allowance){
+void Employee::setAllowance(float allowance){
 
 	this->allowance = allowance;
 
 }
 
-int Employee::getAllowance(){
+float Employee::getAllowance(){
 
 	return this->allowance;
 
 }
 
-void Employee::setPF(int pf){
+void Employee::setPF(float pf){
 
 	this->PF = pf;
 
 }
 
-int Employee::getPF(){
+float Employee::getPF(){
 
 	return this->PF;
 
 }
 
-void Employee::setNet(int net){
+void Employee::setNet(float net){
 
 	this->net = net;
 
 }
 
-int Employee::getNet(){
+float Employee::getNet(){
 
 	return this->net;
 
 }
 
-void Employee::setGratuity(int gratuity){
+void Employee::setGratuity(float gratuity){
 
 	this->gratuity = gratuity;
 
 }
 
-int Employee::getGratuity(){
+float Employee::getGratuity(){
 
 	return this->gratuity;
 
 }
 
-void Employee::setGross(int gross){
+void Employee::setGross(float gross){
 
 	this->gross = gross;
 
 }
 
-int Employee::getGross(){
+float Employee::getGross(){
 
 	return this->gross;
 
