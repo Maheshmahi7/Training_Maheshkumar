@@ -1,14 +1,9 @@
-﻿Build started 12/12/2017 4:43:13 PM.
+﻿Build started 12/12/2017 5:18:23 PM.
      1>Project "C:\Users\jayaraj-1\documents\visual studio 2013\Projects\Tree_Structure\Tree_Structure\Tree_Structure.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Application.cpp Avl_tree.cpp Avl_treeDAO.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Avl_treeDAO.cpp
          Avl_treeDAO.cpp
      1>c:\users\jayaraj-1\documents\visual studio 2013\projects\tree_structure\tree_structure\avl_treedao.cpp(52): warning C4018: '<' : signed/unsigned mismatch
-         Avl_tree.cpp
-         Application.cpp
-         Generating Code...
-     1>c:\users\jayaraj-1\documents\visual studio 2013\projects\tree_structure\tree_structure\avl_tree.cpp(147): warning C4717: 'Avl_tree::mirrorTree' : recursive on all control paths, function will cause runtime stack overflow
-     1>c:\users\jayaraj-1\documents\visual studio 2013\projects\tree_structure\tree_structure\avl_tree.cpp(154): warning C4717: 'Avl_tree::display' : recursive on all control paths, function will cause runtime stack overflow
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\jayaraj-1\documents\visual studio 2013\Projects\Tree_Structure\Debug\Tree_Structure.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\jayaraj-1\documents\visual studio 2013\Projects\Tree_Structure\Debug\Tree_Structure.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\jayaraj-1\documents\visual studio 2013\Projects\Tree_Structure\Debug\Tree_Structure.lib" /MACHINE:X86 Debug\Application.obj
          Debug\Avl_node.obj
@@ -19,4 +14,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:02.40
+Time Elapsed 00:00:01.31
