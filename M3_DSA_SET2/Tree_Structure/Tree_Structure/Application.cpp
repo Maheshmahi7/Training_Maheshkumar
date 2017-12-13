@@ -1,21 +1,13 @@
 #include<iostream>
-#include<conio.h>
 #include "Avl_treeDAO.h"
 
 using namespace std;
 
 void main(){
-	char choice = 'n';
 
 	string status;
 
 	Avl_treeDAO avlTree;
-
-	/*Loop for creating a tree at the start*/
-	do{
-		status = avlTree.insert();
-		cout << status << endl;
-	} while (choice == 'y' || choice == 'Y');
 
 	/*Looping statement for User Interface*/
 	while (true){
