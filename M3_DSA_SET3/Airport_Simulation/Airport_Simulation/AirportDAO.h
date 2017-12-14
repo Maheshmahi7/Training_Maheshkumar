@@ -17,17 +17,20 @@ private:
 	Airport airport;
 	Aeroplane aeroplane;
 	int flag1=0, flag2=0;
-	MyQueue landing, takeoff;
+	MyQueue landing, depature;
 	vector<Airport> arrived, departured;
 
 public:
 	AirportDAO();
 	~AirportDAO();
 
-	void start();
+	void startSimulation();
+	bool endSimulation();
+	void summary();
 	void createRequest();
 	void request(Airport);
-	void approval();
+	void land();
+	void takeoff();
 	int checkUserInput();
 };
 

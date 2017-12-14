@@ -15,8 +15,8 @@ void main(){
 	int value;
 	AirportDAO airportDAO;
 	system("cls");
-	airportDAO.start();
-	while (true)
+	airportDAO.startSimulation();
+	while (airportDAO.endSimulation())
 	{
 		menu();
 		cin >> value;
@@ -25,6 +25,7 @@ void main(){
 			value = checkUserInput();
 		}
 		AirportDAO *airportDAO = new AirportDAO();
+		system("cls");
 		switch (value)
 		{
 		case 1: 	
@@ -38,13 +39,15 @@ void main(){
 		}
 	}
 	
+	airportDAO.summary();
+	
 
 	cin.clear();
 	cin.ignore(1000, '\n');
 	cin.get();
 }
 
-
+/*Method for showing the available functionality in the system*/
 void menu()
 {
 	cout << "***********************************************" << endl;
@@ -53,12 +56,14 @@ void menu()
 	cout << "***********************************************" << endl;
 }
 
+/*Thread method for invoking the request*/
 void create(AirportDAO airportDao)
 {
 	thread request(&AirportDAO::createRequest,airportDao);
 	request.join();
 }
 
+/*Method to validate the user input.*/
 int checkUserInput()
 {
 	int input;
