@@ -9,15 +9,15 @@ using namespace std;
 
 
 void menu();
-void create();
+void create(AirportDAO);
 int checkUserInput();
 AirportDAO airportDAO;
 
 void main(){
 	int value;
-	thread request;
 	system("cls");
 	airportDAO.startSimulation();
+	AirportDAO *airport=new AirportDAO();
 	while (airportDAO.endSimulation())
 	{
 		menu();
@@ -26,15 +26,12 @@ void main(){
 		{
 			value = checkUserInput();
 		}
-		//AirportDAO airport;
+		
 		system("cls");
 		switch (value)
 		{
 		case 1:
-			if (value == 1){
-				request = thread(create);
-				request.join();
-			}
+			create(*airport);
 			break;
 		case 2:
 			break;
@@ -62,9 +59,10 @@ void menu()
 }
 
 /*Thread method for invoking the request*/
-void create()
+void create(AirportDAO airport)
 {
-	airportDAO.createRequest();
+	thread request(&AirportDAO::createRequest, airport);
+	request.join();
 }
 
 /*Method to validate the user input.*/

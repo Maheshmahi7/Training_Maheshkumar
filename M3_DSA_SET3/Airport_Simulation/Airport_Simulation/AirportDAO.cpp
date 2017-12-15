@@ -36,7 +36,7 @@ void AirportDAO::createRequest()
 	airport.setAeroplane(aeroplane);
 	time_t now = time(0);
 	airport.setRequestedTime(now);
-	int type = rand() % 2;
+	int type = 0;
 	airport.setRequestType(type);
 	request(airport);
 }
@@ -67,7 +67,6 @@ void AirportDAO::land(){
 			airport.setStatus("Landed");
 			airport.setRunway("Runway 1");
 			arrived.push_back(airport);
-			cout << arrived.size() << endl;
 			flag1 = 1;
 		}
 	}
@@ -80,7 +79,6 @@ void AirportDAO::land(){
 			airport.setStatus("Landed");
 			airport.setRunway("Runway 2");
 			arrived.push_back(airport);
-			cout << arrived.size() << endl;
 			flag2 = 1;
 		}
 	}
@@ -99,7 +97,6 @@ void AirportDAO::takeoff(){
 				getTakeoffWaitingTime(airport.getRequestedTime(), airport.getRequestCleared());	airport.setStatus("Departed");
 				airport.setRunway("Runway 1");
 				departured.push_back(airport);
-				//cout << departured.size() << endl;
 				flag1 = 1;
 			}
 		}
@@ -112,7 +109,6 @@ void AirportDAO::takeoff(){
 				airport.setStatus("departed");
 				airport.setRunway("Runway 2");
 				departured.push_back(airport);
-				cout << departured.size() << endl;
 				flag2 = 1;
 			}
 		}
