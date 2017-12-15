@@ -3,17 +3,19 @@
 #include <cstdlib>
 #include <thread>
 #include "AirportDAO.h"
+#include <time.h>
 
 using namespace std;
 
 
 void menu();
-void create(AirportDAO);
+void create();
 int checkUserInput();
+AirportDAO airportDAO;
 
 void main(){
 	int value;
-	AirportDAO airportDAO;
+	thread request;
 	system("cls");
 	airportDAO.startSimulation();
 	while (airportDAO.endSimulation())
@@ -24,23 +26,26 @@ void main(){
 		{
 			value = checkUserInput();
 		}
-		AirportDAO *airportDAO = new AirportDAO();
+		//AirportDAO airport;
 		system("cls");
 		switch (value)
 		{
-		case 1: 	
-			create(*airportDAO);
+		case 1:
+			if (value == 1){
+				request = thread(create);
+				request.join();
+			}
 			break;
 		case 2:
-			exit(0);
+			break;
 		default:
 			cout << "Enter the correct value" << endl;
 			break;
 		}
+		airportDAO.checkFlag();
 	}
 	
 	airportDAO.summary();
-	
 
 	cin.clear();
 	cin.ignore(1000, '\n');
@@ -57,10 +62,9 @@ void menu()
 }
 
 /*Thread method for invoking the request*/
-void create(AirportDAO airportDao)
+void create()
 {
-	thread request(&AirportDAO::createRequest,airportDao);
-	request.join();
+	airportDAO.createRequest();
 }
 
 /*Method to validate the user input.*/
