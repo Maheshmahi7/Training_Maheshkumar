@@ -134,18 +134,18 @@ Avl_node *Avl_tree::getNoOfProduct(Avl_node *temp,double price){
 	return temp;
 }
 
-Avl_node *Avl_tree::mirrorTree(Avl_node *tree){
-		if (tree == NULL)
-				return tree;
+Avl_node *Avl_tree::mirrorTree(Avl_node *mirror){
+		if (mirror == NULL)
+				return mirror;
 			/*Recursively calling the mirror function*/
-			mirrorTree(tree->left);
-			mirrorTree(tree->right);
+		mirrorTree(mirror->left);
+			mirrorTree(mirror->right);
 
 			/*swap the left and right child of the node*/
-			temp1 = tree->left;
-			tree->left = tree->right;
-			tree->right = temp1;
-			return tree;
+			temp1 = mirror->left;
+			mirror->left = mirror->right;
+			mirror->right = temp1;
+			return mirror;
 }
 
 /*Methos for displaying the node*/

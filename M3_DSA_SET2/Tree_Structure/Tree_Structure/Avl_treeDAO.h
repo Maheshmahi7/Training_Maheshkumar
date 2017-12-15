@@ -3,7 +3,7 @@
 #define Avl_treeDAO_HEADER
 #include "Avl_tree.h"
 
-class Avl_treeDAO : public Avl_tree
+class Avl_treeDAO 
 {
 public:
 	Avl_treeDAO();

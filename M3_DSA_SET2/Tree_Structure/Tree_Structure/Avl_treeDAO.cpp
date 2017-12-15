@@ -20,7 +20,8 @@ Avl_treeDAO::~Avl_treeDAO()
 string Avl_treeDAO::insert(){
 
 	cout << "Enter the product name" << endl;
-	cin >> productName;
+	cin.ignore();
+	getline(cin, productName);
 	cout << "Enter the price" << endl;
 	cin >> price;
 	if (cin.fail()){

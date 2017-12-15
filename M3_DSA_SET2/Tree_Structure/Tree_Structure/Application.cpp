@@ -7,7 +7,7 @@ void main(){
 
 	string status;
 
-	Avl_treeDAO avlTree;
+	Avl_treeDAO avlTreeDAO;
 
 	/*Looping statement for User Interface*/
 	while (true){
@@ -21,25 +21,25 @@ void main(){
 		/*User input validation*/
 		if (cin.fail())
 		{
-			value = avlTree.checkUserInput();
+			value = avlTreeDAO.checkUserInput();
 		}
 		system("cls");
 		switch (value){
-		case 1: status = avlTree.insert();//Calling Insert function
-			cout << status << endl;
-			break;
-		case 2: avlTree.mirrorTree();//Calling mirror function
+		case 1: status = avlTreeDAO.insert();//Calling Insert function
+				cout << status << endl;
 				break;
-		case 3: avlTree.getNoOfProduct();//Calling get no of product function
-				   break;
-		case 4: avlTree.display();//Calling display function
-			break;
-		case 5: exit(0);//exiting the application
-		default:
-			cout << "Invalid value Enter correct value" << endl;
-			break;
-		}
-	}
+		case 2: avlTreeDAO.mirrorTree();//Calling mirror function
+					break;
+		case 3: avlTreeDAO.getNoOfProduct();//Calling get no of product function
+					   break;
+		case 4: avlTreeDAO.display();//Calling display function
+				break;
+			case 5: exit(0);//exiting the application
+			default:
+				cout << "Invalid value Enter correct value" << endl;
+				break;
+			}
+	}	
 	cin.ignore(100, '\n');
 	cin.get();
 }
