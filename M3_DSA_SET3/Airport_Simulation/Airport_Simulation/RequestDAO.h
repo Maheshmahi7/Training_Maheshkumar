@@ -8,6 +8,7 @@
 #include "MyQueue.h"
 #include <stdlib.h>
 #include <vector>
+#include<iomanip>
 
 using namespace std;
 
@@ -28,7 +29,8 @@ public:
 	void takeoff();
 	void getLandingWaitingTime(time_t,time_t);
 	void getTakeoffWaitingTime(time_t, time_t);
-	void calculateAverageWaitingTime();
+	void calculateAverageWaitingTime(int);
+	void requestCompleted(Request,string,string,time_t);
 	int checkUserInput();
 	void checkFlag();
 	void random();

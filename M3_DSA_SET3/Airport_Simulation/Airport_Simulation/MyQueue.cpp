@@ -44,8 +44,23 @@ Request MyQueue::dequeue(){
 void MyQueue::display(){
 	if (!this->isEmpty()){
 		cout << "************************************************" << endl;
-		for (int k = front; k <= rear; k++)  {
-
+		if (elements[this->front].getRequestType() == 0){
+			cout << "Landing Pending Request Details" << endl;
+		}
+		else
+		{
+			cout << "Takeoff Pending Request Details" << endl;
+		}
+		for (int k = this->front; k <= this->rear; k++)  {
+			struct tm ltm;
+			cout << "Requested Aeroplane Name:" << setw(2) << elements[k].getAeroplane().getAeroplaneName() << endl;
+			cout << "Requested Aeroplane Number:" << setw(2) << elements[k].getAeroplane().getAeroplaneNumber() << endl;
+			cout << "Requested Aeroplane Capacity:" << setw(2) << elements[k].getAeroplane().getAeroplaneCapacity() << endl;
+			cout << "Requested Aeroplane Type:" << setw(2) << elements[k].getAeroplane().getAeroplaneType() << endl;
+			time_t time = elements[k].getRequestedTime();
+			ltm = *localtime(&time);
+			cout << "Requested Time:" << setw(2) << (ltm.tm_hour) << ":" << (ltm.tm_min) << ":" << (ltm.tm_sec) << endl;
+			cout << "************************************************" << endl;
 		}
 	}
 	else{
@@ -64,3 +79,6 @@ bool MyQueue::isEmpty(){
 	}
 }
 
+int MyQueue::size(){
+	return elements.size();
+}
