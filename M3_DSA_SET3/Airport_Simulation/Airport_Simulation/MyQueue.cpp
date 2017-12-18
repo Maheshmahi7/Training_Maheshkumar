@@ -1,11 +1,12 @@
 #include "MyQueue.h"
 
+
 /*Constructor to initialize the rear and front value*/
 
 MyQueue::MyQueue()
 {
-	rear = -1;
-	front = 0;
+	this->rear = -1;
+	this->front = 0;
 }
 
 
@@ -15,17 +16,22 @@ MyQueue::~MyQueue()
 
 /*Enqueue method to add the employee to the queue*/
 
-string MyQueue::enqueue(Airport airport){
-	elements.push_back(airport);
-	++rear;
+string MyQueue::enqueue(Request request){
+	elements.push_back(request);
+	this->rear++;
 	return "Successfull added";
 }
 
 /*Dequeue method to remove the first added employee in the bench*/
-Airport MyQueue::dequeue(){
-	if (!this->isEmpty()){
-		Airport id = elements[front++];
+Request MyQueue::dequeue(){
+	if (!isEmpty()){
+		Request id = elements[0];
 		elements.erase(elements.begin());
+		this->front++;
+		if (isEmpty()){
+			this->rear = -1;
+			this->front = 0;
+		}
 		return id;
 	}
 	else{
@@ -50,7 +56,7 @@ void MyQueue::display(){
 
 /*method to check the queue is empty or not*/
 bool MyQueue::isEmpty(){
-	if (front>rear){
+	if (this->front>this->rear){
 		return true;
 	}
 	else{

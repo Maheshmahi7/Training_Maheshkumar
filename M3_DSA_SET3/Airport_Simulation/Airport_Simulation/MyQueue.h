@@ -3,7 +3,7 @@
 
 #include<iostream>
 #include<vector>
-#include "Airport.h"
+#include "Request.h"
 #pragma once
 
 using namespace std;
@@ -13,13 +13,14 @@ class MyQueue
 public:
 	MyQueue();
 	~MyQueue();
-	string enqueue(Airport);
-	Airport dequeue();
+	string enqueue(Request);
+	Request dequeue();
 	void display();
 	bool isEmpty();
 private:
-	vector<Airport> elements;
-	int rear, front;
+	int rear;
+	int front;
+	vector<Request> elements;
 };
 
 #endif
