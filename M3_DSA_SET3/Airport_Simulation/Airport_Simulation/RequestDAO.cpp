@@ -24,7 +24,7 @@ Request request;
 Aeroplane aeroplane;
 
 int flagWaitingTime = 1;
-int timeElapse = 3;
+int timeElapse = 2;
 
 MyQueue landing;
 MyQueue depature;
@@ -177,18 +177,29 @@ void RequestDAO::checkFlag(){
 	time_t now = time(0);
 	struct tm ltm = *localtime(&now);
 	int min = (1 + ltm.tm_min);
+	int hour = (1 + ltm.tm_hour);
+	int flag1WaitingHour;
+	int flag2WaitingHour;
 	if (flag1 == 1){
-		flag1WTime = (flag2Time + flagWaitingTime) % 60;
-		if ( min == (flag1WTime)){
-			flag1 = 0;
-			takeoff();
+		flag1WTime = (flag2Time + flagWaitingTime);
+		flag1WaitingHour = hour + (flag1WTime / 60);
+		flag1WTime = flag1WTime % 60;
+		if (hour == flag1WaitingHour){
+			if (min == (flag1WTime)){
+				flag1 = 0;
+				takeoff();
+			}
 		}
 	}
 	if (flag2 == 1){
-		flag2WTime = (flag2Time + flagWaitingTime) % 60;
-		if (min == (flag2WTime)){
-			flag2 = 0;
-			takeoff();
+		flag2WTime = (flag2Time + flagWaitingTime);
+		flag2WaitingHour = hour + (flag2WTime / 60);
+		flag2WTime = flag2WTime % 60;
+		if (hour == flag2WaitingHour){
+			if (min == (flag2WTime)){
+				flag2 = 0;
+				takeoff();
+			}
 		}
 	}
 }
@@ -205,43 +216,60 @@ void RequestDAO::getTakeoffWaitingTime(time_t requestedTime, time_t clearedTime)
 
 /*Method to calculate the average waiting time of the request*/
 void RequestDAO::calculateAverageWaitingTime(int waitingTime){
-	int hours, minutes, seconds;
+	int hours = 00, minutes = 00, seconds = 00;
 		seconds = waitingTime % 60;
 		waitingTime = waitingTime / 60;
 		minutes = waitingTime % 60;
 		waitingTime = waitingTime / 60;
 		hours = waitingTime % 24;
 		cout << "Average Waiting Time: " << setw(2) << setfill('0') << hours << ":" << setfill('0') << minutes << ":" << setfill('0') << seconds << endl;
+		cout << endl;
 }
 
 
 
 /*Method to display the final result of the simualtion*/
 void RequestDAO::summary(){
-	cout << "No of Aeroplanes Landed: " << setw(2) << arrived.size() << endl;
-	cout << "No of Aeroplanes Departed: " << setw(2) << departured.size() << endl;
-	if (!landing.isEmpty()){
-		cout << "Unserved Landing request" << setw(2) << landing.size() << endl;
-	}
-	else
-	{
-		cout << "All Landing Request are served" << endl;
-	}
-	if (!depature.isEmpty()){
-		cout << "Unserved Takeoff request" << setw(2) << depature.size() << endl;
-	}
-	else
-	{
-		cout << "All Takeoff Request are served" << endl;
-	}
-	if (arrived.size() != 0){
+	if (!arrived.empty()){
+		cout << "No of Aeroplanes Landed: " << setw(2) << arrived.size() << endl;
+		cout << endl;
+		if (!landing.isEmpty()){
+			cout << "Unserved Landing request: " << setw(2) << landing.size() << endl;
+			cout << endl;
+			landing.display();
+		}
+		else
+		{
+			cout << "All Landing Request are served" << endl;
+			cout << endl;
+		}
 		averageLandingWaitingTime = averageLandingWaitingTime / arrived.size();
 		calculateAverageWaitingTime(averageLandingWaitingTime);
 	}
-	if (departured.size() != 0){
+	else
+	{
+		cout << "No Request to serve" << endl;
+		cout << endl;
+	}
+	if (!departured.empty()){
+		cout << "No of Aeroplanes Departed: " << setw(2) << departured.size() << endl;
+		cout << endl;
+		if (!depature.isEmpty()){
+			cout << "Unserved Takeoff request: " << setw(2) << depature.size() << endl;
+			cout << endl;
+			depature.display();
+		}
+		else
+		{
+			cout << "All Takeoff Request are served" << endl;
+			cout << endl;
+		}
 		averageTakeoffWaitingTime = averageTakeoffWaitingTime / departured.size();
 		calculateAverageWaitingTime(averageTakeoffWaitingTime);
 	}
-	landing.display();
-	depature.display();
+	else
+	{
+		cout << "No Request to serve" << endl;
+		cout << endl;
+	}
 }

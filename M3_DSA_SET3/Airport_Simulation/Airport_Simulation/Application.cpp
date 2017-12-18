@@ -17,7 +17,6 @@ void main(){
 	int value;
 	system("cls");
 	requestDAO.startSimulation();
-	RequestDAO request;
 	while (requestDAO.endSimulation())
 	{
 		menu();
@@ -31,7 +30,7 @@ void main(){
 		switch (value)
 		{
 		case 1:
-			create(request);
+			requestDAO.createRequest();
 			break;
 		case 2:
 			break;
@@ -58,12 +57,6 @@ void menu()
 	cout << "***********************************************" << endl;
 }
 
-/*Thread method for invoking the request*/
-void create(RequestDAO request)
-{
-	thread requestT(&RequestDAO::createRequest, request);
-	requestT.join();
-}
 
 /*Method to validate the user input.*/
 int checkUserInput()

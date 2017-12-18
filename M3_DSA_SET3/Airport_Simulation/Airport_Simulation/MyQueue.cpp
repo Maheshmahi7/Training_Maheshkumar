@@ -3,22 +3,14 @@
 
 /*Constructor to initialize the rear and front value*/
 
-MyQueue::MyQueue()
-{
-	this->rear = -1;
-	this->front = 0;
-}
+MyQueue::MyQueue(){}
 
 
-MyQueue::~MyQueue()
-{
-}
+MyQueue::~MyQueue(){}
 
 /*Enqueue method to add the employee to the queue*/
-
 string MyQueue::enqueue(Request request){
 	elements.push_back(request);
-	this->rear++;
 	return "Successfull added";
 }
 
@@ -27,11 +19,6 @@ Request MyQueue::dequeue(){
 	if (!isEmpty()){
 		Request id = elements[0];
 		elements.erase(elements.begin());
-		this->front++;
-		if (isEmpty()){
-			this->rear = -1;
-			this->front = 0;
-		}
 		return id;
 	}
 	else{
@@ -44,14 +31,14 @@ Request MyQueue::dequeue(){
 void MyQueue::display(){
 	if (!this->isEmpty()){
 		cout << "************************************************" << endl;
-		if (elements[this->front].getRequestType() == 0){
+		if (elements[0].getRequestType() == 0){
 			cout << "Landing Pending Request Details" << endl;
 		}
 		else
 		{
 			cout << "Takeoff Pending Request Details" << endl;
 		}
-		for (int k = this->front; k <= this->rear; k++)  {
+		for (int k = 0; k < elements.size(); k++)  {
 			struct tm ltm;
 			cout << "Requested Aeroplane Name:" << setw(2) << elements[k].getAeroplane().getAeroplaneName() << endl;
 			cout << "Requested Aeroplane Number:" << setw(2) << elements[k].getAeroplane().getAeroplaneNumber() << endl;
@@ -59,24 +46,21 @@ void MyQueue::display(){
 			cout << "Requested Aeroplane Type:" << setw(2) << elements[k].getAeroplane().getAeroplaneType() << endl;
 			time_t time = elements[k].getRequestedTime();
 			ltm = *localtime(&time);
-			cout << "Requested Time:" << setw(2) << (ltm.tm_hour) << ":" << (ltm.tm_min) << ":" << (ltm.tm_sec) << endl;
+			cout << "Requested Time:" << setw(2) << setfill('0') << (ltm.tm_hour) << ":" << setfill('0') << (ltm.tm_min) << ":" << setfill('0') << (ltm.tm_sec) << endl;
 			cout << "************************************************" << endl;
 		}
+		cout << endl;
 	}
 	else{
 		cout << "Bench is Empty" << endl;
+		cout << endl;
 	}
 }
 
 
 /*method to check the queue is empty or not*/
 bool MyQueue::isEmpty(){
-	if (this->front>this->rear){
-		return true;
-	}
-	else{
-		return false;
-	}
+	return elements.empty();
 }
 
 int MyQueue::size(){

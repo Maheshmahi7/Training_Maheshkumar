@@ -26,8 +26,6 @@ public:
 
 
 private:
-	int rear;
-	int front;
 	vector<Request> elements;
 };
 
