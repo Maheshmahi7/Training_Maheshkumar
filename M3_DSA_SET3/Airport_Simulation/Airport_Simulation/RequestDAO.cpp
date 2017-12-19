@@ -23,8 +23,8 @@ int averageTakeoffWaitingTime = 0;
 Request request;
 Aeroplane aeroplane;
 
-int flagWaitingTime = 1;
-int timeElapse = 2;
+int flagWaitingTime = 15;
+int timeElapse = 120;
 
 MyQueue landing;
 MyQueue depature;
@@ -37,25 +37,28 @@ RequestDAO::RequestDAO(){}
 
 RequestDAO::~RequestDAO(){}
 
-/*Method to set random value to aeroplane*/
-void RequestDAO::random(){
-	type = id % 2;
-	id++;
-}
 
-/*Method for strating the simulation time*/
+/*Method for strating the simulation and set the ending time*/
 void RequestDAO::startSimulation(){
 	time_t now = time(0);
 	struct tm ltm = *localtime(&now);
-	startingHour = (1 + ltm.tm_hour);
-	startingMin = (1 + ltm.tm_min);
-	startingSec = (1 + ltm.tm_sec);
+	startingHour = (ltm.tm_hour);
+	startingMin = (ltm.tm_min);
+	startingSec = (ltm.tm_sec);
+
+	endingSec = startingSec;
+	endingMin = startingMin + (endingSec / 60) + timeElapse;
+	endingSec = endingSec % 60;
+	endingHour = startingHour + (endingMin / 60);
+	endingMin = endingMin % 60;
+	endingHour = endingHour % 24;
+
 }
 
 /*Method for creating the request based on thread response*/
 void RequestDAO::createRequest()
 {
-	random();
+	id = random();
 	string planeid = "ASW" + to_string(id);
 	aeroplane.setAeroplaneNumber(planeid);
 	aeroplane.setAeroplaneName(planeid);
@@ -64,6 +67,7 @@ void RequestDAO::createRequest()
 	request.setAeroplane(aeroplane);
 	time_t now = time(0);
 	request.setRequestedTime(now);
+	type = random() % 2;
 	request.setRequestType(type);
 	response(request);
 }
@@ -86,7 +90,7 @@ void RequestDAO::land(){
 	struct tm ltm = *localtime(&now);
 	if (!landing.isEmpty()){
 		if (flag1 == 0){
-			flag1Time = (1 + ltm.tm_min);
+			flag1Time = (ltm.tm_min);
 			request = landing.dequeue();
 			requestCompleted(request, "Landed", "Runway 1", now);
 			flag1 = 1;
@@ -94,7 +98,7 @@ void RequestDAO::land(){
 	}
 	if(!landing.isEmpty()){
 		if (flag2 == 0){
-			flag2Time = (1 + ltm.tm_min);
+			flag2Time = (ltm.tm_min);
 			request = landing.dequeue();
 			requestCompleted(request, "Landed", "Runway 2", now);
 			flag2 = 1;
@@ -109,7 +113,7 @@ void RequestDAO::takeoff(){
 	if (landing.isEmpty()){
 		if (!depature.isEmpty()){
 			if (flag1 == 0){
-				flag1Time = (1 + ltm.tm_min);
+				flag1Time = (ltm.tm_min);
 				request = depature.dequeue();
 				requestCompleted(request, "Departed", "Runway 1", now);
 				flag1 = 1;
@@ -117,7 +121,7 @@ void RequestDAO::takeoff(){
 		}
 		if(!depature.isEmpty()){
 			if (flag2 == 0){
-				flag2Time = (1 + ltm.tm_min);
+				flag2Time = (ltm.tm_min);
 				request = depature.dequeue();
 				requestCompleted(request, "Departed", "Runway 2", now);
 				flag2 = 1;
@@ -151,16 +155,10 @@ bool RequestDAO::endSimulation(){
 	
 	time_t now = time(0);
 	struct tm ltm = *localtime(&now);
-	endingSec = startingSec;
-		endingMin = startingMin + (endingSec / 60) + timeElapse;
-		endingSec = endingSec % 60;
-		endingHour = startingHour + (endingMin / 60);
-		endingMin = endingMin % 60;
-		endingHour = endingHour % 24;
 
-		if ((1 + ltm.tm_hour) == endingHour){
-			if ((1 + ltm.tm_min) == endingMin){
-				if ((1 + ltm.tm_sec) < endingSec){
+		if ((ltm.tm_hour) == endingHour){
+			if ((ltm.tm_min) == endingMin){
+				if ((ltm.tm_sec) < endingSec){
 					return true;
 				}
 				else
@@ -169,15 +167,15 @@ bool RequestDAO::endSimulation(){
 				}
 			}
 		}
-		
+		return true;		
 }
 
 /*Method to reallocated the runway using flags*/
 void RequestDAO::checkFlag(){
 	time_t now = time(0);
 	struct tm ltm = *localtime(&now);
-	int min = (1 + ltm.tm_min);
-	int hour = (1 + ltm.tm_hour);
+	int min = (ltm.tm_min);
+	int hour = (ltm.tm_hour);
 	int flag1WaitingHour;
 	int flag2WaitingHour;
 	if (flag1 == 1){
@@ -231,10 +229,10 @@ void RequestDAO::calculateAverageWaitingTime(int waitingTime){
 /*Method to display the final result of the simualtion*/
 void RequestDAO::summary(){
 	if (!arrived.empty()){
-		cout << "No of Aeroplanes Landed: " << setw(2) << arrived.size() << endl;
+		cout << "No of Aeroplanes Landed: " << setfill('0') << arrived.size() << endl;
 		cout << endl;
 		if (!landing.isEmpty()){
-			cout << "Unserved Landing request: " << setw(2) << landing.size() << endl;
+			cout << "Unserved Landing request: " << setfill('0') << landing.size() << endl;
 			cout << endl;
 			landing.display();
 		}
@@ -252,10 +250,10 @@ void RequestDAO::summary(){
 		cout << endl;
 	}
 	if (!departured.empty()){
-		cout << "No of Aeroplanes Departed: " << setw(2) << departured.size() << endl;
+		cout << "No of Aeroplanes Departed: " << setfill('0') << departured.size() << endl;
 		cout << endl;
 		if (!depature.isEmpty()){
-			cout << "Unserved Takeoff request: " << setw(2) << depature.size() << endl;
+			cout << "Unserved Takeoff request: " << setfill('0') << depature.size() << endl;
 			cout << endl;
 			depature.display();
 		}
@@ -272,4 +270,11 @@ void RequestDAO::summary(){
 		cout << "No Request to serve" << endl;
 		cout << endl;
 	}
+}
+
+/*Method to set random value to aeroplane*/
+int RequestDAO::random(){
+	time_t now = time(0);
+	struct tm ltm = *localtime(&now);
+	return (ltm.tm_sec % 25);
 }

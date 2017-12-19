@@ -33,7 +33,8 @@ public:
 	void requestCompleted(Request,string,string,time_t);
 	int checkUserInput();
 	void checkFlag();
-	void random();
+	void randomX();
+	int random();
 };
 
 #endif
