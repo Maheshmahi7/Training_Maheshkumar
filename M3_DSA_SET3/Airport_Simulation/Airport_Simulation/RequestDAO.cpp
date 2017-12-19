@@ -1,5 +1,6 @@
 #include "RequestDAO.h"
 
+ 
 int startingHour; 
 int startingMin;
 int startingSec;
@@ -23,8 +24,9 @@ int averageTakeoffWaitingTime = 0;
 Request request;
 Aeroplane aeroplane;
 
-int flagWaitingTime = 15;
-int timeElapse = 120;
+int flagWaitingTime;
+int timeElapse;
+
 
 MyQueue landing;
 MyQueue depature;
@@ -40,6 +42,10 @@ RequestDAO::~RequestDAO(){}
 
 /*Method for strating the simulation and set the ending time*/
 void RequestDAO::startSimulation(){
+	ifstream f;
+	f.open("SimulationVariable.txt");
+	f >> flagWaitingTime >> timeElapse;
+	f.close();
 	time_t now = time(0);
 	struct tm ltm = *localtime(&now);
 	startingHour = (ltm.tm_hour);
