@@ -185,7 +185,7 @@ void RequestDAO::checkFlag(){
 	int flag1WaitingHour;
 	int flag2WaitingHour;
 	if (flag1 == 1){
-		flag1WTime = (flag2Time + flagWaitingTime);
+		flag1WTime = (flag1Time + flagWaitingTime);
 		flag1WaitingHour = hour + (flag1WTime / 60);
 		flag1WTime = flag1WTime % 60;
 		if (hour == flag1WaitingHour){
