@@ -16,7 +16,7 @@ int flag1Time;
 int flag2Time;
 
 int type;
-int id = 1234;
+int id;
 
 int averageLandingWaitingTime = 0;
 int averageTakeoffWaitingTime = 0;

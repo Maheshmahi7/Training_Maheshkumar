@@ -119,6 +119,7 @@ void asyncGetUserInput() {
 			cout << "Enter the correct value" << endl;
 			break;
 		}
+		this_thread::sleep_for(chrono::seconds(10));
 	} 
 }
 
@@ -128,15 +129,17 @@ void asyncAutomatic(){
 	{
 		time_t now = time(0);
 		struct tm ltm = *localtime(&now);
+		int random = (requestDAO.random() % 10);
 		if (requestTime == 0){
 			cout << "Request Created:" << endl;
 			requestDAO.createRequest();
-			requestTime = ltm.tm_min + (requestDAO.random() % 10);
+			requestTime = (ltm.tm_min + random) % 60;
 		}
 		else if (requestTime == ltm.tm_min){
 			cout << "Request Created:" << endl; 
 			requestDAO.createRequest();
-			requestTime = ltm.tm_min + (requestDAO.random() % 10);
+			requestTime = (ltm.tm_min + random) % 60;
 		}
+		this_thread::sleep_for(chrono::seconds(8));
 	}
 }
