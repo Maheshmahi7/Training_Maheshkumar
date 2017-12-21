@@ -9,23 +9,13 @@
 using namespace std;
 
 void main(){
-	//local variable decalaration
-	char choice = 'n';
 
 	string department,status,empId;
 
 	unsigned int year;
 
 	Company company;
-	//label for creating employee
-	CREATEEMPLOYEE:
-	//loop for creating employee 
-	do{
-			status = company.createEmployee();
-			cout << status << endl;
-		cout << "Want to Add more Employee?(y/n)";
-		cin >> choice;
-	} while (choice == 'y' || choice=='Y');
+
 	//statement to clear the console screen
 	system("cls");
 	//loop for getting the user command to run the application
@@ -48,52 +38,65 @@ void main(){
 
 		system("cls");
 		switch (value){
-		case 1: goto CREATEEMPLOYEE;//jumping statement
+		case 1: status = company.createEmployee();
+			cout << status << endl;
 			break;
 		case 2:
-			YEAR:
 			cout << "Enter the Year" << endl;
 			cin >> year;
 			if (cin.fail())
 			{
 				year = company.checkUserInput();
 			}
-			if (company.checkJoiningYear(year)){
-				company.getByYear(year);
-			}
-			else
-			{
-				cout << "Enter valid joining year"<<endl;
-				goto YEAR;
+			while (true){
+				if (company.checkJoiningYear(year)){
+					company.getByYear(year);
+					break;
+				}
+				else
+				{
+					cout << "Enter valid joining year" << endl;
+					cin >> year;
+					if (cin.fail())
+					{
+						year = company.checkUserInput();
+					}
+				}
 			}
 			break;
 		case 3: 
-			DEPARTMENT:
 			cout << "Enter the department"<<endl;
 			cin >> department;
-			if (company.checkDepartment(department)){
-				company.getHighestPayinDepartment(department);
-			}
-			else
+			while (true)
 			{
-				cout << "Enter valid department:" << endl;
-				goto DEPARTMENT;
+				if (company.checkDepartment(department)){
+					company.getHighestPayinDepartment(department);
+					break;
+				}
+				else
+				{
+					cout << "Enter valid department:" << endl;
+					cin >> department;
+				}
 			}
 			break;
 		case 4: company.display();
 			break;
 		case 5:
-			UPDATE:
 			cout << "Enter the Employee id(UPPER CASE)" << endl;
 			cin >> empId;
-			if (company.checkId(empId)){
-				status = company.updatePayById(empId);
-				cout << status << endl;
-			}
-			else
+			while (true)
 			{
-				cout << "Enter valid Employee Id:" << endl;
-				goto UPDATE;
+				if (company.checkId(empId)){
+					status = company.updatePayById(empId);
+					cout << status << endl;
+					break;
+				}
+				else
+				{
+					cout << "Enter valid Employee Id:" << endl;
+					cin >> empId;
+				}
 			}
 			break;
 		case 7:
@@ -101,17 +104,20 @@ void main(){
 			cout << status << endl;
 			break;
 		case 6:
-			BENCH:
 			cout << "Enter the Employee id(UPPER CASE)" << endl;
 			cin >> empId;
-			if (company.checkId(empId)){
-				status = company.benchEmployee(empId);
-			cout << status << endl;
-			}
-			else
+			while (true)
 			{
-				cout << "Enter valid Employee Id:" << endl;
-				goto BENCH;
+				if (company.checkId(empId)){
+					status = company.benchEmployee(empId);
+					cout << status << endl;
+					break;
+				}
+				else
+				{
+					cout << "Enter valid Employee Id:" << endl;
+					cin >> empId;
+				}
 			}
 			break;
 		case 9: exit(0);//exiting the application

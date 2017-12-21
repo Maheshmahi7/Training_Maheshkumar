@@ -13,13 +13,13 @@ class QueueEmployee
 public:
 	QueueEmployee();
 	~QueueEmployee();
-	string enqueue(Employee employee);
+	string enqueue(string);
 	string dequeue();
-	void display();
 	bool isEmpty();
+	vector<string> getQueue();
 private:
-	vector<Employee> benchV;
-	int rear, front;
+	vector<string> benchV;
+	int rear;
 };
 
 #endif

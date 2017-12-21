@@ -17,30 +17,32 @@ public:
 	Company();
 	~Company();
 	string createEmployee();
-	Employee calculateSalary(Employee);
 	void display();
-	void display(string id);
-	void getHighestPayinDepartment(string department);
-	void getByYear(int year);
-	string updatePayById(string id);
-	string benchEmployee(string id);
+	void getHighestPayinDepartment(string );
+	void getByYear(int );
+	string updatePayById(string );
+	string benchEmployee(string );
 	string removeBenchEmployee();
 	int checkUserInput();
-	float checkBasic();
 	void viewBench();
 	bool checkId(string);
-	bool checkDate(int,int,int);
-	bool checkMonth(int);
-	bool checkBirthYear(int);
-	bool checkJoiningYear(int,int);
 	bool checkJoiningYear(int);
-	bool checkSex(string);
-	bool checkEmailId(string);
 	bool checkDepartment(string);
-	bool checkPosition(string);
-	long int checkUserPhoneNumber();
+
 	
 private:
+	Employee calculateSalary(Employee);
+	bool checkPosition(string);
+	long int checkUserPhoneNumber();
+	bool checkSex(string);
+	bool checkEmailId(string);
+	bool checkDate(int, int, int);
+	bool checkMonth(int);
+	bool checkBirthYear(int);
+	bool checkJoiningYear(int, int);
+	float checkBasic();
+	void display(string );
+
 	vector<Employee> employeeV;
 
 	QueueEmployee bench;
