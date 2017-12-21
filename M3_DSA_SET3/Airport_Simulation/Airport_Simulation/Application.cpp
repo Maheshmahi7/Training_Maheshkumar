@@ -17,33 +17,41 @@ bool check = true;
 int requestTime = 0;
 
 void main(){
-	int choice;
-	LOOP:
-	cout << "1.Automatic Simulation." << endl;
-	cout << "2.Manual Simulation." << endl;
-	cout << "3.Exit." << endl;
-	cout << "Enter your choice:" << endl;
-	cin >> choice;
-	if (cin.fail()){
-		choice = checkUserInput();
-	}
-	system("cls");
-	requestDAO.startSimulation();
-	async(asyncCheckingEnd);
-	switch (choice)
+	int choice, count = 0;
+	while (true)
 	{
-	case 1:
-		async(asyncAutomatic);
-		break;
-	case 2:
-		async(asyncGetUserInput);
-		break;
-	case 3:
-		exit(0);
-	default:
-		cout << "Enter Correct value(1-3):" << endl;
-		goto LOOP;
-		break;
+		cout << "1.Automatic Simulation." << endl;
+		cout << "2.Manual Simulation." << endl;
+		cout << "3.Exit." << endl;
+		cout << "Enter your choice:" << endl;
+		cin >> choice;
+		if (cin.fail()){
+			choice = checkUserInput();
+		}
+		system("cls");
+		switch (choice)
+		{
+		case 1:
+			requestDAO.startSimulation();
+			async(asyncCheckingEnd);
+			async(asyncAutomatic);
+			count = 1;
+			break;
+		case 2:
+			requestDAO.startSimulation();
+			async(asyncCheckingEnd);
+			async(asyncGetUserInput);
+			count = 1;
+			break;
+		case 3:
+			exit(0);
+		default:
+			cout << "Enter Correct value(1-3):" << endl;
+			break;
+		}
+		if (count == 1){
+			break;
+		}
 	}
 	while (check)
 	{

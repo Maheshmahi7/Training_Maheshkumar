@@ -1,38 +1,5 @@
 #include "RequestDAO.h"
 
- 
-int startingHour; 
-int startingMin;
-int startingSec;
-int endingHour;
-int endingMin;
-int endingSec;
-
-int flag1WTime;
-int flag2WTime;
-int flag1 = 0;
-int flag2 = 0;
-int flag1Time;
-int flag2Time;
-
-int type;
-int id;
-
-double averageLandingWaitingTime = 0;
-double averageTakeoffWaitingTime = 0;
-
-Request request;
-Aeroplane aeroplane;
-
-int flagWaitingTime;
-int timeElapse;
-
-
-MyQueue landing;
-MyQueue depature;
-
-vector<Request> arrived;
-vector<Request> departured;
 
 
 RequestDAO::RequestDAO(){}
@@ -64,7 +31,9 @@ void RequestDAO::startSimulation(){
 /*Method for creating the request based on thread response*/
 void RequestDAO::createRequest()
 {
-	id = random();
+	int type;
+	int id=0;
+	id = id + random();
 	string planeid = "ASW" + to_string(id);
 	aeroplane.setAeroplaneNumber(planeid);
 	aeroplane.setAeroplaneName(planeid);

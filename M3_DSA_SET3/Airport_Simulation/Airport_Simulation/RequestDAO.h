@@ -25,17 +25,47 @@ public:
 	bool endSimulation();
 	void summary();
 	void createRequest();
+	void checkFlag();
+	int random();
+
+private:
+	Request request;
+	Aeroplane aeroplane;
+
+	MyQueue landing;
+	MyQueue depature;
+
+	vector<Request> arrived;
+	vector<Request> departured;
+
+	int startingHour;
+	int startingMin;
+	int startingSec;
+	int endingHour;
+	int endingMin;
+	int endingSec;
+
+	int flag1WTime;
+	int flag2WTime;
+	int flag1 = 0;
+	int flag2 = 0;
+	int flag1Time;
+	int flag2Time;
+
+	double averageLandingWaitingTime = 0;
+	double averageTakeoffWaitingTime = 0;
+
+	int flagWaitingTime;
+	int timeElapse;
+
 	void response(Request);
 	void land();
 	void takeoff();
-	void getLandingWaitingTime(time_t,time_t);
+	void getLandingWaitingTime(time_t, time_t);
 	void getTakeoffWaitingTime(time_t, time_t);
 	void calculateAverageWaitingTime(int);
-	void requestCompleted(Request,string,string,time_t);
+	void requestCompleted(Request, string, string, time_t);
 	int checkUserInput();
-	void checkFlag();
-	void randomX();
-	int random();
 };
 
 #endif
