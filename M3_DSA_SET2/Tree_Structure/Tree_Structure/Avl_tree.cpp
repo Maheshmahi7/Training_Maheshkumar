@@ -1,7 +1,5 @@
 #include "Avl_tree.h"
 
-int leftHeight, rightHeight, maxmiumHeight, balanceFactor;
-
 Avl_node *temp1;
 
 Avl_tree::Avl_tree()
@@ -27,6 +25,7 @@ int Avl_tree::max(int first, int second){
 
 /*Method to calculate the height of the given node(depth of the tree)*/
 int Avl_tree::heightOfTree(Avl_node *temp){
+	int leftHeight, rightHeight, maxmiumHeight;
 	int height = 0;
 	if (temp != NULL){
 		leftHeight = heightOfTree(temp->left);
@@ -39,6 +38,7 @@ int Avl_tree::heightOfTree(Avl_node *temp){
 
 /*Method to calculate the balance factor*/
 int Avl_tree::differenceBetweenNode(Avl_node *temp){
+	int leftHeight, rightHeight, balanceFactor;
 	leftHeight = heightOfTree(temp->left);
 	rightHeight = heightOfTree(temp->right);
 	balanceFactor = leftHeight - rightHeight;
@@ -47,6 +47,7 @@ int Avl_tree::differenceBetweenNode(Avl_node *temp){
 
 /*Method to rotate the tree according to the balance factor value*/
 Avl_node *Avl_tree::balance_factor(Avl_node *temp){
+	int balanceFactor;
 	balanceFactor = differenceBetweenNode(temp);
 	    if (balanceFactor > 1)
 	    {

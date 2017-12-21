@@ -1,11 +1,6 @@
 #include "Avl_treeDAO.h"
 
 
-double price;
-string productName;
-vector<string> product;
-Avl_node *temp;
-
 Avl_treeDAO::Avl_treeDAO()
 {
 	
@@ -18,6 +13,8 @@ Avl_treeDAO::~Avl_treeDAO()
 
 /*DAO method to Insert values into the avl tree*/
 string Avl_treeDAO::insert(){
+	string productName;
+	double price;
 
 	cout << "Enter the product name" << endl;
 	cin.ignore();
@@ -39,6 +36,9 @@ string Avl_treeDAO::insert(){
 
 /*DAO method for calling GetNoOfproduct method*/
 void Avl_treeDAO::getNoOfProduct(){
+	double price;
+	vector<string> product;
+	Avl_node *temp;
 	cout << "Enter the price" << endl;
 	cin >> price;
 	if (cin.fail()){

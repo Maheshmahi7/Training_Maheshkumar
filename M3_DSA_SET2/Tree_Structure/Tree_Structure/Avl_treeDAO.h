@@ -13,10 +13,12 @@ public:
 	void getNoOfProduct();
 	void mirrorTree();
 	int checkUserInput();
-	double checkPrice();
+	
 
 private:
 	Avl_tree avlTree;
+
+	double checkPrice();
 };
 
 #endif
