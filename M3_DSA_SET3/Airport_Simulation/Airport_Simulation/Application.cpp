@@ -52,7 +52,7 @@ void main(){
 	//fut.wait_for(chrono::seconds(20));
 	requestDAO.summary();
 	cin.clear();
-	cin.ignore(1000, '\n');
+	cin.ignore('\n');
 	cin.get();
 }
 

@@ -18,8 +18,8 @@ int flag2Time;
 int type;
 int id;
 
-int averageLandingWaitingTime = 0;
-int averageTakeoffWaitingTime = 0;
+double averageLandingWaitingTime = 0;
+double averageTakeoffWaitingTime = 0;
 
 Request request;
 Aeroplane aeroplane;
@@ -181,30 +181,19 @@ void RequestDAO::checkFlag(){
 	time_t now = time(0);
 	struct tm ltm = *localtime(&now);
 	int min = (ltm.tm_min);
-	int hour = (ltm.tm_hour);
-	int flag1WaitingHour;
-	int flag2WaitingHour;
 	if (flag1 == 1){
-		flag1WTime = (flag1Time + flagWaitingTime);
-		flag1WaitingHour = hour + (flag1WTime / 60);
-		flag1WTime = flag1WTime % 60;
-		if (hour == flag1WaitingHour){
+		flag1WTime = (flag1Time + flagWaitingTime) % 60;
 			if (min == (flag1WTime)){
 				flag1 = 0;
 				takeoff();
 			}
-		}
 	}
 	if (flag2 == 1){
-		flag2WTime = (flag2Time + flagWaitingTime);
-		flag2WaitingHour = hour + (flag2WTime / 60);
-		flag2WTime = flag2WTime % 60;
-		if (hour == flag2WaitingHour){
+		flag2WTime = (flag2Time + flagWaitingTime) % 60;
 			if (min == (flag2WTime)){
 				flag2 = 0;
 				takeoff();
 			}
-		}
 	}
 }
 
