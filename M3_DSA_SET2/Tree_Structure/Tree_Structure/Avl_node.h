@@ -11,10 +11,16 @@ class Avl_node
 public:
 	Avl_node();
 	~Avl_node();
-	double price;
-	vector<string> productName;
 	Avl_node *left;
 	Avl_node *right;
+	void setPrice(double);
+	double getPrice();
+	void setProductName(string);
+	vector<string> getProductName();
+
+private:
+	double price;
+	vector<string> productName;
 
 };
 

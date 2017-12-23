@@ -25,19 +25,12 @@ string Avl_treeDAO::insert(){
 		price = checkPrice();
 	}
 	avlTree.root = avlTree.insert(avlTree.root, price, productName);
-	if (avlTree.root != NULL){
-		return "Inserted Successfully";
-	}
-	else
-	{
-		return "Insertion Failed";
-	}
+	return (avlTree.root != NULL) ? "Inserted Successfully" : "Insertion Failed";
 }
 
 /*DAO method for calling GetNoOfproduct method*/
 void Avl_treeDAO::getNoOfProduct(){
 	double price;
-	vector<string> product;
 	Avl_node *temp;
 	cout << "Enter the price" << endl;
 	cin >> price;
@@ -47,11 +40,10 @@ void Avl_treeDAO::getNoOfProduct(){
 	if (avlTree.root != NULL){
 		temp = avlTree.getNoOfProduct(avlTree.root, price);
 		if (temp != NULL){
-			product = temp->productName;
-			cout << "No of product for the given price " << price << ":" << '\t' << product.size() << endl;
+			cout << "No of product for the given price " << price << ":" << '\t' << temp->getProductName().size() << endl;
 			cout << "They are: " << endl;
-			for (int i = 0; i < product.size(); i++){
-				cout << product[i] << endl;
+			for (int i = 0; i < temp->getProductName().size(); i++){
+				cout << temp->getProductName()[i] << endl;
 			}
 		}
 		else
