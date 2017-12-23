@@ -13,6 +13,14 @@ Request::~Request()
 
 /*Getter and setter methods*/
 
+void Request::setRequestId(int id)
+{
+	this->requestId = id;
+}
+int Request::getRequestId()
+{
+	return this->requestId;
+}
 void Request::setRequestType(int type)
 {
 	this->requestType = type;
@@ -21,12 +29,12 @@ int Request::getRequestType()
 {
 	return this->requestType;
 }
-void Request::setAeroplane(Aeroplane plane){
-	this->aeroplane = plane;
+void Request::setAeroplaneId(string plane){
+	this->aeroplaneId = plane;
 }
-Aeroplane Request::getAeroplane()
+string Request::getAeroplaneId()
 {
-	return this->aeroplane;
+	return this->aeroplaneId;
 }
 void Request::setRequestedTime(time_t time)
 {

@@ -14,7 +14,8 @@ using namespace std;
 class Request
 {
 private:
-	Aeroplane aeroplane;
+	int requestId;
+	string aeroplaneId;
 	time_t requestedTime;
 	time_t requestCleared;
 	int requestType;
@@ -25,10 +26,12 @@ private:
 public:
 	Request();
 	~Request();
+	void setRequestId(int);
+	int getRequestId();
 	void setRequestType(int);
 	int getRequestType();
-	void setAeroplane(Aeroplane);
-	Aeroplane getAeroplane();
+	void setAeroplaneId(string);
+	string getAeroplaneId();
 	void setRequestedTime(time_t);
 	time_t getRequestedTime();
 	void setRequestCleared(time_t);

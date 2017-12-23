@@ -40,10 +40,8 @@ void MyQueue::display(){
 		}
 		for (int k = 0; k < elements.size(); k++)  {
 			struct tm ltm;
-			cout << "Requested Aeroplane Name:" << setw(2) << elements[k].getAeroplane().getAeroplaneName() << endl;
-			cout << "Requested Aeroplane Number:" << setw(2) << elements[k].getAeroplane().getAeroplaneNumber() << endl;
-			cout << "Requested Aeroplane Capacity:" << setw(2) << elements[k].getAeroplane().getAeroplaneCapacity() << endl;
-			cout << "Requested Aeroplane Type:" << setw(2) << elements[k].getAeroplane().getAeroplaneType() << endl;
+			cout << "Requested Id:" << setw(2) << elements[k].getRequestId() << endl;
+			cout << "Requested Aeroplane Name:" << setw(2) << elements[k].getAeroplaneId() << endl;
 			time_t time = elements[k].getRequestedTime();
 			ltm = *localtime(&time);
 			cout << "Requested Time:" << setw(2) << setfill('0') << (ltm.tm_hour) << ":" << setfill('0') << (ltm.tm_min) << ":" << setfill('0') << (ltm.tm_sec) << endl;

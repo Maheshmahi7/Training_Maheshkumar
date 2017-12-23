@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <thread>
-#include "RequestDAO.h"
+#include "Airport.h"
 #include <time.h>
 #include <future>
 
@@ -9,7 +9,7 @@ using namespace std;
 
 void menu();
 int checkUserInput();
-RequestDAO requestDAO;
+Airport airport;
 void asyncCheckingEnd();
 void asyncGetUserInput();
 void asyncAutomatic();
@@ -32,15 +32,15 @@ void main(){
 		switch (choice)
 		{
 		case 1:
-			requestDAO.startSimulation();
-			async(asyncCheckingEnd);
+			airport.startSimulation();
 			async(asyncAutomatic);
+			async(asyncCheckingEnd);
 			count = 1;
 			break;
 		case 2:
-			requestDAO.startSimulation();
-			async(asyncCheckingEnd);
+			airport.startSimulation();
 			async(asyncGetUserInput);
+			async(asyncCheckingEnd);
 			count = 1;
 			break;
 		case 3:
@@ -58,7 +58,7 @@ void main(){
 
 	}
 	//fut.wait_for(chrono::seconds(20));
-	requestDAO.summary();
+	airport.summary();
 	cin.clear();
 	cin.ignore('\n');
 	cin.get();
@@ -98,12 +98,12 @@ int checkUserInput()
 void asyncCheckingEnd() {
 	while (1)
 	{
-		if (!requestDAO.endSimulation())
+		if (!airport.endSimulation())
 		{
 			check = false;
 		}
 		this_thread::sleep_for(chrono::seconds(1));
-		requestDAO.checkFlag();
+		airport.checkFlag();
 	}
 }
 
@@ -121,7 +121,7 @@ void asyncGetUserInput() {
 		switch (value)
 		{
 		case 1:
-			requestDAO.createRequest();
+			airport.createRequest();
 			break;
 		default:
 			cout << "Enter the correct value" << endl;
@@ -137,15 +137,15 @@ void asyncAutomatic(){
 	{
 		time_t now = time(0);
 		struct tm ltm = *localtime(&now);
-		int random = (requestDAO.random() % 10);
+		int random = (airport.random() % 10);
 		if (requestTime == 0){
 			cout << "Request Created:" << endl;
-			requestDAO.createRequest();
+			airport.createRequest();
 			requestTime = (ltm.tm_min + random) % 60;
 		}
 		else if (requestTime == ltm.tm_min){
 			cout << "Request Created:" << endl; 
-			requestDAO.createRequest();
+			airport.createRequest();
 			requestTime = (ltm.tm_min + random) % 60;
 		}
 		this_thread::sleep_for(chrono::seconds(8));
