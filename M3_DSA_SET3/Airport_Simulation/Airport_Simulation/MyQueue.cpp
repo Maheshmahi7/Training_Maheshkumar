@@ -30,7 +30,6 @@ Request MyQueue::dequeue(){
 
 void MyQueue::display(){
 	if (!this->isEmpty()){
-		cout << "************************************************" << endl;
 		if (elements[0].getRequestType() == 0){
 			cout << "Landing Pending Request Details" << endl;
 		}
@@ -38,6 +37,7 @@ void MyQueue::display(){
 		{
 			cout << "Takeoff Pending Request Details" << endl;
 		}
+		cout << "************************************************" << endl;
 		for (int k = 0; k < elements.size(); k++)  {
 			struct tm ltm;
 			cout << "Requested Id:" << setw(2) << elements[k].getRequestId() << endl;

@@ -29,25 +29,29 @@ void main(){
 			choice = checkUserInput();
 		}
 		system("cls");
-		switch (choice)
+		if (choice == 1){
+			airport.startSimulation();
+			thread t1(asyncAutomatic);
+			thread t(asyncCheckingEnd);
+			t.detach();
+			t1.detach();
+			count = 1;
+		}
+		else if (choice == 2){
+			airport.startSimulation();
+			thread t1(asyncGetUserInput);
+			thread t(asyncCheckingEnd);
+			t.detach();
+			t1.detach();
+			count = 1;
+		}
+		else if (choice == 3)
 		{
-		case 1:
-			airport.startSimulation();
-			async(asyncAutomatic);
-			async(asyncCheckingEnd);
-			count = 1;
-			break;
-		case 2:
-			airport.startSimulation();
-			async(asyncGetUserInput);
-			async(asyncCheckingEnd);
-			count = 1;
-			break;
-		case 3:
 			exit(0);
-		default:
-			cout << "Enter Correct value(1-3):" << endl;
-			break;
+		}
+		else
+		{
+			cout << "Enter Correct value(1-3): " << endl;
 		}
 		if (count == 1){
 			break;
@@ -60,7 +64,7 @@ void main(){
 	//fut.wait_for(chrono::seconds(20));
 	airport.summary();
 	cin.clear();
-	cin.ignore('\n');
+	cin.ignore(1000,'\n');
 	cin.get();
 }
 
@@ -102,7 +106,7 @@ void asyncCheckingEnd() {
 		{
 			check = false;
 		}
-		this_thread::sleep_for(chrono::seconds(1));
+		this_thread::sleep_for(chrono::seconds(8));
 		airport.checkFlag();
 	}
 }
@@ -127,7 +131,7 @@ void asyncGetUserInput() {
 			cout << "Enter the correct value" << endl;
 			break;
 		}
-		this_thread::sleep_for(chrono::seconds(10));
+		this_thread::sleep_for(chrono::seconds(5));
 	}
 }
 
@@ -137,7 +141,7 @@ void asyncAutomatic(){
 	{
 		time_t now = time(0);
 		struct tm ltm = *localtime(&now);
-		int random = 1;//(airport.random() % 10);
+		int random = (airport.random() % 10);
 		if (requestTime == 0){
 			cout << "Request Created:" << endl;
 			airport.createRequest();
@@ -148,6 +152,6 @@ void asyncAutomatic(){
 			airport.createRequest();
 			requestTime = (ltm.tm_min + random) % 60;
 		}
-		this_thread::sleep_for(chrono::seconds(8));
+		this_thread::sleep_for(chrono::seconds(5));
 	}
 }

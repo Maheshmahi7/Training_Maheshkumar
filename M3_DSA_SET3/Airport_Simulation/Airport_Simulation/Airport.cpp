@@ -57,11 +57,13 @@ void Airport::response(Request request){
 	if (request.getRequestType() == 0){
 		landing.enqueue(request);
 		cout << "Request Id: " << request.getRequestId() << " added to the landing queue" << endl;
+		cout << endl;
 		land();
 	}
 	else if (request.getRequestType() == 1){
 		depature.enqueue(request);
 		cout << "Request Id: " << request.getRequestId() << " added to the takeoff queue" << endl;
+		cout << endl;
 		takeoff();
 	}
 }
@@ -128,7 +130,10 @@ void Airport::requestCompleted(Request request, string status, string runway, ti
 		getTakeoffWaitingTime(request.getRequestedTime(), request.getRequestCleared());
 		departured.push_back(request);
 	}
+	cout << "************************************" << endl;
 	cout << "Request Id: " << request.getRequestId() << " Served" << endl;
+	cout << "Aeroplane: " << request.getAeroplaneId() << " " << request.getStatus() << " Successfully" << endl;
+	cout << "************************************" << endl;
 }
 
 
@@ -218,7 +223,7 @@ void Airport::summary(){
 	}
 	else
 	{
-		cout << "No Request to serve" << endl;
+		cout << "No Landing Request to serve" << endl;
 		cout << endl;
 	}
 	if (!departured.empty()){
@@ -239,7 +244,7 @@ void Airport::summary(){
 	}
 	else
 	{
-		cout << "No Request to serve" << endl;
+		cout << "No Takeoff Request to serve" << endl;
 		cout << endl;
 	}
 }
