@@ -25,12 +25,10 @@ public:
 	bool endSimulation();
 	void summary();
 	void createRequest();
-	void checkFlag();
+	void checkRunway();
 	int random();
 
 private:
-	Request request;
-	Aeroplane aeroplane;
 	vector<Aeroplane> aeroplaneV;
 
 	MyQueue landing;
@@ -46,17 +44,17 @@ private:
 	int endingMin;
 	int endingSec;
 
-	int flag1WTime;
-	int flag2WTime;
-	int flag1 = 0;
-	int flag2 = 0;
-	int flag1Time;
-	int flag2Time;
+	int runway1WaitingTime;
+	int runway2WaitingTime;
+	int runway1 = 0;
+	int runway2 = 0;
+	int runway1OccupidTime;
+	int runway2OccupidTime;
 
 	double averageLandingWaitingTime = 0;
 	double averageTakeoffWaitingTime = 0;
 
-	int flagWaitingTime;
+	int runwayWaitingTime;
 	int timeElapse;
 
 	void response(Request);

@@ -11,7 +11,7 @@ Airport::~Airport(){}
 void Airport::startSimulation(){
 	ifstream f;
 	f.open("SimulationVariable.txt");
-	f >> flagWaitingTime >> timeElapse;
+	f >> runwayWaitingTime >> timeElapse;
 	f.close();
 	time_t now = time(0);
 	struct tm ltm = *localtime(&now);
@@ -32,8 +32,9 @@ void Airport::startSimulation(){
 void Airport::createRequest()
 {
 	int type;
-	int id = 0;
-	id = id + random();
+	int id = random() + random();
+	Aeroplane aeroplane;
+	Request request;
 	string planeid = "ASW" + to_string(id);
 	aeroplane.setAeroplaneNumber(planeid);
 	aeroplane.setAeroplaneName(planeid);
@@ -42,13 +43,13 @@ void Airport::createRequest()
 	aeroplaneV.push_back(aeroplane);
 	requestId++;
 	request.setRequestId(requestId);
-	request.setAeroplaneId(aeroplane.getAeroplaneNumber());
+	request.setAeroplaneId(planeid);
 	time_t now = time(0);
 	request.setRequestedTime(now);
 	type = random() % 2;
 	request.setRequestType(type);
 	cout << "Request Id: " << setfill('0') << request.getRequestId() << endl;
-	(request.getRequestType() == 0) ? cout << "Landing Request" << endl : cout << "Takeoff Request" << endl;
+	(type == 0) ? cout << "Landing Request" << endl : cout << "Takeoff Request" << endl;
 	response(request);
 }
 
@@ -70,45 +71,47 @@ void Airport::response(Request request){
 
 /*Method for approving the landing*/
 void Airport::land(){
+	Request request;
 	time_t now = time(0);
 	struct tm ltm = *localtime(&now);
 	if (!landing.isEmpty()){
-		if (flag1 == 0){
-			flag1Time = (ltm.tm_min);
+		if (runway1 == 0){
+			runway1OccupidTime = (ltm.tm_min);
 			request = landing.dequeue();
 			requestCompleted(request, "Landed", "Runway 1", now);
-			flag1 = 1;
+			runway1 = 1;
 		}
 	}
 	if (!landing.isEmpty()){
-		if (flag2 == 0){
-			flag2Time = (ltm.tm_min);
+		if (runway2 == 0){
+			runway2OccupidTime = (ltm.tm_min);
 			request = landing.dequeue();
 			requestCompleted(request, "Landed", "Runway 2", now);
-			flag2 = 1;
+			runway2 = 1;
 		}
 	}
 }
 
 /*Method for approving the takeoff*/
 void Airport::takeoff(){
+	Request request;
 	time_t now = time(0);
 	struct tm ltm = *localtime(&now);
 	if (landing.isEmpty()){
 		if (!depature.isEmpty()){
-			if (flag1 == 0){
-				flag1Time = (ltm.tm_min);
+			if (runway1 == 0){
+				runway1OccupidTime = (ltm.tm_min);
 				request = depature.dequeue();
 				requestCompleted(request, "Departed", "Runway 1", now);
-				flag1 = 1;
+				runway1 = 1;
 			}
 		}
 		if (!depature.isEmpty()){
-			if (flag2 == 0){
-				flag2Time = (ltm.tm_min);
+			if (runway2 == 0){
+				runway2OccupidTime = (ltm.tm_min);
 				request = depature.dequeue();
 				requestCompleted(request, "Departed", "Runway 2", now);
-				flag2 = 1;
+				runway2 = 1;
 			}
 		}
 	}
@@ -159,21 +162,21 @@ bool Airport::endSimulation(){
 }
 
 /*Method to reallocated the runway using flags*/
-void Airport::checkFlag(){
+void Airport::checkRunway(){
 	time_t now = time(0);
 	struct tm ltm = *localtime(&now);
 	int min = (ltm.tm_min);
-	if (flag1 == 1){
-		flag1WTime = (flag1Time + flagWaitingTime) % 60;
-		if (min == (flag1WTime)){
-			flag1 = 0;
+	if (runway1 == 1){
+		runway1WaitingTime = (runway1OccupidTime + runwayWaitingTime) % 60;
+		if (min == (runway1WaitingTime)){
+			runway1 = 0;
 			takeoff();
 		}
 	}
-	if (flag2 == 1){
-		flag2WTime = (flag2Time + flagWaitingTime) % 60;
-		if (min == (flag2WTime)){
-			flag2 = 0;
+	if (runway2 == 1){
+		runway2WaitingTime = (runway2OccupidTime + runwayWaitingTime) % 60;
+		if (min == (runway2WaitingTime)){
+			runway2 = 0;
 			takeoff();
 		}
 	}
