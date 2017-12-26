@@ -1,6 +1,6 @@
 #include "Airport.h"
 
-
+int requestId = 0;
 
 Airport::Airport(){}
 
@@ -32,8 +32,7 @@ void Airport::startSimulation(){
 void Airport::createRequest()
 {
 	int type;
-	int id=0;
-	int requestId = 0;
+	int id = 0;
 	id = id + random();
 	string planeid = "ASW" + to_string(id);
 	aeroplane.setAeroplaneNumber(planeid);
@@ -41,14 +40,14 @@ void Airport::createRequest()
 	aeroplane.setAeroplaneCapacity(250);
 	aeroplane.setAeroplaneType("PASSENGER");
 	aeroplaneV.push_back(aeroplane);
-	request.setRequestId(requestId);
 	requestId++;
+	request.setRequestId(requestId);
 	request.setAeroplaneId(aeroplane.getAeroplaneNumber());
 	time_t now = time(0);
 	request.setRequestedTime(now);
 	type = random() % 2;
 	request.setRequestType(type);
-	cout << "Request Id: " << setfill('0') << requestId << endl;
+	cout << "Request Id: " << setfill('0') << request.getRequestId() << endl;
 	(request.getRequestType() == 0) ? cout << "Landing Request" << endl : cout << "Takeoff Request" << endl;
 	response(request);
 }
@@ -56,9 +55,9 @@ void Airport::createRequest()
 /*Method to identify the type of request recieved*/
 void Airport::response(Request request){
 	if (request.getRequestType() == 0){
-			landing.enqueue(request);
-			cout << "Request Id: " << request.getRequestId() << " added to the landing queue" << endl;
-			land();
+		landing.enqueue(request);
+		cout << "Request Id: " << request.getRequestId() << " added to the landing queue" << endl;
+		land();
 	}
 	else if (request.getRequestType() == 1){
 		depature.enqueue(request);
@@ -79,7 +78,7 @@ void Airport::land(){
 			flag1 = 1;
 		}
 	}
-	if(!landing.isEmpty()){
+	if (!landing.isEmpty()){
 		if (flag2 == 0){
 			flag2Time = (ltm.tm_min);
 			request = landing.dequeue();
@@ -102,7 +101,7 @@ void Airport::takeoff(){
 				flag1 = 1;
 			}
 		}
-		if(!depature.isEmpty()){
+		if (!depature.isEmpty()){
 			if (flag2 == 0){
 				flag2Time = (ltm.tm_min);
 				request = depature.dequeue();
@@ -117,7 +116,7 @@ void Airport::takeoff(){
 	}
 }
 /*Method to put the completed request into its appropriate vector*/
-void Airport::requestCompleted(Request request, string status, string runway,time_t time){
+void Airport::requestCompleted(Request request, string status, string runway, time_t time){
 	request.setRequestCleared(time);
 	request.setStatus(status);
 	request.setRunway(runway);
@@ -126,32 +125,32 @@ void Airport::requestCompleted(Request request, string status, string runway,tim
 		arrived.push_back(request);
 	}
 	else if (request.getRequestType() == 1){
-		getTakeoffWaitingTime(request.getRequestedTime(), request.getRequestCleared()); 
+		getTakeoffWaitingTime(request.getRequestedTime(), request.getRequestCleared());
 		departured.push_back(request);
 	}
-	cout << "Request Id:" << request.getRequestId() << " Served" << endl;
+	cout << "Request Id: " << request.getRequestId() << " Served" << endl;
 }
 
 
 
 /*Method to check whether the simulation time limit reached or not*/
 bool Airport::endSimulation(){
-	
+
 	time_t now = time(0);
 	struct tm ltm = *localtime(&now);
 
-		if ((ltm.tm_hour) == endingHour){
-			if ((ltm.tm_min) == endingMin){
-				if ((ltm.tm_sec) < endingSec){
-					return true;
-				}
-				else
-				{
-					return false;
-				}
+	if ((ltm.tm_hour) == endingHour){
+		if ((ltm.tm_min) == endingMin){
+			if ((ltm.tm_sec) < endingSec){
+				return true;
+			}
+			else
+			{
+				return false;
 			}
 		}
-		return true;		
+	}
+	return true;
 }
 
 /*Method to reallocated the runway using flags*/
@@ -161,17 +160,17 @@ void Airport::checkFlag(){
 	int min = (ltm.tm_min);
 	if (flag1 == 1){
 		flag1WTime = (flag1Time + flagWaitingTime) % 60;
-			if (min == (flag1WTime)){
-				flag1 = 0;
-				takeoff();
-			}
+		if (min == (flag1WTime)){
+			flag1 = 0;
+			takeoff();
+		}
 	}
 	if (flag2 == 1){
 		flag2WTime = (flag2Time + flagWaitingTime) % 60;
-			if (min == (flag2WTime)){
-				flag2 = 0;
-				takeoff();
-			}
+		if (min == (flag2WTime)){
+			flag2 = 0;
+			takeoff();
+		}
 	}
 }
 
@@ -188,13 +187,13 @@ void Airport::getTakeoffWaitingTime(time_t requestedTime, time_t clearedTime){
 /*Method to calculate the average waiting time of the request*/
 void Airport::calculateAverageWaitingTime(int waitingTime){
 	int hours = 00, minutes = 00, seconds = 00;
-		seconds = waitingTime % 60;
-		waitingTime = waitingTime / 60;
-		minutes = waitingTime % 60;
-		waitingTime = waitingTime / 60;
-		hours = waitingTime % 24;
-		cout << "Average Waiting Time: " << setw(2) << setfill('0') << hours << ":" << setfill('0') << minutes << ":" << setfill('0') << seconds << endl;
-		cout << endl;
+	seconds = waitingTime % 60;
+	waitingTime = waitingTime / 60;
+	minutes = waitingTime % 60;
+	waitingTime = waitingTime / 60;
+	hours = waitingTime % 24;
+	cout << "Average Waiting Time: " << setw(2) << setfill('0') << hours << ":" << setfill('0') << minutes << ":" << setfill('0') << seconds << endl;
+	cout << endl;
 }
 
 

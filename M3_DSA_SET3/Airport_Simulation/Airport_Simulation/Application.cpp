@@ -128,7 +128,7 @@ void asyncGetUserInput() {
 			break;
 		}
 		this_thread::sleep_for(chrono::seconds(10));
-	} 
+	}
 }
 
 /*Thread Method for automatic Input*/
@@ -137,14 +137,14 @@ void asyncAutomatic(){
 	{
 		time_t now = time(0);
 		struct tm ltm = *localtime(&now);
-		int random = (airport.random() % 10);
+		int random = 1;//(airport.random() % 10);
 		if (requestTime == 0){
 			cout << "Request Created:" << endl;
 			airport.createRequest();
 			requestTime = (ltm.tm_min + random) % 60;
 		}
 		else if (requestTime == ltm.tm_min){
-			cout << "Request Created:" << endl; 
+			cout << "Request Created:" << endl;
 			airport.createRequest();
 			requestTime = (ltm.tm_min + random) % 60;
 		}
