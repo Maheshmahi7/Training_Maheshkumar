@@ -1,9 +1,8 @@
 #include "Avl_tree.h"
 
-
 Avl_tree::Avl_tree()
 {
-	
+
 }
 
 
@@ -42,21 +41,21 @@ int Avl_tree::differenceBetweenNode(Avl_node *temp){
 Avl_node *Avl_tree::balance_factor(Avl_node *temp){
 	int balanceFactor;
 	balanceFactor = differenceBetweenNode(temp);
-	    if (balanceFactor > 1)
-	    {
-	        if (differenceBetweenNode(temp->left) > 0)
-	            temp = leftLeftRotation(temp);
-	        else
-	            temp = leftRightRotation(temp);
-	    }
-	    else if (balanceFactor < -1)
-	    {
-	        if (differenceBetweenNode(temp->right) > 0)
-	            temp = rightLeftRotation(temp);
-	        else
-	            temp = rightRightRotation(temp);
-	    }
-	    return temp;
+	if (balanceFactor > 1)
+	{
+		if (differenceBetweenNode(temp->left) > 0)
+			temp = leftLeftRotation(temp);
+		else
+			temp = leftRightRotation(temp);
+	}
+	else if (balanceFactor < -1)
+	{
+		if (differenceBetweenNode(temp->right) > 0)
+			temp = rightLeftRotation(temp);
+		else
+			temp = rightRightRotation(temp);
+	}
+	return temp;
 }
 
 Avl_node *Avl_tree::rightRightRotation(Avl_node *temp){
@@ -89,45 +88,45 @@ Avl_node *Avl_tree::leftRightRotation(Avl_node *temp){
 	return leftLeftRotation(temp);
 }
 
-Avl_node *Avl_tree::insert(Avl_node *root,double price,string productName){
+Avl_node *Avl_tree::insert(Avl_node *root, double price, string productName){
 	if (root == NULL)
-		{
+	{
 		root = new Avl_node;
 		root->setPrice(price);
 		root->setProductName(productName);
 		root->left = NULL;
 		root->right = NULL;
-		}
+	}
 	else if (price == root->getPrice())
 	{
 		root->setProductName(productName);
 	}
 	else if (price < root->getPrice())
-		{
-		root->left = insert(root->left, price,productName);
+	{
+		root->left = insert(root->left, price, productName);
 		root = balance_factor(root);
-		}
+	}
 	else if (price >= root->getPrice())
-		{
-		root->right = insert(root->right, price,productName);
+	{
+		root->right = insert(root->right, price, productName);
 		root = balance_factor(root);
-		}
+	}
 	return root;
 }
 
 /*Method to get number of product in */
-Avl_node *Avl_tree::getNoOfProduct(Avl_node *temp,double price){
+Avl_node *Avl_tree::getNoOfProduct(Avl_node *temp, double price){
 	/*searching for the price from the tree*/
-	if (price == temp->getPrice())
+	if (price != temp->getPrice())
 	{
-	}
-	else if (price < temp->getPrice())
-	{
-		temp = getNoOfProduct(temp->left, price);
-	}
-	else if (price >= temp->getPrice())
-	{
-		temp = getNoOfProduct(temp->right, price);
+		if (price < temp->getPrice())
+		{
+			temp = getNoOfProduct(temp->left, price);
+		}
+		else if (price >= temp->getPrice())
+		{
+			temp = getNoOfProduct(temp->right, price);
+		}
 	}
 	return temp;
 }
@@ -135,11 +134,11 @@ Avl_node *Avl_tree::getNoOfProduct(Avl_node *temp,double price){
 Avl_node *Avl_tree::mirrorTree(Avl_node *mirror){
 	Avl_node *temp1;
 	if (mirror == NULL)
-				return mirror;
+		return mirror;
 	/*Recursively calling the mirror function*/
 	mirrorTree(mirror->left);
 	mirrorTree(mirror->right);
-	
+
 	/*swap the left and right child of the node*/
 	temp1 = mirror->left;
 	mirror->left = mirror->right;
@@ -154,17 +153,17 @@ void Avl_tree::display(Avl_node *temp){
 	display(temp->right);
 }
 
-void Avl_tree::display(Avl_node *temp,int level){
+void Avl_tree::display(Avl_node *temp, int level){
 	int i;
-    if (temp!=NULL)
-    {
-        display(temp->right, level + 1);
-        printf("\n");
-        if (temp == root)
-        cout<<"Root -> ";
-        for (i = 0; i < level && temp != root; i++)
-            cout<<"        ";
-        cout<<temp->getPrice();
-        display(temp->left, level + 1);
-    }
+	if (temp != NULL)
+	{
+		display(temp->right, level + 1);
+		printf("\n");
+		if (temp == root)
+			cout << "Root -> ";
+		for (i = 0; i < level && temp != root; i++)
+			cout << "        ";
+		cout << temp->getPrice();
+		display(temp->left, level + 1);
+	}
 }

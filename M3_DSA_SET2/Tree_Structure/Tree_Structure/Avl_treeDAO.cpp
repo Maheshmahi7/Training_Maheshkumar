@@ -1,9 +1,8 @@
 #include "Avl_treeDAO.h"
 
-
 Avl_treeDAO::Avl_treeDAO()
 {
-	
+
 }
 
 
@@ -87,7 +86,7 @@ void Avl_treeDAO::mirrorTree(){
 /*DAO method for displaying the tree*/
 void Avl_treeDAO::display(){
 	if (avlTree.root != NULL){
-		avlTree.display(avlTree.root,1);
+		avlTree.display(avlTree.root, 1);
 		cout << endl;
 	}
 	else{
@@ -134,6 +133,3 @@ double Avl_treeDAO::checkPrice() {
 		}
 	}
 }
-
-
-
