@@ -1,17 +1,16 @@
 #include "Airport.h"
 
-int requestId = 0;
+int requestId = 0, id;
 
 Airport::Airport(){}
 
 Airport::~Airport(){}
 
-
 /*Method for strating the simulation and set the ending time*/
 void Airport::startSimulation(){
-	ifstream f;
-	f.open("SimulationVariable.txt");
-	f >> runwayWaitingTime >> timeElapse;
+	string temp;
+	ifstream f("SimulationVariable.txt");
+	f >> temp >> runwayWaitingTime >> temp >> timeElapse;
 	f.close();
 	time_t now = time(0);
 	struct tm ltm = *localtime(&now);
@@ -32,7 +31,7 @@ void Airport::startSimulation(){
 void Airport::createRequest()
 {
 	int type;
-	int id = random() + random();
+	id = id + random() + requestId;
 	Aeroplane aeroplane;
 	Request request;
 	string planeid = "ASW" + to_string(id);
@@ -212,7 +211,7 @@ void Airport::summary(){
 		cout << "No of Aeroplanes Landed: " << setfill('0') << arrived.size() << endl;
 		cout << endl;
 		if (!landing.isEmpty()){
-			cout << "Unserved Landing request: " << setfill('0') << landing.size() << endl;
+			cout << "Unserved Landing request: " << setfill('0') << landing.getSize() << endl;
 			cout << endl;
 			landing.display();
 		}
@@ -233,7 +232,7 @@ void Airport::summary(){
 		cout << "No of Aeroplanes Departed: " << setfill('0') << departured.size() << endl;
 		cout << endl;
 		if (!depature.isEmpty()){
-			cout << "Unserved Takeoff request: " << setfill('0') << depature.size() << endl;
+			cout << "Unserved Takeoff request: " << setfill('0') << depature.getSize() << endl;
 			cout << endl;
 			depature.display();
 		}

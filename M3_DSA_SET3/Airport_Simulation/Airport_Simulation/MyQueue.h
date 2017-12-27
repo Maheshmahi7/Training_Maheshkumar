@@ -22,7 +22,7 @@ public:
 	Request dequeue();
 	void display();
 	bool isEmpty();
-	int size();
+	int getSize();
 
 
 private:

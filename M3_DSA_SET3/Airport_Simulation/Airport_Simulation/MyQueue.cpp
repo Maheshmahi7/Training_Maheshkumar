@@ -10,16 +10,16 @@ MyQueue::~MyQueue(){}
 
 /*Enqueue method to add the employee to the queue*/
 string MyQueue::enqueue(Request request){
-	elements.push_back(request);
+	elements.push_back(request);																//inserting element into vector
 	return "Successfull added";
 }
 
 /*Dequeue method to remove the first added employee in the bench*/
 Request MyQueue::dequeue(){
 	if (!isEmpty()){
-		Request id = elements[0];
-		elements.erase(elements.begin());
-		return id;
+		Request request = elements[0];															//getting request the first from the queue
+		elements.erase(elements.begin());														//earsing the first element in the queue
+		return request;
 	}
 	else{
 		cout << "MyQueue is Empty" << endl;
@@ -30,7 +30,8 @@ Request MyQueue::dequeue(){
 
 void MyQueue::display(){
 	if (!this->isEmpty()){
-		if (elements[0].getRequestType() == 0){
+		if (elements[0].getRequestType() == 0)
+		{
 			cout << "Landing Pending Request Details" << endl;
 		}
 		else
@@ -61,6 +62,7 @@ bool MyQueue::isEmpty(){
 	return elements.empty();
 }
 
-int MyQueue::size(){
+/*method to get the queue size*/
+int MyQueue::getSize(){
 	return elements.size();
 }
