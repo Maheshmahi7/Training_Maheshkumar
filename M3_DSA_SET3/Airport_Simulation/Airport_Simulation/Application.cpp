@@ -137,7 +137,7 @@ void generateAutomaticRequest(){
 	{
 		time_t now = time(0);
 		struct tm ltm = *localtime(&now);
-		int random = 1;// (airport.random() % 10);
+		int random = (airport.random() % 10);
 		if (requestTime == ltm.tm_min || requestTime == 0){							//if request time is equal to correct time then request will be created
 			cout << "Request Created:" << endl;
 			airport.createRequest();
