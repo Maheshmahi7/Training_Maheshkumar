@@ -30,7 +30,7 @@ Request MyQueue::dequeue(){
 
 void MyQueue::display(){
 	if (!this->isEmpty()){
-		if (elements[0].getRequestType() == 0)
+		if (!elements[0].getRequestType())
 		{
 			cout << "Landing Pending Request Details" << endl;
 		}

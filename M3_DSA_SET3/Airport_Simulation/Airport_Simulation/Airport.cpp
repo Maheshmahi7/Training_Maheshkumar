@@ -47,20 +47,21 @@ void Airport::createRequest()
 	request.setRequestedTime(now);
 	type = random() % 2;
 	request.setRequestType(type);
+	cout << type << endl;
 	cout << "Request Id: " << setfill('0') << request.getRequestId() << endl;
-	(type == 0) ? cout << "Landing Request" << endl : cout << "Takeoff Request" << endl;
+	(!type) ? cout << "Landing Request" << endl : cout << "Takeoff Request" << endl;
 	response(request);
 }
 
 /*Method to identify the type of request recieved*/
 void Airport::response(Request request){
-	if (request.getRequestType() == 0){
+	if (!request.getRequestType()){
 		landing.enqueue(request);
 		cout << "Request Id: " << request.getRequestId() << " added to the landing queue" << endl;
 		cout << endl;
 		land();
 	}
-	else if (request.getRequestType() == 1){
+	else if (request.getRequestType()){
 		depature.enqueue(request);
 		cout << "Request Id: " << request.getRequestId() << " added to the takeoff queue" << endl;
 		cout << endl;
@@ -74,7 +75,7 @@ void Airport::land(){
 	time_t now = time(0);
 	struct tm ltm = *localtime(&now);
 	if (!landing.isEmpty()){
-		if (runway1 == 0){
+		if (!runway1){
 			runway1OccupidTime = (ltm.tm_min);
 			request = landing.dequeue();
 			requestCompleted(request, "Landed", "Runway 1", now);
@@ -82,7 +83,7 @@ void Airport::land(){
 		}
 	}
 	if (!landing.isEmpty()){
-		if (runway2 == 0){
+		if (!runway2){
 			runway2OccupidTime = (ltm.tm_min);
 			request = landing.dequeue();
 			requestCompleted(request, "Landed", "Runway 2", now);
@@ -98,7 +99,7 @@ void Airport::takeoff(){
 	struct tm ltm = *localtime(&now);
 	if (landing.isEmpty()){
 		if (!depature.isEmpty()){
-			if (runway1 == 0){
+			if (!runway1){
 				runway1OccupidTime = (ltm.tm_min);
 				request = depature.dequeue();
 				requestCompleted(request, "Departed", "Runway 1", now);
@@ -106,7 +107,7 @@ void Airport::takeoff(){
 			}
 		}
 		if (!depature.isEmpty()){
-			if (runway2 == 0){
+			if (!runway2){
 				runway2OccupidTime = (ltm.tm_min);
 				request = depature.dequeue();
 				requestCompleted(request, "Departed", "Runway 2", now);
@@ -124,11 +125,11 @@ void Airport::requestCompleted(Request request, string status, string runway, ti
 	request.setRequestCleared(time);
 	request.setStatus(status);
 	request.setRunway(runway);
-	if (request.getRequestType() == 0){
+	if (!request.getRequestType()){
 		getLandingWaitingTime(request.getRequestedTime(), request.getRequestCleared());
 		arrived.push_back(request);
 	}
-	else if (request.getRequestType() == 1){
+	else if (request.getRequestType()){
 		getTakeoffWaitingTime(request.getRequestedTime(), request.getRequestCleared());
 		departured.push_back(request);
 	}
@@ -165,14 +166,14 @@ void Airport::checkRunway(){
 	time_t now = time(0);
 	struct tm ltm = *localtime(&now);
 	int min = (ltm.tm_min);
-	if (runway1 == 1){
+	if (runway1){
 		runway1WaitingTime = (runway1OccupidTime + runwayWaitingTime) % 60;
 		if (min == (runway1WaitingTime)){
 			runway1 = 0;
 			takeoff();
 		}
 	}
-	if (runway2 == 1){
+	if (runway2){
 		runway2WaitingTime = (runway2OccupidTime + runwayWaitingTime) % 60;
 		if (min == (runway2WaitingTime)){
 			runway2 = 0;
