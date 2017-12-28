@@ -45,7 +45,7 @@ void MyQueue::display(){
 			cout << "Requested Aeroplane Name:" << setw(2) << elements[k].getAeroplaneId() << endl;
 			time_t time = elements[k].getRequestedTime();
 			ltm = *localtime(&time);
-			cout << "Requested Time:" << setw(2) << setfill('0') << (ltm.tm_hour) << ":" << setfill('0') << (ltm.tm_min) << ":" << setfill('0') << (ltm.tm_sec) << endl;
+			cout << "Requested Time:" << setw(2) << setfill('0') << (ltm.tm_hour) << ":" << setfill('0') << (ltm.tm_min) << ":" << setfill('0') << (ltm.tm_sec) << " (HH:MM:SS)" << endl;
 			cout << "************************************************" << endl;
 		}
 		cout << endl;

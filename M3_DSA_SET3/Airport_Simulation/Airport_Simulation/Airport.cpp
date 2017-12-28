@@ -200,7 +200,7 @@ void Airport::calculateAverageWaitingTime(int waitingTime){
 	minutes = waitingTime % 60;
 	waitingTime = waitingTime / 60;
 	hours = waitingTime % 24;
-	cout << "Average Waiting Time: " << setw(2) << setfill('0') << hours << ":" << setfill('0') << minutes << ":" << setfill('0') << seconds << endl;
+	cout << "Average Waiting Time: " << setw(2) << setfill('0') << hours << ":" << setfill('0') << minutes << ":" << setfill('0') << seconds << " (HH:MM:SS)" << endl;
 	cout << endl;
 }
 
