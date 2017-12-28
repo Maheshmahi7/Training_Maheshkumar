@@ -1,2 +1,2 @@
-RunwayWaitingTime 15
-TimeElapse 120
+RunwayWaitingTime=15
+TimeElapse=120

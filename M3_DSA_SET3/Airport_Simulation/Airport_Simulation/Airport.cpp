@@ -1,7 +1,5 @@
 #include "Airport.h"
 
-int requestId = 0, id;
-
 Airport::Airport(){}
 
 Airport::~Airport(){}
@@ -31,7 +29,8 @@ void Airport::startSimulation(){
 void Airport::createRequest()
 {
 	int type;
-	id = id + random() + requestId;
+	static int requestId = 1;
+	static int id = id + random() + requestId;
 	Aeroplane aeroplane;
 	Request request;
 	string planeid = "ASW" + to_string(id);

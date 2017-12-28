@@ -14,7 +14,7 @@ void generateAutomaticRequest();
 bool checkSimulation = true;
 
 /*Main method*/
-void main(){
+void main(){	
 	int userChoice, count = 0;
 	while (checkSimulation)
 	{
@@ -28,38 +28,38 @@ void main(){
 		}
 		system("cls");
 		switch (userChoice){
-		case 1:
-		{
-			airport.startSimulation();												//statement to start the simulation	
-			thread automaticRequest(generateAutomaticRequest);						//thread for creating automatic request
-			thread endSimulation(checkingSimulationEnd);							//thread for checking whether the simulation end is reached and runway is free or not
-			automaticRequest.join();												//statement to join the threads
-			endSimulation.join();													//statement to join the threads
-			break;
-		}
-		case 2:
-		{
-			airport.startSimulation();												//statement to start the simulation	
-			thread manualRequest(generateManualRequest);							//thread for creating manual request
-			thread endSimulation(checkingSimulationEnd);							//thread for checking whether the simulation end is reached and runway is free or not
-			manualRequest.join();													//statement to join the threads
-			endSimulation.join();													//statement to join the threads	
-			break;
-		}
-		case 3:
-		{
-			exit(0);																//exit statement to exit on user will
-		}
-		default:
-		{
-			cout << "Enter Correct value(1-3): " << endl;
-			break;
-		}
+			case 1:
+			{
+				airport.startSimulation();												//statement to start the simulation	
+				thread automaticRequest(generateAutomaticRequest);						//thread for creating automatic request
+				thread endSimulation(checkingSimulationEnd);							//thread for checking whether the simulation end is reached and runway is free or not
+				automaticRequest.join();												//statement to join the threads
+				endSimulation.join();													//statement to join the threads
+				break;
+			}
+			case 2:
+			{
+				airport.startSimulation();												//statement to start the simulation	
+				thread manualRequest(generateManualRequest);							//thread for creating manual request
+				thread endSimulation(checkingSimulationEnd);							//thread for checking whether the simulation end is reached and runway is free or not
+				manualRequest.join();													//statement to join the threads
+				endSimulation.join();													//statement to join the threads	
+				break;
+			}
+			case 3:
+			{
+				exit(0);																//exit statement to exit on user will
+			}
+			default:
+			{
+				cout << "Enter Correct value(1-3): " << endl;
+				break;
+			}
 		}
 	}
-	airport.summary();																//method for displaying the simulation result
-	cin.clear();																	
-	cin.ignore(1000,'\n');
+	airport.summary();																	//method for displaying the simulation result
+	cin.clear();
+	cin.ignore(1000, '\n');
 	cin.get();
 }
 
@@ -67,7 +67,7 @@ void main(){
 void menu()
 {
 	cout << "***********************************************" << endl;
-	cout << "1.To create request" << endl;
+	cout << "Press 1 To create request" << endl;
 	cout << "***********************************************" << endl;
 }
 
@@ -135,14 +135,14 @@ void generateAutomaticRequest(){
 	int requestTime = 0;
 	while (checkSimulation)
 	{
-		time_t now = time(0);
+		time_t now = time(NULL);
 		struct tm ltm = *localtime(&now);
-		int random = (airport.random() % 10);
+		int random = (airport.random() % 12);
 		if (requestTime == ltm.tm_min || requestTime == 0){							//if request time is equal to correct time then request will be created
 			cout << "Request Created:" << endl;
 			airport.createRequest();
 			requestTime = (ltm.tm_min + random) % 60;								//setting request time to random value;
 		}
-		this_thread::sleep_for(chrono::seconds(5));									//statement to put the current thread to sleep for particular period
+		this_thread::sleep_for(chrono::seconds(18));								//statement to put the current thread to sleep for particular period
 	}
 }
