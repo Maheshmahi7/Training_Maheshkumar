@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+    targetNamespace="http://tempuri.org/MusicPlayerSchema.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/MusicPlayerSchema.xsd"
+    xmlns:mstns="http://tempuri.org/MusicPlayerSchema.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:element name="music_player">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="songs">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="song" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="song_name" type="xs:string" />
+                    <xs:element name="duration" type="xs:string" />
+                    <xs:element name="album" type="xs:IDREF" />
+                    <xs:element name="artists">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="artist" minOccurs="0" maxOccurs="unbounded" type="xs:IDREF" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="ID" type="xs:string" use="required"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="artists">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="artist" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="artist_name" type="xs:string" />
+                    <xs:element name="albums">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="album" type="xs:IDREF" minOccurs="0" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="songs">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="song" minOccurs="0" maxOccurs="unbounded" type="xs:IDREF" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="ID" type="xs:string" use="required"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="albums">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="album" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="album_name" type="xs:string" />
+                    <xs:element name="artists">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="artist" minOccurs="0" maxOccurs="unbounded" type="xs:IDREF" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="songs">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="song" minOccurs="0" maxOccurs="unbounded" type="xs:IDREF" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="ID" type="xs:string" use="required"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="playlists">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="playlist" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="playlist_name" type="xs:string" />
+                    <xs:element name="songs">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="song" minOccurs="0" maxOccurs="unbounded" type="xs:IDREF" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="ID" type="xs:string" use="required"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

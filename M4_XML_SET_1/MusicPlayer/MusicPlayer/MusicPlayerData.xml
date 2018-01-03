@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE music_player SYSTEM "http://tempuri.org/MusicPlayerSchema.xsd">
+<music_player>
+  <songs>
+    <song ID="s111">
+      <song_name>dil dil</song_name>
+      <duration>4:30</duration>
+      <album>al311</album>
+      <artists>
+        <artist>a211</artist>
+      </artists>
+    </song>
+    <!--a-->
+    <song ID="s112">
+      <song_name>dil dil</song_name>
+      <duration>4:30</duration>
+      <album>al311</album>
+      <artists>
+        <artist>a211</artist>
+      </artists>
+    </song>
+    <!--a-->
+    <song ID="s113">
+      <song_name>dil dil</song_name>
+      <duration>4:30</duration>
+      <album>al311</album>
+      <artists>
+        <artist>a212</artist>
+      </artists>
+    </song>
+    <!--a-->
+    <song ID="s114">
+      <song_name>dil dil</song_name>
+      <duration>4:30</duration>
+      <album>al312</album>
+      <artists>
+        <artist>a213</artist>
+      </artists>
+    </song>
+    <!--a-->
+    <song ID="s115">
+      <song_name>dil dil</song_name>
+      <duration>4:30</duration>
+      <album>al312</album>
+      <artists>
+        <artist>a214</artist>
+      </artists>
+    </song>
+    <!--a-->
+    <song ID="s116">
+      <song_name>dil dil</song_name>
+      <duration>4:30</duration>
+      <album>al312</album>
+      <artists>
+        <artist>a215</artist>
+      </artists>
+    </song>
+  </songs>
+  <artists>
+   <artist ID="a211">
+    <artist_name>harris</artist_name>
+    <songs>
+     <song>s111</song>
+     <song>s112</song>
+    </songs>
+  </artist>
+  <!--b-->
+  <artist ID="a212">
+    <artist_name>harris</artist_name>
+    <songs>
+      <song>s113</song>
+    </songs>
+  </artist>
+  <!--b-->
+  <artist ID="a213">
+    <artist_name>harris</artist_name>
+    <songs>
+      <song>s114</song>
+    </songs>
+  </artist>
+  <!--b-->
+  <artist ID="a214">
+    <artist_name>harris</artist_name>
+    <songs>
+      <song>s115</song>
+    </songs>
+  </artist>
+  <!--b-->
+  <artist ID="a215">
+    <artist_name>harris</artist_name>
+    <songs>
+      <song>s116</song>
+    </songs>
+  </artist>
+</artists>
+  <albums>
+    <album ID="al311">
+      <album_name>Theeran</album_name>
+      <artists>
+        <artist>a211</artist>
+        <artist>a213</artist>
+      </artists>
+      <songs>
+        <song>s111</song>
+        <song>s112</song>
+        <song>s113</song>
+      </songs>
+    </album>
+    <album ID="al312">
+      <album_name>Mersal</album_name>
+      <artists>
+        <artist>a214</artist>
+        <artist>a215</artist>
+        <artist>a216</artist>
+      </artists>
+      <songs>
+        <song>s114</song>
+        <song>s115</song>
+        <song>s116</song>
+      </songs>
+    </album>
+  </albums>
+  <playlists>
+    <playlist ID="p411">
+      <playlist_name>Mylist</playlist_name>
+      <songs>
+        <song>s111</song>
+        <song>s112</song>
+        <song>s113</song>
+        <song>s114</song>
+        <song>s115</song>
+        <song>s116</song>
+      </songs>
+    </playlist>
+  </playlists>
+</music_player>
