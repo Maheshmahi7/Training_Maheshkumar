@@ -1,7 +1,11 @@
 #include<iostream>
-#include<parser.h>
+
 
 using namespace std;
-void main(){
-	dom
+void main(){/*
+	CParseXML xml;
+	fstream f;
+	f.open("MusicplayerData.xml");
+	xml.Start(f);
+	*/
 }

@@ -18,6 +18,9 @@
     <ClCompile Include="Application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DOMController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="MusicPlayerData.xml">
@@ -28,5 +31,15 @@
     <Xsd Include="MusicPlayerSchema.xsd">
       <Filter>Resource Files</Filter>
     </Xsd>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MusicPlayerDTD.dtd">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DOMController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
