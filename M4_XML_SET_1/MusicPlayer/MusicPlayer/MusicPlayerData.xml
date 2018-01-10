@@ -1,136 +1,155 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<!DOCTYPE music_player SYSTEM "http://tempuri.org/MusicPlayerSchema.xsd">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE music_player SYSTEM "MusicPlayerDTD.dtd">
 <music_player>
   <songs>
     <song ID="s111">
       <song_name>dil dil</song_name>
       <duration>4:30</duration>
-      <album>al311</album>
-      <artists>
-        <artist>a211</artist>
-      </artists>
+      <song_album>al311</song_album>
+      <song_artists>
+        <song_artist>a211</song_artist>
+      </song_artists>
     </song>
     <!--a-->
     <song ID="s112">
       <song_name>dil dil</song_name>
       <duration>4:30</duration>
-      <album>al311</album>
-      <artists>
-        <artist>a211</artist>
-      </artists>
+      <song_album>al311</song_album>
+      <song_artists>
+        <song_artist>a211</song_artist>
+      </song_artists>
     </song>
     <!--a-->
     <song ID="s113">
       <song_name>dil dil</song_name>
       <duration>4:30</duration>
-      <album>al311</album>
-      <artists>
-        <artist>a212</artist>
-      </artists>
+      <song_album>al311</song_album>
+      <song_artists>
+        <song_artist>a212</song_artist>
+      </song_artists>
     </song>
     <!--a-->
     <song ID="s114">
       <song_name>dil dil</song_name>
       <duration>4:30</duration>
-      <album>al312</album>
-      <artists>
-        <artist>a213</artist>
-      </artists>
+      <song_album>al312</song_album>
+      <song_artists>
+        <song_artist>a213</song_artist>
+      </song_artists>
     </song>
     <!--a-->
     <song ID="s115">
       <song_name>dil dil</song_name>
       <duration>4:30</duration>
-      <album>al312</album>
-      <artists>
-        <artist>a214</artist>
-      </artists>
+      <song_album>al312</song_album>
+      <song_artists>
+        <song_artist>a214</song_artist>
+      </song_artists>
     </song>
     <!--a-->
     <song ID="s116">
       <song_name>dil dil</song_name>
       <duration>4:30</duration>
-      <album>al312</album>
-      <artists>
-        <artist>a215</artist>
-      </artists>
+      <song_album>al312</song_album>
+      <song_artists>
+        <song_artist>a215</song_artist>
+      </song_artists>
     </song>
   </songs>
+    <!--b-->
   <artists>
    <artist ID="a211">
     <artist_name>harris</artist_name>
-    <songs>
-     <song>s111</song>
-     <song>s112</song>
-    </songs>
+     <artist_albums>
+       <artist_album>al311</artist_album>
+     </artist_albums>
+    <artist_songs>
+     <artist_song>s111</artist_song>
+     <artist_song>s112</artist_song>
+    </artist_songs>
   </artist>
   <!--b-->
   <artist ID="a212">
     <artist_name>harris</artist_name>
-    <songs>
-      <song>s113</song>
-    </songs>
+     <artist_albums>
+       <artist_album>al311</artist_album>
+     </artist_albums>
+       <artist_songs>
+      <artist_song>s113</artist_song>
+    </artist_songs>
   </artist>
   <!--b-->
   <artist ID="a213">
     <artist_name>harris</artist_name>
-    <songs>
-      <song>s114</song>
-    </songs>
+     <artist_albums>
+       <artist_album>al312</artist_album>
+     </artist_albums>
+     <artist_songs>
+      <artist_song>s114</artist_song>
+     </artist_songs>
   </artist>
   <!--b-->
   <artist ID="a214">
     <artist_name>harris</artist_name>
-    <songs>
-      <song>s115</song>
-    </songs>
+     <artist_albums>
+       <artist_album>al312</artist_album>
+     </artist_albums>
+     <artist_songs>
+      <artist_song>s115</artist_song>
+    </artist_songs>
   </artist>
   <!--b-->
   <artist ID="a215">
     <artist_name>harris</artist_name>
-    <songs>
-      <song>s116</song>
-    </songs>
+     <artist_albums>
+       <artist_album>al312</artist_album>
+     </artist_albums>
+     <artist_songs>
+      <artist_song>s116</artist_song>
+    </artist_songs>
   </artist>
 </artists>
+      <!--c-->
   <albums>
     <album ID="al311">
       <album_name>Theeran</album_name>
-      <artists>
-        <artist>a211</artist>
-        <artist>a213</artist>
-      </artists>
-      <songs>
-        <song>s111</song>
-        <song>s112</song>
-        <song>s113</song>
-      </songs>
+      <album_artists>
+        <album_artist>a211</album_artist>
+        <album_artist>a212</album_artist>
+      </album_artists>
+      <album_songs>
+        <album_song>s111</album_song>
+        <album_song>s112</album_song>
+        <album_song>s113</album_song>
+      </album_songs>
     </album>
+        <!--c-->
     <album ID="al312">
       <album_name>Mersal</album_name>
-      <artists>
-        <artist>a214</artist>
-        <artist>a215</artist>
-        <artist>a216</artist>
-      </artists>
-      <songs>
-        <song>s114</song>
-        <song>s115</song>
-        <song>s116</song>
-      </songs>
+      <album_artists>
+        <album_artist>a214</album_artist>
+        <album_artist>a215</album_artist>
+        <album_artist>a213</album_artist>
+      </album_artists>
+      <album_songs>
+        <album_song>s114</album_song>
+        <album_song>s115</album_song>
+        <album_song>s116</album_song>
+      </album_songs>
     </album>
   </albums>
+      <!--d-->
   <playlists>
     <playlist ID="p411">
       <playlist_name>Mylist</playlist_name>
-      <songs>
-        <song>s111</song>
-        <song>s112</song>
-        <song>s113</song>
-        <song>s114</song>
-        <song>s115</song>
-        <song>s116</song>
-      </songs>
+      <playlist_songs>
+        <playlist_song>s111</playlist_song>
+        <playlist_song>s112</playlist_song>
+        <playlist_song>s113</playlist_song>
+        <playlist_song>s114</playlist_song>
+        <playlist_song>s115</playlist_song>
+        <playlist_song>s116</playlist_song>
+      </playlist_songs>
     </playlist>
   </playlists>
 </music_player>
