@@ -13,9 +13,13 @@
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="XMLDom.cpp" />
+    <ClCompile Include="XMLDomReader.cpp" />
+    <ClCompile Include="XMLDomWritter.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="MusicPlayerData.xml" />
+    <Xml Include="MusicPlayerData.xml">
+      <SubType>Designer</SubType>
+    </Xml>
   </ItemGroup>
   <ItemGroup>
     <None Include="MusicPlayerDTD.dtd" />
@@ -28,6 +32,8 @@
       <DependentUpon>MusicPlayerSchema.xsd</DependentUpon>
     </ClInclude>
     <ClInclude Include="XMLDom.h" />
+    <ClInclude Include="XMLDomReader.h" />
+    <ClInclude Include="XMLDomWritter.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F727FB19-C347-4211-8408-9E7F549C0A70}</ProjectGuid>

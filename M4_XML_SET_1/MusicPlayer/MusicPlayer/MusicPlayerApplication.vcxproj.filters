@@ -18,6 +18,12 @@
     <ClCompile Include="Application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="XMLDomReader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="XMLDomWritter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="XMLDom.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -38,6 +44,15 @@
     </Xsd>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MusicPlayerSchema.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="XMLDomReader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="XMLDomWritter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="XMLDom.h">
       <Filter>Header Files</Filter>
     </ClInclude>
