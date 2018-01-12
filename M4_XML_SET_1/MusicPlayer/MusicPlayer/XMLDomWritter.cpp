@@ -108,7 +108,7 @@ void XMLDomWritter::addElementSong(){
 }
 
 void XMLDomWritter::addElementArtist(){
-	int id = 117;
+	int id = 216;
 	wstring artist;
 	const wchar_t* wArtist;
 	int index;
@@ -181,7 +181,7 @@ void XMLDomWritter::addElementArtist(){
 }
 
 void XMLDomWritter::addElementAlbum(){
-	int id = 117;
+	int id = 316;
 	wstring album;
 	const wchar_t* wAlbum;
 	int index;
@@ -253,7 +253,7 @@ void XMLDomWritter::addElementAlbum(){
 }
 
 void XMLDomWritter::createPlaylist(){
-	int id = 117;
+	int id = 415;
 	wstring playlist;
 	const wchar_t* wPlaylist;
 	int index;

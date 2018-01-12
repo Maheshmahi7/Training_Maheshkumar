@@ -74,7 +74,6 @@ void main(){
 			{
 				cout << "The Xml file is not available" << endl;
 			}
-			delete doc;
 			break;
 		}
 		case 2:{
@@ -124,8 +123,6 @@ void main(){
 			{
 				cout << "The Xml file is not avilable" << endl;
 			}
-			delete doc;
-
 			break;
 		}
 		case 3:{
@@ -137,7 +134,6 @@ void main(){
 		}
 
 	}
-
 
 	XMLPlatformUtils::Terminate();
 	cin.ignore(1000, '\n');
