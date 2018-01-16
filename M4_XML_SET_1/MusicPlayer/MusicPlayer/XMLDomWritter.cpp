@@ -92,6 +92,9 @@ DOMDocument* XMLDomWritter::addElementSong(){
 	cout << "Enter the number artists contributed" << endl;
 
 	cin >> index;
+	if (cin.fail()){
+		index = checkUserInput();
+	}
 
 	for (int i = 0; i < index; i++){
 		childData = xmlDoc->createElement(L"song_artist");
@@ -153,6 +156,9 @@ DOMDocument* XMLDomWritter::addElementArtist(){
 	data = xmlDoc->createElement(L"artist_albums");
 	cout << "Enter the number of albums artists contributed" << endl;
 	cin >> index;
+	if (cin.fail()){
+		index = checkUserInput();
+	}
 	for (int i = 0; i < index; i++){
 		childData = xmlDoc->createElement(L"artist_album");
 		cout << "Enter the album name" << endl;
@@ -168,6 +174,9 @@ DOMDocument* XMLDomWritter::addElementArtist(){
 	data = xmlDoc->createElement(L"artist_songs");
 	cout << "Enter the number of songs" << endl;
 	cin >> index;
+	if (cin.fail()){
+		index = checkUserInput();
+	}
 	for (int i = 0; i < index; i++){
 		childData = xmlDoc->createElement(L"artist_song");
 		cout << "Enter the song name;" << endl;
@@ -227,6 +236,9 @@ DOMDocument* XMLDomWritter::addElementAlbum(){
 	data = xmlDoc->createElement(L"album_artists");
 	cout << "Enter the number of artist contributed" << endl;
 	cin >> index;
+	if (cin.fail()){
+		index = checkUserInput();
+	}
 	for (int i = 0; i < index; i++){
 		childData = xmlDoc->createElement(L"album_artist");
 		cout << "Enter the artist name" << endl;
@@ -242,6 +254,9 @@ DOMDocument* XMLDomWritter::addElementAlbum(){
 	data = xmlDoc->createElement(L"album_songs");
 	cout << "Enter the number of songs" << endl;
 	cin >> index;
+	if (cin.fail()){
+		index = checkUserInput();
+	}
 	for (int i = 0; i < index; i++){
 		childData = xmlDoc->createElement(L"album_song");
 		cout << "Enter the song name;" << endl;
@@ -301,6 +316,9 @@ DOMDocument* XMLDomWritter::createPlaylist(){
 	data = xmlDoc->createElement(L"playlist_songs");
 	cout << "Enter the number of songs" << endl;
 	cin >> index;
+	if (cin.fail()){
+		index = checkUserInput();
+	}
 	for (int i = 0; i < index; i++){
 		childData = xmlDoc->createElement(L"playlist_song");
 		cout << "Enter the song name;" << endl;
@@ -313,4 +331,24 @@ DOMDocument* XMLDomWritter::createPlaylist(){
 	}
 	p_DataElement->appendChild(data);
 	return xmlDoc;
+}
+
+
+/*method to validate user input of type integer*/
+int checkUserInput() {
+	int input;
+	while (1)
+	{
+		if (cin.fail())
+		{
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cout << "You have entered wrong input" << endl;
+			cin >> input;
+		}
+		else if (!cin.fail()) {
+			return input;
+			break;
+		}
+	}
 }

@@ -144,13 +144,14 @@ void main(){
 	cin.get();
 }
 
-
+/*Main menu for getting user choice*/
 void menu(){
 	cout << "1.Read Music Player" << endl;
 	cout << "2.Add items to Music Player" << endl;
 	cout << "3.Exit" << endl;
 }
 
+/*read menu to read the xml file on user choice*/
 void readMenu(){
 	cout << "1. Display Songs" << endl;
 	cout << "2. Display Artists" << endl;
@@ -158,7 +159,7 @@ void readMenu(){
 	cout << "4. Dispaly Playlists" << endl;
 	cout << "5. Go Back" << endl;
 }
-
+/*write menu to write into xml based on user choice*/
 void writeMenu(){
 	cout << "1.Add Song" << endl;
 	cout << "2.Add Artist" << endl;
@@ -168,12 +169,7 @@ void writeMenu(){
 
 }
 
-
-
-
-
-
-
+/*method to validate user input of type integer*/
 int checkUserInput() {
 	int input;
 	while (1)
