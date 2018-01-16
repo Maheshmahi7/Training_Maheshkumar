@@ -28,9 +28,6 @@
     <Xsd Include="MusicPlayerSchema.xsd" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MusicPlayerSchema.h">
-      <DependentUpon>MusicPlayerSchema.xsd</DependentUpon>
-    </ClInclude>
     <ClInclude Include="XMLDom.h" />
     <ClInclude Include="XMLDomReader.h" />
     <ClInclude Include="XMLDomWritter.h" />

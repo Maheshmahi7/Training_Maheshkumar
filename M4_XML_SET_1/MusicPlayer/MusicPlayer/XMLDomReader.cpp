@@ -10,7 +10,6 @@ XMLDomReader::XMLDomReader(DOMDocument* doc)
 
 XMLDomReader::~XMLDomReader()
 {
-	xmlDoc->release();
 }
 
 /*method to get the text content from the node*/

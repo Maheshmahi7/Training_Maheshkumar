@@ -5,7 +5,6 @@ XMLDomWritter::XMLDomWritter(DOMDocument* doc){
 	xmlDoc = doc;
 }
 XMLDomWritter::~XMLDomWritter(){
-	xmlDoc->release();
 }
 
 /*Method to write the xml from memory to local file*/
@@ -24,7 +23,7 @@ void XMLDomWritter::addElementToFile(){
 	pDomConfiguration->setParameter(XMLUni::fgDOMWRTFormatPrettyPrint, true);
 
 
-	pTarget = new LocalFileFormatTarget(XMLString::transcode("C:\\Users\\jayaraj-1\\Documents\\Visual Studio 2013\\Projects\\MusicPlayerApplication\\MusicPlayerApplication\\MusicPlayerData.xml"));
+	pTarget = new LocalFileFormatTarget("./MusicPlayerData.xml");
 	DOMLSOutput* pDomLsOutput = ((DOMImplementationLS*)pImplement)->createLSOutput();
 	pDomLsOutput->setByteStream(pTarget);
 
@@ -109,10 +108,6 @@ DOMDocument* XMLDomWritter::addElementSong(){
 		data->appendChild(childData);
 	}
 	p_DataElement->appendChild(data);
-	p_DataElement->release();
-	data->release();
-	textNode->release();
-	childData->release();
 	return xmlDoc;
 
 }
@@ -193,10 +188,6 @@ DOMDocument* XMLDomWritter::addElementArtist(){
 		data->appendChild(childData);
 	}
 	p_DataElement->appendChild(data);
-	p_DataElement->release();
-	data->release();
-	textNode->release();
-	childData->release();
 	return xmlDoc;
 }
 
@@ -276,10 +267,6 @@ DOMDocument* XMLDomWritter::addElementAlbum(){
 		data->appendChild(childData);
 	}
 	p_DataElement->appendChild(data);
-	p_DataElement->release();
-	data->release();
-	textNode->release();
-	childData->release();
 	return xmlDoc;
 }
 
@@ -342,10 +329,6 @@ DOMDocument* XMLDomWritter::createPlaylist(){
 		data->appendChild(childData);
 	}
 	p_DataElement->appendChild(data);
-	p_DataElement->release();
-	data->release();
-	textNode->release();
-	childData->release();
 	return xmlDoc;
 }
 
