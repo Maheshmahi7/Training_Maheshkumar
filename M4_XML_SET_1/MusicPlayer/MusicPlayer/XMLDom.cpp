@@ -8,6 +8,8 @@ XMLDom::XMLDom()
 
 XMLDom::~XMLDom()
 {
+	DomDoc->release();
+	delete xmlFile;
 }
 /*parser method to parse the xml file and store it in local variable*/
 void XMLDom::createParser()
@@ -19,6 +21,7 @@ void XMLDom::createParser()
 		parser->parse(xmlFile);
 		DomDoc = parser->adoptDocument();
 	}
+	delete parser;
 }
 
 /*method to return the parsed xml file to the called function*/

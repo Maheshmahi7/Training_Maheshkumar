@@ -23,6 +23,9 @@ public:
 
 	void addElementToFile();
 
+private:
+	int checkUserInput();
+
 };
 
 #endif;
