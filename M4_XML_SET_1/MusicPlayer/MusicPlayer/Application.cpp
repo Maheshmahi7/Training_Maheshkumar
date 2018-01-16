@@ -9,10 +9,7 @@ void menu();
 void readMenu();
 void writeMenu();
 int checkUserInput();
-/*
-void display(DOMDocument*,bool);
-void addElement(DOMDocument*,bool);
-*/
+
 void main(){
 	int choice;
 	bool writeLoop = true;
@@ -110,6 +107,7 @@ void main(){
 					}
 					case 5:{
 						writeLoop = false;
+						doc->addElementToFile();
 						break;
 					}
 					default:{
@@ -132,7 +130,7 @@ void main(){
 			cout << "Enter correct value" << endl;
 			break;
 		}
-
+		
 	}
 
 	XMLPlatformUtils::Terminate();

@@ -21,9 +21,7 @@ public:
 	void addElementArtist();
 	void createPlaylist();
 
-private:
-
-	void addElementToFile(DOMDocument* pmyDOMDocument, const wchar_t * FullFilePath);
+	void addElementToFile();
 
 };
 
