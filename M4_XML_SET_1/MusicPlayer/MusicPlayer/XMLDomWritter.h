@@ -16,10 +16,10 @@ class XMLDomWritter
 public:
 	XMLDomWritter(DOMDocument*);
 	~XMLDomWritter();
-	void addElementSong();
-	void addElementAlbum();
-	void addElementArtist();
-	void createPlaylist();
+	DOMDocument* addElementSong();
+	DOMDocument* addElementAlbum();
+	DOMDocument* addElementArtist();
+	DOMDocument* createPlaylist();
 
 	void addElementToFile();
 

@@ -1,9 +1,12 @@
 #include "XMLDomWritter.h"
 
+/*parameterized constructor to assign the readed file to local instance*/
 XMLDomWritter::XMLDomWritter(DOMDocument* doc){
 	xmlDoc = doc;
 }
 XMLDomWritter::~XMLDomWritter(){}
+
+/*Method to write the xml from memory to local file*/
 void XMLDomWritter::addElementToFile(){
 
 	DOMImplementation    *pImplement = NULL;
@@ -20,15 +23,14 @@ void XMLDomWritter::addElementToFile(){
 
 
 	pTarget = new LocalFileFormatTarget(XMLString::transcode("C:\\Users\\jayaraj-1\\Documents\\Visual Studio 2013\\Projects\\MusicPlayerApplication\\MusicPlayerApplication\\MusicPlayerData.xml"));
-	// Write the serialized output to the target.
 	DOMLSOutput* pDomLsOutput = ((DOMImplementationLS*)pImplement)->createLSOutput();
 	pDomLsOutput->setByteStream(pTarget);
 
 	pSerializer->write(xmlDoc, pDomLsOutput);
-
 }
 
-void XMLDomWritter::addElementSong(){
+/*Mehtod to add songs element to the xml file*/
+DOMDocument* XMLDomWritter::addElementSong(){
 	wstring song;
 	const wchar_t* wSong;
 	int index;
@@ -103,11 +105,12 @@ void XMLDomWritter::addElementSong(){
 	}
 	p_DataElement->appendChild(data);
 
-	//addElementToFile(xmlDoc, XMLString::transcode("C:\\Users\\jayaraj-1\\Documents\\Visual Studio 2013\\Projects\\MusicPlayerApplication\\MusicPlayerApplication\\MusicPlayerData.xml"));
-	
+	return xmlDoc;
+
 }
 
-void XMLDomWritter::addElementArtist(){
+/*Method to add the artist element to the xml file*/
+DOMDocument* XMLDomWritter::addElementArtist(){
 	int id = 216;
 	wstring artist;
 	const wchar_t* wArtist;
@@ -177,10 +180,11 @@ void XMLDomWritter::addElementArtist(){
 	}
 	p_DataElement->appendChild(data);
 	
-	//addElementToFile(xmlDoc, XMLString::transcode("C:\\Users\\jayaraj-1\\Documents\\Visual Studio 2013\\Projects\\MusicPlayerApplication\\MusicPlayerApplication\\MusicPlayerData.xml"));
+	return xmlDoc;
 }
 
-void XMLDomWritter::addElementAlbum(){
+/*Method to add the album element to the xml file*/
+DOMDocument* XMLDomWritter::addElementAlbum(){
 	int id = 316;
 	wstring album;
 	const wchar_t* wAlbum;
@@ -249,11 +253,11 @@ void XMLDomWritter::addElementAlbum(){
 		data->appendChild(childData);
 	}
 	p_DataElement->appendChild(data);
-
-	//addElementToFile(xmlDoc, XMLString::transcode("C:\\Users\\jayaraj-1\\Documents\\Visual Studio 2013\\Projects\\MusicPlayerApplication\\MusicPlayerApplication\\MusicPlayerData.xml"));
+	return xmlDoc;
 }
 
-void XMLDomWritter::createPlaylist(){
+/*Method to add the playlist element to the xml file*/
+DOMDocument* XMLDomWritter::createPlaylist(){
 	int id = 415;
 	wstring playlist;
 	const wchar_t* wPlaylist;
@@ -308,6 +312,5 @@ void XMLDomWritter::createPlaylist(){
 		data->appendChild(childData);
 	}
 	p_DataElement->appendChild(data);
-
-	//addElementToFile(xmlDoc, XMLString::transcode("C:\\Users\\jayaraj-1\\Documents\\Visual Studio 2013\\Projects\\MusicPlayerApplication\\MusicPlayerApplication\\MusicPlayerData.xml"));
+	return xmlDoc;
 }

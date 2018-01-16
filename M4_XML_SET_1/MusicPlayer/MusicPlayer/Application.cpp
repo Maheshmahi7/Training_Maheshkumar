@@ -10,23 +10,28 @@ void readMenu();
 void writeMenu();
 int checkUserInput();
 
+
 void main(){
 	int choice;
 	bool writeLoop = true;
 	bool readLoop = true;
 	XMLPlatformUtils::Initialize();
+	/*loop to get the user input and perform respective operations*/
+	/*calling the parser to parse the xml file*/
+	XMLDom* Dom = new XMLDom();
+	Dom->createParser();
+	DOMDocument* DomDoc = Dom->getDomDoc();
 	while (true){
-		XMLDom* Dom = new XMLDom();
-		Dom->createParser();
-		DOMDocument* DomDoc = Dom->getDomDoc();
 		menu();
 		cin >> choice;
 		if (cin.fail()){
 			choice = checkUserInput();
 		}
 		system("cls");
+		/*switch statement to execute based on user choice*/
 		switch (choice){
 		case 1:{
+			/*creating instance for reading the xml file from memory*/
 			XMLDomReader* doc = new XMLDomReader(DomDoc);
 			int readChoice;
 			if (doc) {
@@ -74,6 +79,7 @@ void main(){
 			break;
 		}
 		case 2:{
+			/*creating instance for writing into xml file in the memory*/
 			XMLDomWritter* doc = new XMLDomWritter(DomDoc);
 			int writeChoice;
 			if (doc) {
@@ -86,22 +92,22 @@ void main(){
 					system("cls");
 					switch (writeChoice){
 					case 1:{
-						doc->addElementSong();
+						DomDoc = doc->addElementSong();
 						cout << "Song Added" << endl;
 						break;
 					}
 					case 2:{
-						doc->addElementArtist();
+						DomDoc = doc->addElementArtist();
 						cout << "Artist Added" << endl;
 						break;
 					}
 					case 3:{
-						doc->addElementAlbum();
+						DomDoc = doc->addElementAlbum();
 						cout << "Album Added" << endl;
 						break;
 					}
 					case 4:{
-						doc->createPlaylist();
+						DomDoc = doc->createPlaylist();
 						cout << "Playlist Created" << endl;
 						break;
 					}

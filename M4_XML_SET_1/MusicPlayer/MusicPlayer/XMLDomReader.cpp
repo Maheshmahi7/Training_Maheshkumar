@@ -2,7 +2,7 @@
 
 
 
-
+/*parameterized constructor to assign the readed file to a local instance*/
 XMLDomReader::XMLDomReader(DOMDocument* doc)
 {	
 	xmlDoc = doc;
@@ -12,6 +12,7 @@ XMLDomReader::~XMLDomReader()
 {
 }
 
+/*method to get the text content from the node*/
 string XMLDomReader::getChildValue(const char* parentTag, int parentIndex, const char* childTag, int childIndex)
 {
 	XMLCh* temp = XMLString::transcode(parentTag);
@@ -32,6 +33,7 @@ string XMLDomReader::getChildValue(const char* parentTag, int parentIndex, const
 	}
 	return value;
 }
+/*method to get child element using attribute value*/
 string XMLDomReader::getChildByAttribute(const char* parentTag, const char* childTag , const char* attributevalue){
 	const char* attributeTag = "ID";
 	int parentIndex = 0;
@@ -61,7 +63,7 @@ string XMLDomReader::getChildByAttribute(const char* parentTag, const char* chil
 	}
 	return value;
 }
-
+/*method to get the child attribute value*/
 string XMLDomReader::getChildAttribute(const char* parentTag, int parentIndex, const char* childTag, int childIndex,
 	const char* attributeTag)
 {
@@ -85,12 +87,14 @@ string XMLDomReader::getChildAttribute(const char* parentTag, int parentIndex, c
 	return value;
 }
 
+/*method to get the number of root elements*/
 int XMLDomReader::getRootElementCount(const char* rootElementTag)
 {
 	DOMNodeList* list = xmlDoc->getElementsByTagName(XMLString::transcode(rootElementTag));
 	return (int)list->getLength();
 }
 
+/*method to get the number of child elements*/
 int XMLDomReader::getChildCount(const char* parentTag, int parentIndex, const char* childTag)
 {
 	XMLCh* temp = XMLString::transcode(parentTag);
@@ -102,6 +106,7 @@ int XMLDomReader::getChildCount(const char* parentTag, int parentIndex, const ch
 	return (int)childList->getLength();
 }
 
+/*method to display songs*/
 void XMLDomReader::displaySongs(){
 	string value,name;
 	cout << "Songs:" << endl;
@@ -126,6 +131,7 @@ void XMLDomReader::displaySongs(){
 	}
 }
 
+/*method to display artist*/
 void XMLDomReader::displayArtists(){
 	string value,name;
 	int j;
@@ -153,6 +159,7 @@ void XMLDomReader::displayArtists(){
 	}
 }
 
+/*method to display albums*/
 void XMLDomReader::displayAlbums(){
 	string value,name;
 	int j;
@@ -182,7 +189,7 @@ void XMLDomReader::displayAlbums(){
 	}
 }
 
-
+/*method to display playlist*/
 void XMLDomReader::displayPlaylists(){
 	string value,name;
 	int j;
