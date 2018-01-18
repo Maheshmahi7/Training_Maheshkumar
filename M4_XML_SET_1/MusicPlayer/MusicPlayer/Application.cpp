@@ -19,125 +19,131 @@ void main(){
 	XMLDom* Dom = new XMLDom();
 	Dom->createParser();
 	DOMDocument* DomDoc = Dom->getDomDoc();
-	while (true){
-		menu();
-		cin >> choice;
-		if (cin.fail()){
-			choice = checkUserInput();
-		}
-		system("cls");
-		/*switch statement to execute based on user choice*/
-		switch (choice){
-		case 1:{
-			/*creating instance for reading the xml file from memory*/
-			XMLDomReader* doc = new XMLDomReader(DomDoc);
-			int readChoice;
-			if (doc) {
-				bool readLoop = true;
-				while (readLoop)
-				{
-					readMenu();
-					cin >> readChoice;
-					if (cin.fail()){
-						readChoice = checkUserInput();
-					}
-					system("cls");
-					switch (readChoice)
+	if (DomDoc){
+		while (true){
+			menu();
+			cin >> choice;
+			if (cin.fail()){
+				choice = checkUserInput();
+			}
+			system("cls");
+			/*switch statement to execute based on user choice*/
+			switch (choice){
+			case 1:{
+				/*creating instance for reading the xml file from memory*/
+				XMLDomReader* doc = new XMLDomReader(DomDoc);
+				int readChoice;
+				if (doc) {
+					bool readLoop = true;
+					while (readLoop)
 					{
-					case 1:{
-						doc->displaySongs();
-						break;
-					}
-					case 2:{
-						doc->displayArtists();
-						break;
-					}
-					case 3:{
-						doc->displayAlbums();
-						break;
-					}
-					case 4:{
-						doc->displayPlaylists();
-						break;
-					}
-					case 5:{
-						readLoop = false;
-						break;
-					}
-					default:{
-						cout << "Enter Correct value" << endl;
-						break;
-					}
-					}
-				}
-			}
-			else
-			{
-				cout << "The Xml file is not available" << endl;
-			}
-			break;
-		}
-		case 2:{
-			/*creating instance for writing into xml file in the memory*/
-			XMLDomWritter* doc = new XMLDomWritter(DomDoc);
-			int writeChoice;
-			if (doc) {
-				bool writeLoop = true;
-				while (writeLoop){
-					writeMenu();
-					cin >> writeChoice;
-					if (cin.fail()){
-						writeChoice = checkUserInput();
-					}
-					system("cls");
-					switch (writeChoice){
-					case 1:{
-						DomDoc = doc->addElementSong();
-						cout << "Song Added" << endl;
-						break;
-					}
-					case 2:{
-						DomDoc = doc->addElementArtist();
-						cout << "Artist Added" << endl;
-						break;
-					}
-					case 3:{
-						DomDoc = doc->addElementAlbum();
-						cout << "Album Added" << endl;
-						break;
-					}
-					case 4:{
-						DomDoc = doc->createPlaylist();
-						cout << "Playlist Created" << endl;
-						break;
-					}
-					case 5:{
-						writeLoop = false;
-						doc->addElementToFile();
-						break;
-					}
-					default:{
-						cout << "Enter correct value" << endl;
-						break;
-					}
+						readMenu();
+						cin >> readChoice;
+						if (cin.fail()){
+							readChoice = checkUserInput();
+						}
+						system("cls");
+						switch (readChoice)
+						{
+						case 1:{
+							doc->displaySongs();
+							break;
+						}
+						case 2:{
+							doc->displayArtists();
+							break;
+						}
+						case 3:{
+							doc->displayAlbums();
+							break;
+						}
+						case 4:{
+							doc->displayPlaylists();
+							break;
+						}
+						case 5:{
+							readLoop = false;
+							break;
+						}
+						default:{
+							cout << "Enter Correct value" << endl;
+							break;
+						}
+						}
 					}
 				}
+				else
+				{
+					cout << "The Xml file is not available" << endl;
+				}
+				break;
 			}
-			else
-			{
-				cout << "The Xml file is not avilable" << endl;
+			case 2:{
+				/*creating instance for writing into xml file in the memory*/
+				XMLDomWritter* doc = new XMLDomWritter(DomDoc);
+				int writeChoice;
+				if (doc) {
+					bool writeLoop = true;
+					while (writeLoop){
+						writeMenu();
+						cin >> writeChoice;
+						if (cin.fail()){
+							writeChoice = checkUserInput();
+						}
+						system("cls");
+						switch (writeChoice){
+						case 1:{
+							DomDoc = doc->addElementSong();
+							cout << "Song Added" << endl;
+							break;
+						}
+						case 2:{
+							DomDoc = doc->addElementArtist();
+							cout << "Artist Added" << endl;
+							break;
+						}
+						case 3:{
+							DomDoc = doc->addElementAlbum();
+							cout << "Album Added" << endl;
+							break;
+						}
+						case 4:{
+							DomDoc = doc->createPlaylist();
+							cout << "Playlist Created" << endl;
+							break;
+						}
+						case 5:{
+							writeLoop = false;
+							doc->addElementToFile();
+							break;
+						}
+						default:{
+							cout << "Enter correct value" << endl;
+							break;
+						}
+						}
+					}
+				}
+				else
+				{
+					cout << "The Xml file is not avilable" << endl;
+				}
+				break;
 			}
-			break;
+			case 3:{
+				exit(0);
+			}
+			default:
+				cout << "Enter correct value" << endl;
+				break;
+			}
+
 		}
-		case 3:{
-			exit(0);
-		}
-		default:
-			cout << "Enter correct value" << endl;
-			break;
-		}
-		
 	}
+else
+{
+	cout << "File is not available" << endl;
+}
 
 	XMLPlatformUtils::Terminate();
 	cin.ignore(1000, '\n');

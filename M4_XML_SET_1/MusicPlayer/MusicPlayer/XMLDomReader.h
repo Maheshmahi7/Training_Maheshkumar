@@ -21,8 +21,7 @@ class XMLDomReader
 
 	private:
 		string getChildValue(const char* parentTag, int parentIndex, const char* childTag, int childIndex);
-		string getChildAttribute(const char* parentTag, int parentIndex, const char* childTag, int childIndex,
-			const char* attributeTag);
+		string getChildAttribute(const char* parentTag, int parentIndex, const char* childTag, int childIndex);
 		int getRootElementCount(const char* rootElementTag);
 		int getChildCount(const char* parentTag, int parentIndex, const char* childTag);
 		string getChildByAttribute(const char* parentTag, const char* childTag, const char* attributevalue);

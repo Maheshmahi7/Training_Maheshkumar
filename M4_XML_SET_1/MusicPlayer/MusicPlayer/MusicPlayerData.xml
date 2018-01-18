@@ -70,26 +70,18 @@
         <song_artist>a212</song_artist>
       </song_artists>
     </song>
-    <song ID="s120">
-      <song_name>asd</song_name>
-      <duration>asd</duration>
+    <song ID="s119">
+      <song_name>mahesh</song_name>
+      <duration>5:30</duration>
       <song_album>al312</song_album>
       <song_artists>
-        <song_artist>a212</song_artist>
+        <song_artist>a213</song_artist>
       </song_artists>
     </song>
     <song ID="s120">
-      <song_name>mahesh mahesh</song_name>
-      <duration>:03</duration>
-      <song_album>NULL</song_album>
-      <song_artists>
-        <song_artist>NULL</song_artist>
-      </song_artists>
-    </song>
-    <song ID="s120">
-      <song_name>sad</song_name>
-      <duration>sd</duration>
-      <song_album>al310</song_album>
+      <song_name>mahesh</song_name>
+      <duration>5:30</duration>
+      <song_album>al312</song_album>
       <song_artists>
         <song_artist>a210</song_artist>
       </song_artists>
@@ -145,6 +137,15 @@
         <artist_song>s116</artist_song>
       </artist_songs>
     </artist>
+    <artist ID="a216">
+      <artist_name>rajesj</artist_name>
+      <artist_albums>
+        <artist_album>al312</artist_album>
+      </artist_albums>
+      <artist_songs>
+        <artist_song>s114</artist_song>
+      </artist_songs>
+    </artist>
   </artists>
   <albums>
     <album ID="al310">
@@ -175,6 +176,16 @@
         <album_song>s116</album_song>
       </album_songs>
     </album>
+    <album ID="al313">
+      <album_name>vip</album_name>
+      <album_artists>
+        <album_artist>a213</album_artist>
+        <album_artist>a210</album_artist>
+      </album_artists>
+      <album_songs>
+        <album_song>s111</album_song>
+      </album_songs>
+    </album>
   </albums>
   <playlists>
     <playlist ID="p411">
@@ -188,13 +199,21 @@
         <playlist_song>s116</playlist_song>
       </playlist_songs>
     </playlist>
-    <playlist ID="p415">
+    <playlist ID="p412">
       <playlist_name>asds</playlist_name>
       <playlist_songs>
         <playlist_song>s114</playlist_song>
       </playlist_songs>
     </playlist>
+    <playlist ID="p413">
+      <playlist_name>vip</playlist_name>
+      <playlist_songs>
+        <playlist_song>s119</playlist_song>
+        <playlist_song>s116</playlist_song>
+        <playlist_song>s111</playlist_song>
+        <playlist_song>s114</playlist_song>
+      </playlist_songs>
+    </playlist>
   </playlists>
-
 
 </music_player>

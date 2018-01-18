@@ -64,9 +64,9 @@ string XMLDomReader::getChildByAttribute(const char* parentTag, const char* chil
 	return value;
 }
 /*method to get the child attribute value*/
-string XMLDomReader::getChildAttribute(const char* parentTag, int parentIndex, const char* childTag, int childIndex,
-	const char* attributeTag)
+string XMLDomReader::getChildAttribute(const char* parentTag, int parentIndex, const char* childTag, int childIndex)
 {
+	const char* attributeTag = "ID";
 	XMLCh* temp = XMLString::transcode(parentTag);
 	DOMNodeList* list = xmlDoc->getElementsByTagName(temp);
 	XMLString::release(&temp);
@@ -111,7 +111,7 @@ void XMLDomReader::displaySongs(){
 	string value,name;
 	cout << "Songs:" << endl;
 	int j;
-	for (int i = 0; i < getChildCount("songs", 0, "song"); i++){
+	for (int i = 1; i < getChildCount("songs", 0, "song"); i++){
 		value = getChildValue("song", i, "song_name", 0);
 		cout << "\t Song Name		" << value.c_str() << endl;
 		value = getChildValue("song", i, "duration", 0);
@@ -121,9 +121,9 @@ void XMLDomReader::displaySongs(){
 		cout << "\t Song Album		" << name.c_str() << endl;
 		cout << "\t Artists:" << endl;
 		j = 0;
-		while (j < getChildCount("song_artists", i, "song_artist"))
+		while (j < getChildCount("song_artists", i-1, "song_artist"))
 		{
-			value = getChildValue("song_artists", i, "song_artist", j);
+			value = getChildValue("song_artists", i-1, "song_artist", j);
 			name = getChildByAttribute("artist", "artist_name", value.c_str());
 		cout << "\t \t \t \t" << name.c_str() << endl;			j++;
 		}
@@ -136,21 +136,21 @@ void XMLDomReader::displayArtists(){
 	string value,name;
 	int j;
 	cout << "Artists:" << endl;
-	for (int i = 0; i < getChildCount("artists",0,"artist"); i++){
+	for (int i = 1; i < getChildCount("artists",0,"artist"); i++){
 		value = getChildValue("artist", i, "artist_name", 0);
 		cout << "\t Artist Name		" << value.c_str() << endl;
 		cout << "\t Artist Albums:	" << endl;
 		j = 0;
-		while (j < getChildCount("artist_albums", i, "artist_album")){
-			value = getChildValue("artist_albums", i, "artist_album", j);
+		while (j < getChildCount("artist_albums", i-1, "artist_album")){
+			value = getChildValue("artist_albums", i-1, "artist_album", j);
 			name = getChildByAttribute("album", "album_name", value.c_str());
 			cout << "\t \t \t \t" << name.c_str() << endl;
 			j++;
 		}
 		cout << "\t Artist Songs:	" << endl;
 		j = 0;
-		while (j < getChildCount("artist_songs", i, "artist_song")){
-			value = getChildValue("artist_songs", i, "artist_song", j);
+		while (j < getChildCount("artist_songs", i-1, "artist_song")){
+			value = getChildValue("artist_songs", i-1, "artist_song", j);
 			name = getChildByAttribute("song", "song_name", value.c_str());
 			cout << "\t \t \t \t" << name.c_str() << endl;	
 			j++;
@@ -164,23 +164,23 @@ void XMLDomReader::displayAlbums(){
 	string value,name;
 	int j;
 	cout << "Albums:" << endl;
-	for (int i = 0; i < getChildCount("albums", 0, "album"); i++){
+	for (int i = 1; i < getChildCount("albums", 0, "album"); i++){
 		value = getChildValue("album", i, "album_name", 0);
 		cout << "\t Album Name		" << value.c_str() << endl;
 		cout << "\t Album Artists:	" << endl;
 		j = 0;
-		while (j < getChildCount("album_artists", i, "album_artist"))
+		while (j < getChildCount("album_artists", i-1, "album_artist"))
 		{
-			value = getChildValue("album_artists", i, "album_artist", j);
+			value = getChildValue("album_artists", i-1, "album_artist", j);
 			name = getChildByAttribute("artist", "artist_name", value.c_str());
 			cout << "\t \t \t \t" << name.c_str() << endl;
 			j++;
 		}
 		cout << "\t Album Songs:	" << endl;
 		j = 0;
-		while (j < getChildCount("album_songs", i, "album_song"))
+		while (j < getChildCount("album_songs", i-1, "album_song"))
 		{
-			value = getChildValue("album_songs", i, "album_song", j);
+			value = getChildValue("album_songs", i-1, "album_song", j);
 			name = getChildByAttribute("song", "song_name", value.c_str());
 			cout << "\t \t \t \t" << name.c_str() << endl;
 			j++;

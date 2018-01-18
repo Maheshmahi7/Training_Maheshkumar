@@ -17,7 +17,9 @@ void XMLDom::createParser()
 	{
 		parser = new XercesDOMParser();
 		parser->parse(xmlFile);
-		DomDoc = parser->adoptDocument();
+		if (parser){
+			DomDoc = parser->adoptDocument();
+		}
 	}
 }
 

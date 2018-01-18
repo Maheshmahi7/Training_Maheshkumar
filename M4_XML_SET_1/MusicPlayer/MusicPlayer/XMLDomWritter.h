@@ -27,6 +27,7 @@ private:
 	int checkUserInput();
 	string getChildByName(const char* parentTag, const char* childTag, const char* childValue);
 	int getID(const char* parentTag, const char* childTag);
+	string setId(const char* parentTag, const char* childTag);
 
 };
 
