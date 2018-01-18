@@ -37,7 +37,7 @@ string XMLDomReader::getChildValue(const char* parentTag, int parentIndex, const
 string XMLDomReader::getChildByAttribute(const char* parentTag, const char* childTag , const char* attributevalue){
 	const char* attributeTag = "ID";
 	int parentIndex = 0;
-	string value;
+	const char* value;
 	XMLCh* temp = XMLString::transcode(parentTag);
 	DOMNodeList* list = xmlDoc->getElementsByTagName(temp);
 	XMLString::release(&temp);
@@ -53,7 +53,7 @@ string XMLDomReader::getChildByAttribute(const char* parentTag, const char* chil
 				break;
 			}
 			else{
-				value = "";
+				value = NULL;
 			}
 			XMLString::release(&temp2);
 		}
@@ -74,7 +74,7 @@ string XMLDomReader::getChildAttribute(const char* parentTag, int parentIndex, c
 	DOMElement* parent = dynamic_cast<DOMElement*>(list->item(parentIndex));
 	DOMElement* child =
 		dynamic_cast<DOMElement*>(parent->getElementsByTagName(XMLString::transcode(childTag))->item(childIndex));
-	string value;
+	const char* value;
 	if (child) {
 		temp = XMLString::transcode(attributeTag);
 		char* temp2 = XMLString::transcode(child->getAttribute(temp));
@@ -82,7 +82,7 @@ string XMLDomReader::getChildAttribute(const char* parentTag, int parentIndex, c
 		XMLString::release(&temp2);
 	}
 	else {
-		value = "";
+		value = NULL;
 	}
 	return value;
 }

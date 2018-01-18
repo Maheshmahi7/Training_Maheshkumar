@@ -13,8 +13,6 @@ int checkUserInput();
 
 void main(){
 	int choice;
-	bool writeLoop = true;
-	bool readLoop = true;
 	XMLPlatformUtils::Initialize();
 	/*loop to get the user input and perform respective operations*/
 	/*calling the parser to parse the xml file*/
@@ -35,6 +33,7 @@ void main(){
 			XMLDomReader* doc = new XMLDomReader(DomDoc);
 			int readChoice;
 			if (doc) {
+				bool readLoop = true;
 				while (readLoop)
 				{
 					readMenu();
@@ -83,6 +82,7 @@ void main(){
 			XMLDomWritter* doc = new XMLDomWritter(DomDoc);
 			int writeChoice;
 			if (doc) {
+				bool writeLoop = true;
 				while (writeLoop){
 					writeMenu();
 					cin >> writeChoice;

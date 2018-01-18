@@ -33,6 +33,7 @@ void XMLDomWritter::addElementToFile(){
 /*Mehtod to add songs element to the xml file*/
 DOMDocument* XMLDomWritter::addElementSong(){
 	wstring song;
+	string name,duration,album,artist;
 	const wchar_t* wSong;
 	int index;
 	DOMImplementation*    DomDocImplementation = NULL;
@@ -62,9 +63,10 @@ DOMDocument* XMLDomWritter::addElementSong(){
 	data = xmlDoc->createElement(L"song_name");
 
 	cout << "Enter the song name that you want to add" << endl;
-	wcin >> song;
-
-	wSong = song.c_str();
+	cin.get(); 
+	getline(cin, name);
+	wstring wName(name.begin(), name.end());
+	wSong = wName.c_str();
 
 	textNode = xmlDoc->createTextNode(wSong);
 	data->appendChild(textNode);
@@ -74,8 +76,10 @@ DOMDocument* XMLDomWritter::addElementSong(){
 
 	data = xmlDoc->createElement(L"duration");
 	cout << "Enter the song duration" << endl;
-	wcin >> song;
-	wSong = song.c_str();
+	cin.get(); 
+	getline(cin, duration);
+	wstring wDuration(duration.begin(), duration.end());
+	wSong = wDuration.c_str();
 
 	textNode = xmlDoc->createTextNode(wSong);
 	data->appendChild(textNode);
@@ -83,8 +87,11 @@ DOMDocument* XMLDomWritter::addElementSong(){
 
 	data = xmlDoc->createElement(L"song_album");
 	cout << "Enter the album name" << endl;
-	wcin >> song;
-	wSong = song.c_str();
+	cin.get(); 
+	getline(cin, album);
+	album = getChildByName("album", "album_name", album.c_str());
+	wstring wAlbum(album.begin(), album.end());
+	wSong = wAlbum.c_str();
 	textNode = xmlDoc->createTextNode(wSong);
 	data->appendChild(textNode);
 	p_DataElement->appendChild(data);
@@ -100,8 +107,11 @@ DOMDocument* XMLDomWritter::addElementSong(){
 	for (int i = 0; i < index; i++){
 		childData = xmlDoc->createElement(L"song_artist");
 		cout << "Enter the artist name" << endl;
-		wcin >> song;
-		wSong = song.c_str();
+		cin.get(); 
+		getline(cin, artist);
+		artist = getChildByName("artist", "artist_name", artist.c_str());
+		wstring wArtist(artist.begin(), artist.end());
+		wSong = wArtist.c_str();
 	
 		textNode = xmlDoc->createTextNode(wSong);
 		childData->appendChild(textNode);
@@ -116,6 +126,7 @@ DOMDocument* XMLDomWritter::addElementSong(){
 DOMDocument* XMLDomWritter::addElementArtist(){
 	int id = 216;
 	wstring artist;
+	string name, album, song;
 	const wchar_t* wArtist;
 	int index;
 	DOMImplementation*    DomDocImplementation = NULL;
@@ -144,10 +155,11 @@ DOMDocument* XMLDomWritter::addElementArtist(){
 	data = xmlDoc->createElement(L"artist_name");
 
 	cout << "Enter the artist name that you want to add" << endl;
-	wcin >> artist;
-
-	wArtist = artist.c_str();
-
+	cin.get(); 
+	getline(cin, name);
+	wstring wName(name.begin(), name.end());
+	wArtist = wName.c_str();
+	
 	textNode = xmlDoc->createTextNode(wArtist);
 	data->appendChild(textNode);
 
@@ -162,8 +174,11 @@ DOMDocument* XMLDomWritter::addElementArtist(){
 	for (int i = 0; i < index; i++){
 		childData = xmlDoc->createElement(L"artist_album");
 		cout << "Enter the album name" << endl;
-		wcin >> artist;
-		wArtist = artist.c_str();
+		cin.get(); 
+		getline(cin, album);
+		album = getChildByName("album", "album_name", album.c_str());
+		wstring wAlbum(album.begin(), album.end());
+		wArtist = wAlbum.c_str();
 
 		textNode = xmlDoc->createTextNode(wArtist);
 		childData->appendChild(textNode);
@@ -180,8 +195,11 @@ DOMDocument* XMLDomWritter::addElementArtist(){
 	for (int i = 0; i < index; i++){
 		childData = xmlDoc->createElement(L"artist_song");
 		cout << "Enter the song name;" << endl;
-		wcin >> artist;
-		wArtist = artist.c_str();
+		cin.get(); 
+		getline(cin, song);
+		song = getChildByName("song", "song_name", song.c_str());
+		wstring wSong(song.begin(), song.end());
+		wArtist = wSong.c_str();
 
 		textNode = xmlDoc->createTextNode(wArtist);
 		childData->appendChild(textNode);
@@ -194,7 +212,7 @@ DOMDocument* XMLDomWritter::addElementArtist(){
 /*Method to add the album element to the xml file*/
 DOMDocument* XMLDomWritter::addElementAlbum(){
 	int id = 316;
-	wstring album;
+	string name, song, artist;
 	const wchar_t* wAlbum;
 	int index;
 	DOMImplementation*    DomDocImplementation = NULL;
@@ -213,6 +231,7 @@ DOMDocument* XMLDomWritter::addElementAlbum(){
 	p_DataElement = xmlDoc->createElement(L"album");
 
 	cout << "Enter Album ID" << endl;
+	wstring album;
 	wcin >> album;
 	wAlbum = album.c_str();
 
@@ -223,9 +242,10 @@ DOMDocument* XMLDomWritter::addElementAlbum(){
 	data = xmlDoc->createElement(L"album_name");
 
 	cout << "Enter the album name that you want to add" << endl;
-	wcin >> album;
-
-	wAlbum = album.c_str();
+	cin.get(); 
+	getline(cin, name);
+	wstring wName(name.begin(),name.end());
+	wAlbum = wName.c_str();
 
 	textNode = xmlDoc->createTextNode(wAlbum);
 	data->appendChild(textNode);
@@ -241,8 +261,11 @@ DOMDocument* XMLDomWritter::addElementAlbum(){
 	for (int i = 0; i < index; i++){
 		childData = xmlDoc->createElement(L"album_artist");
 		cout << "Enter the artist name" << endl;
-		wcin >> album;
-		wAlbum = album.c_str();
+		cin.get(); 
+		getline(cin, artist);
+		artist = getChildByName("artist", "artist_name", artist.c_str());
+		wstring wArtist(artist.begin(), artist.end());
+		wAlbum = wArtist.c_str();
 
 		textNode = xmlDoc->createTextNode(wAlbum);
 		childData->appendChild(textNode);
@@ -259,8 +282,11 @@ DOMDocument* XMLDomWritter::addElementAlbum(){
 	for (int i = 0; i < index; i++){
 		childData = xmlDoc->createElement(L"album_song");
 		cout << "Enter the song name;" << endl;
-		wcin >> album;
-		wAlbum = album.c_str();
+		cin.get(); 
+		getline(cin, song);
+		song = getChildByName("song", "song_name", song.c_str());
+		wstring wSong(song.begin(), song.end());
+		wAlbum = wSong.c_str();
 
 		textNode = xmlDoc->createTextNode(wAlbum);
 		childData->appendChild(textNode);
@@ -273,7 +299,7 @@ DOMDocument* XMLDomWritter::addElementAlbum(){
 /*Method to add the playlist element to the xml file*/
 DOMDocument* XMLDomWritter::createPlaylist(){
 	int id = 415;
-	wstring playlist;
+	string name,songs;
 	const wchar_t* wPlaylist;
 	int index;
 	DOMImplementation*    DomDocImplementation = NULL;
@@ -293,6 +319,7 @@ DOMDocument* XMLDomWritter::createPlaylist(){
 	p_DataElement = xmlDoc->createElement(L"playlist");
 
 	cout << "Enter Playlist ID" << endl;
+	wstring playlist;
 	wcin >> playlist;
 	wPlaylist = playlist.c_str();
 
@@ -303,9 +330,11 @@ DOMDocument* XMLDomWritter::createPlaylist(){
 	data = xmlDoc->createElement(L"playlist_name");
 
 	cout << "Enter the playlist name that you want to add" << endl;
-	wcin >> playlist;
-
-	wPlaylist = playlist.c_str();
+	cin.get();
+	getline(cin, name);
+	wstring wName(name.begin(), name.end());
+	//wcin.get();
+	wPlaylist = wName.c_str();
 
 	textNode = xmlDoc->createTextNode(wPlaylist);
 	data->appendChild(textNode);
@@ -321,8 +350,13 @@ DOMDocument* XMLDomWritter::createPlaylist(){
 	for (int i = 0; i < index; i++){
 		childData = xmlDoc->createElement(L"playlist_song");
 		cout << "Enter the song name;" << endl;
-		wcin >> playlist;
-		wPlaylist = playlist.c_str();
+		
+		cin >> songs;
+
+		songs=getChildByName("song", "song_name", songs.c_str());
+
+		wstring wSong(songs.begin(), songs.end());
+		wPlaylist = wSong.c_str();
 
 		textNode = xmlDoc->createTextNode(wPlaylist);
 		childData->appendChild(textNode);
@@ -350,4 +384,46 @@ int XMLDomWritter::checkUserInput() {
 			break;
 		}
 	}
+}
+
+string XMLDomWritter::getChildByName(const char* parentTag, const char* childTag,const char* childValue){
+	const char* attributeTag = "ID";
+	string value;
+	XMLCh* temp = XMLString::transcode(parentTag);
+	DOMNodeList* list = xmlDoc->getElementsByTagName(temp);
+	XMLString::release(&temp);
+	for (int parentIndex = 0; parentIndex <(int)list->getLength() ;parentIndex++){
+		DOMElement* parent = dynamic_cast<DOMElement*>(list->item(parentIndex));
+		DOMElement* child =
+				dynamic_cast<DOMElement*>(parent->getElementsByTagName(XMLString::transcode(childTag))->item(0));
+		if (child) {
+			const char* temp = XMLString::transcode(child->getTextContent());
+			if (strcmp(childValue,temp) == 0){
+				XMLCh* temp1 = XMLString::transcode("ID");
+				char* temp2 = XMLString::transcode(parent->getAttribute(temp1));
+				value =  temp2;
+				break;
+			}
+		}
+	}
+	if (value.empty()){
+		value = getChildByName(parentTag, childTag, "None");
+	}
+	return value;
+}
+
+
+int XMLDomWritter::getID(const char* parentTag, const char* childTag){
+	const char* attributeTag = "ID";
+	int parentIndex = 0;
+	const char* value;
+	XMLCh* temp = XMLString::transcode(parentTag);
+	DOMNodeList* list = xmlDoc->getElementsByTagName(temp);
+	XMLString::release(&temp);
+	while (true){
+		DOMElement* parent = dynamic_cast<DOMElement*>(list->item(parentIndex));
+		temp = XMLString::transcode(attributeTag);
+		char* temp2 = XMLString::transcode(parent->getAttribute(temp));
+	}
+	return 0;
 }

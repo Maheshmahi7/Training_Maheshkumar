@@ -25,6 +25,8 @@ public:
 
 private:
 	int checkUserInput();
+	string getChildByName(const char* parentTag, const char* childTag, const char* childValue);
+	int getID(const char* parentTag, const char* childTag);
 
 };
 

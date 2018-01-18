@@ -2,6 +2,9 @@
 <!DOCTYPE music_player SYSTEM "MusicPlayerDTD.dtd">
 <music_player>
   <songs>
+    <song ID="s110">
+      <song_name>None</song_name>
+    </song>
     <song ID="s111">
       <song_name>dil dil</song_name>
       <duration>4:30</duration>
@@ -67,8 +70,35 @@
         <song_artist>a212</song_artist>
       </song_artists>
     </song>
+    <song ID="s120">
+      <song_name>asd</song_name>
+      <duration>asd</duration>
+      <song_album>al312</song_album>
+      <song_artists>
+        <song_artist>a212</song_artist>
+      </song_artists>
+    </song>
+    <song ID="s120">
+      <song_name>mahesh mahesh</song_name>
+      <duration>:03</duration>
+      <song_album>NULL</song_album>
+      <song_artists>
+        <song_artist>NULL</song_artist>
+      </song_artists>
+    </song>
+    <song ID="s120">
+      <song_name>sad</song_name>
+      <duration>sd</duration>
+      <song_album>al310</song_album>
+      <song_artists>
+        <song_artist>a210</song_artist>
+      </song_artists>
+    </song>
   </songs>
   <artists>
+    <artist ID="a210">
+      <artist_name>None</artist_name>
+    </artist>
     <artist ID="a211">
       <artist_name>harris</artist_name>
       <artist_albums>
@@ -117,6 +147,9 @@
     </artist>
   </artists>
   <albums>
+    <album ID="al310">
+      <album_name>None</album_name>
+    </album>
     <album ID="al311">
       <album_name>Theeran</album_name>
       <album_artists>
@@ -153,6 +186,12 @@
         <playlist_song>s114</playlist_song>
         <playlist_song>s115</playlist_song>
         <playlist_song>s116</playlist_song>
+      </playlist_songs>
+    </playlist>
+    <playlist ID="p415">
+      <playlist_name>asds</playlist_name>
+      <playlist_songs>
+        <playlist_song>s114</playlist_song>
       </playlist_songs>
     </playlist>
   </playlists>
