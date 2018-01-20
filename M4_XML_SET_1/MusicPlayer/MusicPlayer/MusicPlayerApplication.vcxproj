@@ -63,9 +63,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\Program Files\Microsoft SQL Server\110\SDK\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files\Microsoft SQL Server\110\SDK\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>C:\Program Files\Microsoft SQL Server\110\SDK\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files\Microsoft SQL Server\110\SDK\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

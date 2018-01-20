@@ -44,9 +44,6 @@
     </Xsd>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MusicPlayerSchema.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="XMLDomReader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
