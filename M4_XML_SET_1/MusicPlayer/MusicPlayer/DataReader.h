@@ -7,14 +7,14 @@ public:
 	DataReader();
 	~DataReader();
 	void displaySongsFromDB();
-	void displaySongByName(char*); 
-	
+	void displaySongByName(char*);
+
 	void displayAlbumsFromDB();
-	void displayAlbumByName(char*); 
-	
+	void displayAlbumByName(char*);
+
 	void displayPlaylistsFromDB();
-	void displayPlaylistByName( char*);
-	
+	void displayPlaylistByName(char*);
+
 	void displayArtistsFromDB();
 	void displayArtistByName(char*);
 private:

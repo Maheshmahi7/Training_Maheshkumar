@@ -78,22 +78,22 @@ void SQLDatabase::userUI(){
 				switch (writeChoice){
 				case 1:{
 					result = writeDb.insertIntoSongIntoDB();
-					cout << "Song Added" << endl;
+					cout << result << endl;
 					break;
 				}
 				case 2:{
 					result = writeDb.insertIntoArtistIntoDB();
-					cout << "Artist Added" << endl;
+					cout << result << endl;
 					break;
 				}
 				case 3:{
 					result = writeDb.insertIntoAlbumIntoDB();
-					cout << "Album Added" << endl;
+					cout << result << endl;
 					break;
 				}
 				case 4:{
 					result = writeDb.insertIntoPlaylistIntoDB();
-					cout << "Playlist Created" << endl;
+					cout << result << endl;
 					break;
 				}
 				case 5:{
@@ -109,6 +109,109 @@ void SQLDatabase::userUI(){
 			break;
 		}
 		case 3:{
+			DataWriter writeDb;
+			int deleteChoice;
+			bool deleteLoop = true;
+			while (deleteLoop){
+				deleteMenu();
+				cin >> deleteChoice;
+				if (cin.fail()){
+					deleteChoice = checkUserInput();
+				}
+				system("cls");
+				switch (deleteChoice){
+				case 1:{
+					result = writeDb.deleteSong();
+					cout << result << endl;
+					break;
+				}
+				case 2:{
+					result = writeDb.deleteArtist();
+					cout << result << endl;
+					break;
+				}
+				case 3:{
+					result = writeDb.deleteAlbum();
+					cout << result << endl;
+					break;
+				}
+				case 4:{
+					result = writeDb.deletePlaylist();
+					cout << result << endl;
+					break;
+				}
+				case 5:{
+					deleteLoop = false;
+					break;
+				}
+				default:{
+					cout << "Enter correct value" << endl;
+					break;
+				}
+				}
+			}
+			break;
+		}
+		case 4:{
+			DataWriter writeDb;
+			int updateChoice;
+			bool updateLoop = true;
+			while (updateLoop){
+				updateMenu();
+				cin >> updateChoice;
+				if (cin.fail()){
+					updateChoice = checkUserInput();
+				}
+				system("cls");
+				switch (updateChoice){
+				case 1:{
+					result = writeDb.updateSongName();
+					cout << result << endl;
+					break;
+				}
+				case 2:{
+					result = writeDb.updateSongDuration();
+					cout << result << endl;
+					break;
+				}
+				case 3:{
+					result = writeDb.updateArtistName();
+					cout << result << endl;
+					break;
+				}
+				case 4:{
+					result = writeDb.updateArtistAge();
+					cout << result << endl;
+					break;
+				}
+				case 5:{
+					result = writeDb.updateArtistEmailId();
+					cout << result << endl;
+					break;
+				}
+				case 6:{
+					result = writeDb.updateAlbum();
+					cout << result << endl;
+					break;
+				}
+				case 7:{
+					result = writeDb.updatePlaylist();
+					cout << result << endl;
+					break;
+				}
+				case 8:{
+					updateLoop = false;
+					break;
+				}
+				default:{
+					cout << "Enter correct value" << endl;
+					break;
+				}
+				}
+			}
+			break;
+		}
+		case 5:{
 			exit(0);
 		}
 		default:{
@@ -125,7 +228,9 @@ void SQLDatabase::userUI(){
 void SQLDatabase::menu(){
 	cout << "1.Read Music Player" << endl;
 	cout << "2.Add items to Music Player" << endl;
-	cout << "3.Exit" << endl;
+	cout << "3.Delete Items from Music Player" << endl;
+	cout << "4.Update Items from Music Player" << endl;
+	cout << "5.Exit" << endl;
 }
 
 /*read menu to read from database on user choice*/
@@ -143,9 +248,27 @@ void SQLDatabase::writeMenu(){
 	cout << "3.Add Album" << endl;
 	cout << "4.Create Playlist" << endl;
 	cout << "5.Go Back" << endl;
-
 }
 
+/*delete menu to delete from database on user choice*/
+void SQLDatabase::deleteMenu(){
+	cout << "1.Delete Song" << endl;
+	cout << "2.Delete Artist" << endl;
+	cout << "3.Delete Album" << endl;
+	cout << "4.Delete Playlist" << endl;
+	cout << "5.Go Back" << endl;
+}
+
+void SQLDatabase::updateMenu(){
+	cout << "1.Update Song Name" << endl;
+	cout << "2.Update Song Duration" << endl;
+	cout << "3.Update Artist Name" << endl;
+	cout << "4.Update Artist Age" << endl;
+	cout << "5.Update Artist Email Id" << endl;
+	cout << "6.Update Album Name" << endl;
+	cout << "7.Update Playlist Name" << endl;
+	cout << "8.Go Back" << endl;
+}
 /*method to validate user input of type integer*/
 int SQLDatabase::checkUserInput() {
 	int input;

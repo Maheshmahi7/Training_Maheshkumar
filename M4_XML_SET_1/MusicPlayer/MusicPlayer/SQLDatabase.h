@@ -14,6 +14,8 @@ private:
 	void menu();
 	void readMenu();
 	void writeMenu();
+	void deleteMenu();
+	void updateMenu();
 	int checkUserInput();
 
 };

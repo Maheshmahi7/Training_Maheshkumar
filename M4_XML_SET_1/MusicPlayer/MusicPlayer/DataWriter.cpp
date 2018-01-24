@@ -652,6 +652,628 @@ string DataWriter::insertIntoSongArtist(char* artistName, char* songName){
 	}
 }
 
+string DataWriter::updateSongName(){
+	SQLHANDLE sqlHandle = NULL;
+	sqlHandle = con.createConnection();
+	string result;
+	SQLRETURN retcode;
+	SQLCHAR sqlNewName[50], sqlOldname[50];
+	SQLINTEGER cbValue = SQL_NTS;
+	char* oldname = new char();
+	char* newName = new char();
+	cin.get();
+	cout << "Enter the Song Name you want to update:" << endl;
+	cin.getline(oldname, 50);
+	cout << "Enter the new name" << endl;
+	cin.getline(newName, 50);
+	cout << endl;
+	retcode = SQLPrepare(sqlHandle, (SQLWCHAR*)L"update Song set Song.Name=? where name=?", SQL_NTS);
+	retcode = SQLBindParameter(sqlHandle, 1, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR, strlen(newName), 0, sqlNewName, 0, &cbValue);
+	retcode = SQLBindParameter(sqlHandle, 2, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR, strlen(oldname), 0, sqlOldname, 0, &cbValue);
+	strcpy_s((char*)sqlNewName, _countof(sqlNewName), newName);
+	strcpy_s((char*)sqlOldname, _countof(sqlOldname), oldname);
+	retcode = SQLExecute(sqlHandle);
+	if (SQL_SUCCESS != retcode){
+		cout << "Error querying SQL Server";
+		cout << "\n";
+		SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+		return "Updation failed";
+	}
+	else {
+		SQLINTEGER rowCount;
+		SQLRowCount(sqlHandle, &rowCount);
+		if (rowCount > 0){
+			SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+			return "Updated Successfully";
+		}
+		else{
+			SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+			return "Updation Failed";
+		}
+	}
+}
+
+string DataWriter::updateSongDuration(){
+	SQLHANDLE sqlHandle = NULL;
+	sqlHandle = con.createConnection();
+	string result;
+	SQLRETURN retcode;
+	SQLCHAR sqlName[50], sqlDuration[50];
+	SQLINTEGER cbValue = SQL_NTS;
+	char* name = new char();
+	char* duration = new char();
+	cin.get();
+	cout << "Enter the Song Name you want to update:" << endl;
+	cin.getline(name, 50);
+	cout << "Enter the new song duration" << endl;
+	cin.getline(duration, 50);
+	cout << endl;
+	retcode = SQLPrepare(sqlHandle, (SQLWCHAR*)L"update Song set Song.Duration=? where name=?", SQL_NTS);
+	retcode = SQLBindParameter(sqlHandle, 1, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR, strlen(duration), 0, sqlDuration, 0, &cbValue);
+	retcode = SQLBindParameter(sqlHandle, 2, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR, strlen(name), 0, sqlName, 0, &cbValue);
+	strcpy_s((char*)sqlName, _countof(sqlName), name);
+	strcpy_s((char*)sqlDuration, _countof(sqlDuration), duration);
+	retcode = SQLExecute(sqlHandle);
+	if (SQL_SUCCESS != retcode){
+		cout << "Error querying SQL Server";
+		cout << "\n";
+		SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+		return "Updation failed";
+	}
+	else {
+		SQLINTEGER rowCount;
+		SQLRowCount(sqlHandle, &rowCount);
+		if (rowCount > 0){
+			SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+			return "Updated Successfully";
+		}
+		else{
+			SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+			return "Updation Failed";
+		}
+	}
+}
+
+string DataWriter::updateAlbum(){
+	SQLHANDLE sqlHandle = NULL;
+	sqlHandle = con.createConnection();
+	string result;
+	SQLRETURN retcode;
+	SQLCHAR sqlNewName[50], sqlOldname[50];
+	SQLINTEGER cbValue = SQL_NTS;
+	char* oldname = new char();
+	char* newName = new char();
+	cin.get();
+	cout << "Enter the Album Name you want to update:" << endl;
+	cin.getline(oldname, 50);
+	cout << "Enter the new name" << endl;
+	cin.getline(newName, 50);
+	cout << endl;
+	retcode = SQLPrepare(sqlHandle, (SQLWCHAR*)L"update Album set Album.Name=? where name=?", SQL_NTS);
+	retcode = SQLBindParameter(sqlHandle, 1, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR, strlen(newName), 0, sqlNewName, 0, &cbValue);
+	retcode = SQLBindParameter(sqlHandle, 2, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR, strlen(oldname), 0, sqlOldname, 0, &cbValue);
+	strcpy_s((char*)sqlNewName, _countof(sqlNewName), newName);
+	strcpy_s((char*)sqlOldname, _countof(sqlOldname), oldname);
+	retcode = SQLExecute(sqlHandle);
+	if (SQL_SUCCESS != retcode){
+		cout << "Error querying SQL Server";
+		cout << "\n";
+		SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+		return "Updation failed";
+	}
+	else {
+		SQLINTEGER rowCount;
+		SQLRowCount(sqlHandle, &rowCount);
+		if (rowCount > 0){
+			SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+			return "Updated Successfully";
+		}
+		else{
+			SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+			return "Updation Failed";
+		}
+	}
+}
+
+string DataWriter::updatePlaylist(){
+	SQLHANDLE sqlHandle = NULL;
+	sqlHandle = con.createConnection();
+	string result;
+	SQLRETURN retcode;
+	SQLCHAR sqlNewName[50], sqlOldname[50];
+	SQLINTEGER cbValue = SQL_NTS;
+	char* oldname = new char();
+	char* newName = new char();
+	cin.get();
+	cout << "Enter the Playlist Name you want to update:" << endl;
+	cin.getline(oldname, 50);
+	cout << "Enter the new name" << endl;
+	cin.getline(newName, 50);
+	cout << endl;
+	retcode = SQLPrepare(sqlHandle, (SQLWCHAR*)L"update Playlist set Playlist.Name=? where name=?", SQL_NTS);
+	retcode = SQLBindParameter(sqlHandle, 1, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR, strlen(newName), 0, sqlNewName, 0, &cbValue);
+	retcode = SQLBindParameter(sqlHandle, 2, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR, strlen(oldname), 0, sqlOldname, 0, &cbValue);
+	strcpy_s((char*)sqlNewName, _countof(sqlNewName), newName);
+	strcpy_s((char*)sqlOldname, _countof(sqlOldname), oldname);
+	retcode = SQLExecute(sqlHandle);
+	if (SQL_SUCCESS != retcode){
+		cout << "Error querying SQL Server";
+		cout << "\n";
+		SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+		return "Updation failed";
+	}
+	else {
+		SQLINTEGER rowCount;
+		SQLRowCount(sqlHandle, &rowCount);
+		if (rowCount > 0){
+			SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+			return "Updated Successfully";
+		}
+		else{
+			SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+			return "Updation Failed";
+		}
+	}
+}
+
+string DataWriter::updateArtistName(){
+	SQLHANDLE sqlHandle = NULL;
+	sqlHandle = con.createConnection();
+	string result;
+	SQLRETURN retcode;
+	SQLCHAR sqlNewName[50], sqlOldname[50];
+	SQLINTEGER cbValue = SQL_NTS;
+	char* oldname = new char();
+	char* newName = new char();
+	cin.get();
+	cout << "Enter the Artist Name you want to update:" << endl;
+	cin.getline(oldname, 50);
+	cout << "Enter the new name" << endl;
+	cin.getline(newName, 50);
+	cout << endl;
+	retcode = SQLPrepare(sqlHandle, (SQLWCHAR*)L"update Artist set Artist.Name=? where name=?", SQL_NTS);
+	retcode = SQLBindParameter(sqlHandle, 1, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR, strlen(newName), 0, sqlNewName, 0, &cbValue);
+	retcode = SQLBindParameter(sqlHandle, 2, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR, strlen(oldname), 0, sqlOldname, 0, &cbValue);
+	strcpy_s((char*)sqlNewName, _countof(sqlNewName), newName);
+	strcpy_s((char*)sqlOldname, _countof(sqlOldname), oldname);
+	retcode = SQLExecute(sqlHandle);
+	if (SQL_SUCCESS != retcode){
+		cout << "Error querying SQL Server";
+		cout << "\n";
+		SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+		return "Updation failed";
+	}
+	else {
+		SQLINTEGER rowCount;
+		SQLRowCount(sqlHandle, &rowCount);
+		if (rowCount > 0){
+			SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+			return "Updated Successfully";
+		}
+		else{
+			SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+			return "Updation Failed";
+		}
+	}
+}
+
+string DataWriter::updateArtistEmailId(){
+	SQLHANDLE sqlHandle = NULL;
+	sqlHandle = con.createConnection();
+	string result;
+	SQLRETURN retcode;
+	SQLCHAR sqlEmailId[50], sqlOldname[50];
+	SQLINTEGER cbValue = SQL_NTS;
+	char* oldname = new char();
+	char* emailId = new char();
+	cin.get();
+	cout << "Enter the Artist Name you want to update:" << endl;
+	cin.getline(oldname, 50);
+	cout << "Enter the Email ID" << endl;
+	cin.getline(emailId, 50);
+	cout << endl;
+	retcode = SQLPrepare(sqlHandle, (SQLWCHAR*)L"update Artist set Artist.Email_id=? where name=?", SQL_NTS);
+	retcode = SQLBindParameter(sqlHandle, 1, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR, strlen(emailId), 0, sqlEmailId, 0, &cbValue);
+	retcode = SQLBindParameter(sqlHandle, 2, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR, strlen(oldname), 0, sqlOldname, 0, &cbValue);
+	strcpy_s((char*)sqlEmailId, _countof(sqlEmailId), emailId);
+	strcpy_s((char*)sqlOldname, _countof(sqlOldname), oldname);
+	retcode = SQLExecute(sqlHandle);
+	if (SQL_SUCCESS != retcode){
+		cout << "Error querying SQL Server";
+		cout << "\n";
+		SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+		return "Updation failed";
+	}
+	else {
+		SQLINTEGER rowCount;
+		SQLRowCount(sqlHandle, &rowCount);
+		if (rowCount > 0){
+			SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+			return "Updated Successfully";
+		}
+		else{
+			SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+			return "Updation Failed";
+		}
+	}
+}
+
+string DataWriter::updateArtistAge(){
+	SQLHANDLE sqlHandle = NULL;
+	sqlHandle = con.createConnection();
+	string result;
+	SQLRETURN retcode;
+	SQLCHAR sqlOldname[50];
+	SQLINTEGER cbValue = SQL_NTS, sqlAge;
+	char* oldname = new char();
+	cin.get();
+	cout << "Enter the Artist Name you want to update:" << endl;
+	cin.getline(oldname, 50);
+	cout << "Enter the Age" << endl;
+	cin >> sqlAge;
+	cout << endl;
+	retcode = SQLPrepare(sqlHandle, (SQLWCHAR*)L"update Artist set Artist.Age=? where name=?", SQL_NTS);
+	retcode = SQLBindParameter(sqlHandle, 1, SQL_PARAM_INPUT, SQL_C_SSHORT, SQL_INTEGER, 0, 0, &sqlAge, 0, &cbValue);
+	retcode = SQLBindParameter(sqlHandle, 2, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR, strlen(oldname), 0, sqlOldname, 0, &cbValue);
+	strcpy_s((char*)sqlOldname, _countof(sqlOldname), oldname);
+	retcode = SQLExecute(sqlHandle);
+	if (SQL_SUCCESS != retcode){
+		cout << "Error querying SQL Server";
+		cout << "\n";
+		SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+		return "Updation failed";
+	}
+	else {
+		SQLINTEGER rowCount;
+		SQLRowCount(sqlHandle, &rowCount);
+		if (rowCount > 0){
+			SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+			return "Updated Successfully";
+		}
+		else{
+			SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+			return "Updation Failed";
+		}
+	}
+}
+
+
+string DataWriter::deleteSong(){
+	SQLHANDLE sqlHandle = NULL;
+	sqlHandle = con.createConnection();
+	string result;
+	SQLRETURN retcode;
+	SQLCHAR sqlName[50];
+	SQLINTEGER cbValue = SQL_NTS;
+	char* name = new char();
+	cin.get();
+	cout << "Enter the Song Name:" << endl;
+	cin.getline(name, 50);
+	retcode = SQLPrepare(sqlHandle, (SQLWCHAR*)L"delete from song where song.name=?", SQL_NTS);
+	retcode = SQLBindParameter(sqlHandle, 1, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR, strlen(name), 0, sqlName, 0, &cbValue);
+	strcpy_s((char*)sqlName, _countof(sqlName), name);
+	SQLINTEGER songId;
+	songId = getSongIdByname(name);
+	result = deleteAlbumSongBySong(songId);
+	result = deleteSongArtistBySong(songId);
+	result = deleteSongPlaylistBySong(songId);
+	retcode = SQLExecute(sqlHandle);
+	if (SQL_SUCCESS != retcode){
+		cout << "Error querying SQL Server";
+		cout << "\n";
+		SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+		return "Deletion Failed";
+	}
+	else {
+		SQLINTEGER rowCount;
+		SQLRowCount(sqlHandle, &rowCount);
+		if (rowCount > 0){
+			SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+			return "Deleted Successfully";
+		}
+		else{
+			SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+			return "Deletion Failed";
+		}
+	}
+}
+
+string DataWriter::deleteAlbum(){
+	SQLHANDLE sqlHandle = NULL;
+	sqlHandle = con.createConnection();
+	string result;
+	SQLRETURN retcode;
+	SQLCHAR sqlName[50];
+	SQLINTEGER cbValue = SQL_NTS;
+	char* name = new char();
+	cin.get();
+	cout << "Enter the Album Name:" << endl;
+	cin.getline(name, 50);
+	retcode = SQLPrepare(sqlHandle, (SQLWCHAR*)L"delete from Album where Album.name=?", SQL_NTS);
+	retcode = SQLBindParameter(sqlHandle, 1, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR, strlen(name), 0, sqlName, 0, &cbValue);
+	strcpy_s((char*)sqlName, _countof(sqlName), name);
+	SQLINTEGER albumId;
+	albumId = getAlbumIdByname(name);
+	result = deleteAlbumSongByAlbum(albumId);
+	retcode = SQLExecute(sqlHandle);
+	if (SQL_SUCCESS != retcode){
+		cout << "Error querying SQL Server";
+		cout << "\n";
+		SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+		return "Deletion Failed";
+	}
+	else {
+		SQLINTEGER rowCount;
+		SQLRowCount(sqlHandle, &rowCount);
+		if (rowCount > 0){
+			SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+			return "Deleted Successfully";
+		}
+		else{
+			SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+			return "Deletion Failed";
+		}
+	}
+}
+
+string DataWriter::deleteArtist(){
+	SQLHANDLE sqlHandle = NULL;
+	sqlHandle = con.createConnection();
+	string result;
+	SQLRETURN retcode;
+	SQLCHAR sqlName[50];
+	SQLINTEGER cbValue = SQL_NTS;
+	char* name = new char();
+	cin.get();
+	cout << "Enter the Artist Name:" << endl;
+	cin.getline(name, 50);
+	retcode = SQLPrepare(sqlHandle, (SQLWCHAR*)L"delete from Artist where Artist.name=?", SQL_NTS);
+	retcode = SQLBindParameter(sqlHandle, 1, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR, strlen(name), 0, sqlName, 0, &cbValue);
+	strcpy_s((char*)sqlName, _countof(sqlName), name);
+	SQLINTEGER artistId;
+	artistId = getArtistIdByname(name);
+	result = deleteSongArtistByArtist(artistId);
+	retcode = SQLExecute(sqlHandle);
+	if (SQL_SUCCESS != retcode){
+		cout << "Error querying SQL Server";
+		cout << "\n";
+		SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+		return "Deletion Failed";
+	}
+	else {
+		SQLINTEGER rowCount;
+		SQLRowCount(sqlHandle, &rowCount);
+		if (rowCount > 0){
+			SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+			return "Deleted Successfully";
+		}
+		else{
+			SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+			return "Deletion Failed";
+		}
+	}
+}
+
+string DataWriter::deletePlaylist(){
+	SQLHANDLE sqlHandle = NULL;
+	sqlHandle = con.createConnection();
+	string result;
+	SQLRETURN retcode;
+	SQLCHAR sqlName[50];
+	SQLINTEGER cbValue = SQL_NTS;
+	char* name = new char();
+	cin.get();
+	cout << "Enter the Playlist Name:" << endl;
+	cin.getline(name, 50);
+	retcode = SQLPrepare(sqlHandle, (SQLWCHAR*)L"delete from playlist where playlist.name=?", SQL_NTS);
+	retcode = SQLBindParameter(sqlHandle, 1, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR, strlen(name), 0, sqlName, 0, &cbValue);
+	strcpy_s((char*)sqlName, _countof(sqlName), name);
+	SQLINTEGER playlistId;
+	playlistId = getPlaylistIdByname(name);
+	result = deleteSongPlaylistByPlaylist(playlistId);
+	retcode = SQLExecute(sqlHandle);
+	if (SQL_SUCCESS != retcode){
+		cout << "Error querying SQL Server";
+		cout << "\n";
+		SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+		return "Deletion Failed";
+	}
+	else {
+		SQLINTEGER rowCount;
+		SQLRowCount(sqlHandle, &rowCount);
+		if (rowCount > 0){
+			SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+			return "Deleted Successfully";
+		}
+		else{
+			SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+			return "Deletion Failed";
+		}
+	}
+}
+
+string DataWriter::deleteAlbumSongBySong(int id){
+	SQLHANDLE sqlHandle = NULL;
+	sqlHandle = con.createConnection();
+	string result;
+	SQLRETURN retcode;
+	SQLINTEGER cbValue = SQL_NTS, sqlId;
+	retcode = SQLPrepare(sqlHandle, (SQLWCHAR*)L"delete from Album_Song where Album_Song.song_id=?", SQL_NTS);
+	retcode = SQLBindParameter(sqlHandle, 1, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR, 0, 0, &sqlId, 0, &cbValue);
+	sqlId = id;
+	retcode = SQLExecute(sqlHandle);
+	if (SQL_SUCCESS != retcode){
+		cout << "Error querying SQL Server";
+		cout << "\n";
+		SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+		return "Deletion Failed";
+	}
+	else {
+		SQLINTEGER rowCount;
+		SQLRowCount(sqlHandle, &rowCount);
+		if (rowCount > 0){
+			SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+			return "Deleted Successfully";
+		}
+		else{
+			SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+			return "Deletion Failed";
+		}
+	}
+}
+
+string DataWriter::deleteSongArtistBySong(int id){
+	SQLHANDLE sqlHandle = NULL;
+	sqlHandle = con.createConnection();
+	string result;
+	SQLRETURN retcode;
+	SQLINTEGER cbValue = SQL_NTS, sqlId;
+	retcode = SQLPrepare(sqlHandle, (SQLWCHAR*)L"delete from Song_Artist where Song_Artist.song_id=?", SQL_NTS);
+	retcode = SQLBindParameter(sqlHandle, 1, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR, 0, 0, &sqlId, 0, &cbValue);
+	sqlId = id;
+	retcode = SQLExecute(sqlHandle);
+	if (SQL_SUCCESS != retcode){
+		cout << "Error querying SQL Server";
+		cout << "\n";
+		SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+		return "Deletion Failed";
+	}
+	else {
+		SQLINTEGER rowCount;
+		SQLRowCount(sqlHandle, &rowCount);
+		if (rowCount > 0){
+			SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+			return "Deleted Successfully";
+		}
+		else{
+			SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+			return "Deletion Failed";
+		}
+	}
+}
+
+string DataWriter::deleteSongPlaylistBySong(int id){
+	SQLHANDLE sqlHandle = NULL;
+	sqlHandle = con.createConnection();
+	string result;
+	SQLRETURN retcode;
+	SQLINTEGER cbValue = SQL_NTS, sqlId;
+	retcode = SQLPrepare(sqlHandle, (SQLWCHAR*)L"delete from Song_playlist where Song_Playlist.song_id=?", SQL_NTS);
+	retcode = SQLBindParameter(sqlHandle, 1, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR, 0, 0, &sqlId, 0, &cbValue);
+	sqlId = id;
+	retcode = SQLExecute(sqlHandle);
+	if (SQL_SUCCESS != retcode){
+		cout << "Error querying SQL Server";
+		cout << "\n";
+		SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+		return "Deletion Failed";
+	}
+	else {
+		SQLINTEGER rowCount;
+		SQLRowCount(sqlHandle, &rowCount);
+		if (rowCount > 0){
+			SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+			return "Deleted Successfully";
+		}
+		else{
+			SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+			return "Deletion Failed";
+		}
+	}
+}
+
+string DataWriter::deleteAlbumSongByAlbum(int id){
+	SQLHANDLE sqlHandle = NULL;
+	sqlHandle = con.createConnection();
+	string result;
+	SQLRETURN retcode;
+	SQLINTEGER cbValue = SQL_NTS, sqlId;
+	retcode = SQLPrepare(sqlHandle, (SQLWCHAR*)L"delete from Album_Song where Album_Song.album_id=?", SQL_NTS);
+	retcode = SQLBindParameter(sqlHandle, 1, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR, 0, 0, &sqlId, 0, &cbValue);
+	sqlId = id;
+	retcode = SQLExecute(sqlHandle);
+	if (SQL_SUCCESS != retcode){
+		cout << "Error querying SQL Server";
+		cout << "\n";
+		SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+		return "Deletion Failed";
+	}
+	else {
+		SQLINTEGER rowCount;
+		SQLRowCount(sqlHandle, &rowCount);
+		if (rowCount > 0){
+			SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+			return "Deleted Successfully";
+		}
+		else{
+			SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+			return "Deletion Failed";
+		}
+	}
+}
+
+string DataWriter::deleteSongArtistByArtist(int id){
+	SQLHANDLE sqlHandle = NULL;
+	sqlHandle = con.createConnection();
+	string result;
+	SQLRETURN retcode;
+	SQLINTEGER cbValue = SQL_NTS, sqlId;
+	retcode = SQLPrepare(sqlHandle, (SQLWCHAR*)L"delete from Song_Artist where Song_Artist.artist_id=?", SQL_NTS);
+	retcode = SQLBindParameter(sqlHandle, 1, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR, 0, 0, &sqlId, 0, &cbValue);
+	sqlId = id;
+	retcode = SQLExecute(sqlHandle);
+	if (SQL_SUCCESS != retcode){
+		cout << "Error querying SQL Server";
+		cout << "\n";
+		SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+		return "Deletion Failed";
+	}
+	else {
+		SQLINTEGER rowCount;
+		SQLRowCount(sqlHandle, &rowCount);
+		if (rowCount > 0){
+			SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+			return "Deleted Successfully";
+		}
+		else{
+			SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+			return "Deletion Failed";
+		}
+	}
+}
+
+string DataWriter::deleteSongPlaylistByPlaylist(int id){
+	SQLHANDLE sqlHandle = NULL;
+	sqlHandle = con.createConnection();
+	string result;
+	SQLRETURN retcode;
+	SQLINTEGER cbValue = SQL_NTS, sqlId;
+	retcode = SQLPrepare(sqlHandle, (SQLWCHAR*)L"delete from Song_playlist where Song_Playlist.playlist_id=?", SQL_NTS);
+	retcode = SQLBindParameter(sqlHandle, 1, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR, 0, 0, &sqlId, 0, &cbValue);
+	sqlId = id;
+	retcode = SQLExecute(sqlHandle);
+	if (SQL_SUCCESS != retcode){
+		cout << "Error querying SQL Server";
+		cout << "\n";
+		SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+		return "Deletion Failed";
+	}
+	else {
+		SQLINTEGER rowCount;
+		SQLRowCount(sqlHandle, &rowCount);
+		if (rowCount > 0){
+			SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+			return "Deleted Successfully";
+		}
+		else{
+			SQLFreeHandle(SQL_HANDLE_STMT, sqlHandle);
+			return "Deletion Failed";
+		}
+	}
+
+}
+
+
 
 /*method to validate user input of type integer*/
 int DataWriter::checkUserInput() {
