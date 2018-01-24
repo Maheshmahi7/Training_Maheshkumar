@@ -12,6 +12,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="connectionDB.cpp" />
+    <ClCompile Include="SQLDatabase.cpp" />
+    <ClCompile Include="DataReader.cpp" />
+    <ClCompile Include="DataWriter.cpp" />
+    <ClCompile Include="XML.cpp" />
     <ClCompile Include="XMLDom.cpp" />
     <ClCompile Include="XMLDomReader.cpp" />
     <ClCompile Include="XMLDomWritter.cpp" />
@@ -28,6 +33,11 @@
     <Xsd Include="MusicPlayerSchema.xsd" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="connectionDB.h" />
+    <ClInclude Include="SQLDatabase.h" />
+    <ClInclude Include="DataReader.h" />
+    <ClInclude Include="DataWriter.h" />
+    <ClInclude Include="XML.h" />
     <ClInclude Include="XMLDom.h" />
     <ClInclude Include="XMLDomReader.h" />
     <ClInclude Include="XMLDomWritter.h" />

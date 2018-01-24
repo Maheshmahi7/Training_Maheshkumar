@@ -427,7 +427,6 @@ string XMLDomWritter::getChildByName(const char* parentTag, const char* childTag
 int XMLDomWritter::getID(const char* parentTag, const char* childTag){
 	const char* attributeTag = "ID";
 	int parentIndex = 0;
-	const char* value;
 	XMLCh* temp = XMLString::transcode(parentTag);
 	DOMNodeList* list = xmlDoc->getElementsByTagName(temp);
 	XMLString::release(&temp);

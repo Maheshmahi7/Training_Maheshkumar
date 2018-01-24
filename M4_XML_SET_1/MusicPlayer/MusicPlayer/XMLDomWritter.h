@@ -12,7 +12,6 @@
 
 class XMLDomWritter
 {
-	DOMDocument* xmlDoc;
 public:
 	XMLDomWritter(DOMDocument*);
 	~XMLDomWritter();
@@ -24,6 +23,7 @@ public:
 	void addElementToFile();
 
 private:
+	DOMDocument* xmlDoc;
 	int checkUserInput();
 	string getChildByName(const char* parentTag, const char* childTag, const char* childValue);
 	int getID(const char* parentTag, const char* childTag);
