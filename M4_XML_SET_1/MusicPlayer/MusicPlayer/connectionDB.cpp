@@ -25,7 +25,7 @@ SQLHANDLE connectionDB::createConnection(){
 			{
 				SQLDriverConnect(sqlConnHandle,
 					NULL,
-					(SQLWCHAR*)L"DRIVER={SQL Server};SERVER=IN11W-TRAINEE6\\SQLEXPRESS,49297;DATABASE=MusicPlayer;Trusted=true;",
+					(SQLWCHAR*)L"DRIVER={SQL Server};SERVER=IN11W-TRAINEE6\\SQLEXPRESS,49298;DATABASE=MusicPlayer;Trusted=true;",
 					SQL_NTS,
 					retconstring,
 					1024,
