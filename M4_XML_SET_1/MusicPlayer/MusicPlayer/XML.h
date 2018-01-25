@@ -3,10 +3,6 @@
 #ifndef __XML_h__
 #define __XML_h__
 
-//#include <xercesc/util/PlatformUtils.hpp>
-//#include <xercesc/parsers/XercesDOMParser.hpp>
-//#include <xercesc/dom/DOM.hpp>
-//#include <xercesc/util/XMLString.hpp>
 
 #include <iostream>
 #include <string>
