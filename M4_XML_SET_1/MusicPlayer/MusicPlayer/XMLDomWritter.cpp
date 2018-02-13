@@ -43,9 +43,7 @@ DOMDocument* XMLDomWritter::addElementSong(){
 	DOMElement * childData = NULL;
 	DomDocImplementation = DOMImplementationRegistry::getDOMImplementation(XMLString::transcode("core"));
 
-	XMLCh* temp = XMLString::transcode("songs");
-	DOMNodeList* list = xmlDoc->getElementsByTagName(temp);
-	XMLString::release(&temp);
+	DOMNodeList* list = xmlDoc->getElementsByTagName(XMLString::transcode("songs"));te
 
 	DOMElement* p_RootElement = dynamic_cast<DOMElement*>(list->item(0));
 
@@ -137,9 +135,7 @@ DOMDocument* XMLDomWritter::addElementArtist(){
 	DOMElement * childData = NULL;
 	DomDocImplementation = DOMImplementationRegistry::getDOMImplementation(XMLString::transcode("core"));
 
-	XMLCh* temp = XMLString::transcode("artists");
-	DOMNodeList* list = xmlDoc->getElementsByTagName(temp);
-	XMLString::release(&temp);
+	DOMNodeList* list = xmlDoc->getElementsByTagName(XMLString::transcode("artists"));
 
 	DOMElement* p_RootElement = dynamic_cast<DOMElement*>(list->item(0));
 
@@ -227,9 +223,7 @@ DOMDocument* XMLDomWritter::addElementAlbum(){
 	DOMElement * childData = NULL;
 	DomDocImplementation = DOMImplementationRegistry::getDOMImplementation(XMLString::transcode("core"));
 
-	XMLCh* temp = XMLString::transcode("albums");
-	DOMNodeList* list = xmlDoc->getElementsByTagName(temp);
-	XMLString::release(&temp);
+	DOMNodeList* list = xmlDoc->getElementsByTagName(XMLString::transcode("albums"));
 
 	DOMElement* p_RootElement = dynamic_cast<DOMElement*>(list->item(0));
 
@@ -317,9 +311,7 @@ DOMDocument* XMLDomWritter::createPlaylist(){
 	DOMElement * childData = NULL;
 	DomDocImplementation = DOMImplementationRegistry::getDOMImplementation(XMLString::transcode("core"));
 
-	XMLCh* temp = XMLString::transcode("playlists");
-	DOMNodeList* list = xmlDoc->getElementsByTagName(temp);
-	XMLString::release(&temp);
+	DOMNodeList* list = xmlDoc->getElementsByTagName(XMLString::transcode("playlists"));
 
 	DOMElement* p_RootElement = dynamic_cast<DOMElement*>(list->item(0));
 
@@ -399,20 +391,16 @@ int XMLDomWritter::checkUserInput() {
 string XMLDomWritter::getChildByName(const char* parentTag, const char* childTag,const char* childValue){
 	const char* attributeTag = "ID";
 	string value;
-	XMLCh* temp = XMLString::transcode(parentTag);
-	DOMNodeList* list = xmlDoc->getElementsByTagName(temp);
-	XMLString::release(&temp);
+	DOMNodeList* list = xmlDoc->getElementsByTagName(XMLString::transcode(parentTag));
 	for (int parentIndex = 0; parentIndex < (int)list->getLength() ;parentIndex++){
 		DOMElement* parent = dynamic_cast<DOMElement*>(list->item(parentIndex));
 		DOMElement* child =
 				dynamic_cast<DOMElement*>(parent->getElementsByTagName(XMLString::transcode(childTag))->item(0));
 		if (child) {
-			const char* temp = XMLString::transcode(child->getTextContent());
 
-			if (_strcmpi(childValue,temp) == 0){
-				XMLCh* temp1 = XMLString::transcode("ID");
-				char* temp2 = XMLString::transcode(parent->getAttribute(temp1));
-				value =  temp2;
+			if (_strcmpi(childValue, XMLString::transcode(child->getTextContent())) == 0){
+				value = XMLString::transcode(parent->getAttribute(XMLString::transcode("ID")));
+				
 				break;
 			}
 		}
@@ -427,13 +415,12 @@ string XMLDomWritter::getChildByName(const char* parentTag, const char* childTag
 int XMLDomWritter::getID(const char* parentTag, const char* childTag){
 	const char* attributeTag = "ID";
 	int parentIndex = 0;
-	XMLCh* temp = XMLString::transcode(parentTag);
-	DOMNodeList* list = xmlDoc->getElementsByTagName(temp);
-	XMLString::release(&temp);
+	
+	DOMNodeList* list = xmlDoc->getElementsByTagName(XMLString::transcode(parentTag));
+	
 	while (true){
 		DOMElement* parent = dynamic_cast<DOMElement*>(list->item(parentIndex));
-		temp = XMLString::transcode(attributeTag);
-		char* temp2 = XMLString::transcode(parent->getAttribute(temp));
+		char* temp2 = XMLString::transcode(parent->getAttribute(XMLString::transcode(attributeTag)));
 	}
 	return 0;
 }
@@ -442,7 +429,6 @@ int XMLDomWritter::getID(const char* parentTag, const char* childTag){
 string XMLDomWritter::setId(const char* parentTag, const char* childTag){
 	const char* attributeTag = "ID";
 	string value;
-	char* temp1="";
 	DOMNodeList* list = xmlDoc->getElementsByTagName(XMLString::transcode(parentTag));
 		DOMElement* parent = dynamic_cast<DOMElement*>(list->item(0));
 		DOMNodeList* childList = parent->getElementsByTagName(XMLString::transcode(childTag));
@@ -451,19 +437,15 @@ string XMLDomWritter::setId(const char* parentTag, const char* childTag){
 			DOMElement* child =
 				dynamic_cast<DOMElement*>(parent->getElementsByTagName(XMLString::transcode(childTag))->item(childIndex));
 			if (childIndex == 0){
-				temp1 = XMLString::transcode(child->getAttribute(XMLString::transcode(attributeTag)));
+				value = XMLString::transcode(child->getAttribute(XMLString::transcode(attributeTag)));
 			}
 			if (child) {
-				char* temp2 = XMLString::transcode(child->getAttribute(XMLString::transcode(attributeTag)));
-				int check = _strcmpi(temp1, temp2);
-				if (check >= 0){
-					temp1 = temp1;
-				}
-				else if (check <= 0){
-					temp1 = temp2;
+				char* temp = XMLString::transcode(child->getAttribute(XMLString::transcode(attributeTag)));
+				int check = _strcmpi((char*)value.c_str(), temp);
+				if (check < 0){
+					value = temp;
 				}
 			}
 		}
-	value = temp1;
 	return value;
 }

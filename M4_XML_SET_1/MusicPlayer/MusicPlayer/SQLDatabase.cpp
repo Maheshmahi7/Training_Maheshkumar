@@ -21,194 +21,19 @@ void SQLDatabase::userUI(){
 		/*switch statement to execute based on user choice*/
 		switch (choice){
 		case 1:{
-			/*creating instance for reading the xml file from memory*/
-			int readChoice;
-			DataReader readDb;
-			bool readLoop = true;
-			while (readLoop)
-			{
-				readMenu();
-				cin >> readChoice;
-				if (cin.fail()){
-					readChoice = checkUserInput();
-				}
-				system("cls");
-				switch (readChoice)
-				{
-				case 1:{
-					readDb.displaySongsFromDB();
-					break;
-				}
-				case 2:{
-					readDb.displayArtistsFromDB();
-					break;
-				}
-				case 3:{
-					readDb.displayAlbumsFromDB();
-					break;
-				}
-				case 4:{
-					readDb.displayPlaylistsFromDB();
-					break;
-				}
-				case 5:{
-					readLoop = false;
-					break;
-				}
-				default:{
-					cout << "Enter Correct value" << endl;
-					break;
-				}
-				}
-			}
+			reader();
 			break;
 		}
 		case 2:{
-			/*creating instance for writing into xml file in the memory*/
-			DataWriter writeDb;
-			int writeChoice;
-			bool writeLoop = true;
-			while (writeLoop){
-				writeMenu();
-				cin >> writeChoice;
-				if (cin.fail()){
-					writeChoice = checkUserInput();
-				}
-				system("cls");
-				switch (writeChoice){
-				case 1:{
-					result = writeDb.insertIntoSongIntoDB();
-					cout << result << endl;
-					break;
-				}
-				case 2:{
-					result = writeDb.insertIntoArtistIntoDB();
-					cout << result << endl;
-					break;
-				}
-				case 3:{
-					result = writeDb.insertIntoAlbumIntoDB();
-					cout << result << endl;
-					break;
-				}
-				case 4:{
-					result = writeDb.insertIntoPlaylistIntoDB();
-					cout << result << endl;
-					break;
-				}
-				case 5:{
-					writeLoop = false;
-					break;
-				}
-				default:{
-					cout << "Enter correct value" << endl;
-					break;
-				}
-				}
-			}
+			writer();
 			break;
 		}
 		case 3:{
-			DataWriter writeDb;
-			int deleteChoice;
-			bool deleteLoop = true;
-			while (deleteLoop){
-				deleteMenu();
-				cin >> deleteChoice;
-				if (cin.fail()){
-					deleteChoice = checkUserInput();
-				}
-				system("cls");
-				switch (deleteChoice){
-				case 1:{
-					result = writeDb.deleteSong();
-					cout << result << endl;
-					break;
-				}
-				case 2:{
-					result = writeDb.deleteArtist();
-					cout << result << endl;
-					break;
-				}
-				case 3:{
-					result = writeDb.deleteAlbum();
-					cout << result << endl;
-					break;
-				}
-				case 4:{
-					result = writeDb.deletePlaylist();
-					cout << result << endl;
-					break;
-				}
-				case 5:{
-					deleteLoop = false;
-					break;
-				}
-				default:{
-					cout << "Enter correct value" << endl;
-					break;
-				}
-				}
-			}
+			deleter();
 			break;
 		}
 		case 4:{
-			DataWriter writeDb;
-			int updateChoice;
-			bool updateLoop = true;
-			while (updateLoop){
-				updateMenu();
-				cin >> updateChoice;
-				if (cin.fail()){
-					updateChoice = checkUserInput();
-				}
-				system("cls");
-				switch (updateChoice){
-				case 1:{
-					result = writeDb.updateSongName();
-					cout << result << endl;
-					break;
-				}
-				case 2:{
-					result = writeDb.updateSongDuration();
-					cout << result << endl;
-					break;
-				}
-				case 3:{
-					result = writeDb.updateArtistName();
-					cout << result << endl;
-					break;
-				}
-				case 4:{
-					result = writeDb.updateArtistAge();
-					cout << result << endl;
-					break;
-				}
-				case 5:{
-					result = writeDb.updateArtistEmailId();
-					cout << result << endl;
-					break;
-				}
-				case 6:{
-					result = writeDb.updateAlbum();
-					cout << result << endl;
-					break;
-				}
-				case 7:{
-					result = writeDb.updatePlaylist();
-					cout << result << endl;
-					break;
-				}
-				case 8:{
-					updateLoop = false;
-					break;
-				}
-				default:{
-					cout << "Enter correct value" << endl;
-					break;
-				}
-				}
-			}
+			updater();
 			break;
 		}
 		case 5:{
@@ -284,6 +109,205 @@ int SQLDatabase::checkUserInput() {
 		else if (!cin.fail()) {
 			return input;
 			break;
+		}
+	}
+}
+
+void SQLDatabase::reader()
+{
+	/*creating instance for reading the xml file from memory*/
+	int readChoice;
+	DataReader readDb;
+	bool readLoop = true;
+	while (readLoop)
+	{
+		readMenu();
+		cin >> readChoice;
+		if (cin.fail()){
+			readChoice = checkUserInput();
+		}
+		system("cls");
+		switch (readChoice)
+		{
+		case 1:{
+			readDb.displaySongsFromDB();
+			break;
+		}
+		case 2:{
+			readDb.displayArtistsFromDB();
+			break;
+		}
+		case 3:{
+			readDb.displayAlbumsFromDB();
+			break;
+		}
+		case 4:{
+			readDb.displayPlaylistsFromDB();
+			break;
+		}
+		case 5:{
+			readLoop = false;
+			break;
+		}
+		default:{
+			cout << "Enter Correct value" << endl;
+			break;
+		}
+		}
+	}
+}
+
+void SQLDatabase::writer()
+{
+	/*creating instance for writing into xml file in the memory*/
+	DataWriter writeDb;
+	string result;
+	int writeChoice;
+	bool writeLoop = true;
+	while (writeLoop){
+		writeMenu();
+		cin >> writeChoice;
+		if (cin.fail()){
+			writeChoice = checkUserInput();
+		}
+		system("cls");
+		switch (writeChoice){
+		case 1:{
+			result = writeDb.insertIntoSongIntoDB();
+			cout << result << endl;
+			break;
+		}
+		case 2:{
+			result = writeDb.insertIntoArtistIntoDB();
+			cout << result << endl;
+			break;
+		}
+		case 3:{
+			result = writeDb.insertIntoAlbumIntoDB();
+			cout << result << endl;
+			break;
+		}
+		case 4:{
+			result = writeDb.insertIntoPlaylistIntoDB();
+			cout << result << endl;
+			break;
+		}
+		case 5:{
+			writeLoop = false;
+			break;
+		}
+		default:{
+			cout << "Enter correct value" << endl;
+			break;
+		}
+		}
+	}
+}
+
+void SQLDatabase::deleter()
+{
+	string result;
+	DataWriter writeDb;
+	int deleteChoice;
+	bool deleteLoop = true;
+	while (deleteLoop){
+		deleteMenu();
+		cin >> deleteChoice;
+		if (cin.fail()){
+			deleteChoice = checkUserInput();
+		}
+		system("cls");
+		switch (deleteChoice){
+		case 1:{
+			result = writeDb.deleteSong();
+			cout << result << endl;
+			break;
+		}
+		case 2:{
+			result = writeDb.deleteArtist();
+			cout << result << endl;
+			break;
+		}
+		case 3:{
+			result = writeDb.deleteAlbum();
+			cout << result << endl;
+			break;
+		}
+		case 4:{
+			result = writeDb.deletePlaylist();
+			cout << result << endl;
+			break;
+		}
+		case 5:{
+			deleteLoop = false;
+			break;
+		}
+		default:{
+			cout << "Enter correct value" << endl;
+			break;
+		}
+		}
+	}
+}
+
+
+void SQLDatabase::updater()
+{
+	string result;
+	DataWriter writeDb;
+	int updateChoice;
+	bool updateLoop = true;
+	while (updateLoop){
+		updateMenu();
+		cin >> updateChoice;
+		if (cin.fail()){
+			updateChoice = checkUserInput();
+		}
+		system("cls");
+		switch (updateChoice){
+		case 1:{
+			result = writeDb.updateSongName();
+			cout << result << endl;
+			break;
+		}
+		case 2:{
+			result = writeDb.updateSongDuration();
+			cout << result << endl;
+			break;
+		}
+		case 3:{
+			result = writeDb.updateArtistName();
+			cout << result << endl;
+			break;
+		}
+		case 4:{
+			result = writeDb.updateArtistAge();
+			cout << result << endl;
+			break;
+		}
+		case 5:{
+			result = writeDb.updateArtistEmailId();
+			cout << result << endl;
+			break;
+		}
+		case 6:{
+			result = writeDb.updateAlbum();
+			cout << result << endl;
+			break;
+		}
+		case 7:{
+			result = writeDb.updatePlaylist();
+			cout << result << endl;
+			break;
+		}
+		case 8:{
+			updateLoop = false;
+			break;
+		}
+		default:{
+			cout << "Enter correct value" << endl;
+			break;
+		}
 		}
 	}
 }

@@ -17,5 +17,9 @@ private:
 	void deleteMenu();
 	void updateMenu();
 	int checkUserInput();
+	void reader();
+	void writer();
+	void deleter();
+	void updater();
 
 };
