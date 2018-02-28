@@ -20,14 +20,13 @@ XERCES_CPP_NAMESPACE_USE;
 
 class XMLDom
 {
-private:
-	const char* xmlFile = "./MusicPlayerData.xml";
-	DOMDocument* DomDoc;
-
 public:
+	static void Instantiate();
+	static xercesc_3_2::DOMDocument* getDomDoc();
+	static void setDomDoc(xercesc_3_2::DOMDocument* DomDoc);
+private:
 	XMLDom();
 	~XMLDom();
-	void createParser();
-	DOMDocument* getDomDoc();
+	static bool Instance();
 };
 #endif;

@@ -15,31 +15,28 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="XMLDomReader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="XMLDomWritter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="XMLDom.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="XML.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="connectionDB.cpp">
+    <ClCompile Include="DatabaseConnection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DataReader.cpp">
+    <ClCompile Include="UserInterfaceFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DataWriter.cpp">
+    <ClCompile Include="XmlParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SQLDatabase.cpp">
+    <ClCompile Include="DatabaseImplementation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInterface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UserUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -59,28 +56,25 @@
     </Xsd>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="XMLDomReader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="XMLDomWritter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="XMLDom.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="XML.h">
+    <ClInclude Include="DatabaseConnection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="connectionDB.h">
+    <ClInclude Include="UserInterfaceFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DataReader.h">
+    <ClInclude Include="XmlParser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DataWriter.h">
+    <ClInclude Include="DatabaseImplementation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SQLDatabase.h">
+    <ClInclude Include="UserInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UserUI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

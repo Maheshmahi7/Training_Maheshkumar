@@ -70,22 +70,6 @@
         <song_artist>a212</song_artist>
       </song_artists>
     </song>
-    <song ID="s119">
-      <song_name>mahesh</song_name>
-      <duration>5:30</duration>
-      <song_album>al312</song_album>
-      <song_artists>
-        <song_artist>a213</song_artist>
-      </song_artists>
-    </song>
-    <song ID="s120">
-      <song_name>mahesh</song_name>
-      <duration>5:30</duration>
-      <song_album>al312</song_album>
-      <song_artists>
-        <song_artist>a210</song_artist>
-      </song_artists>
-    </song>
   </songs>
   <artists>
     <artist ID="a210">

@@ -12,14 +12,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
-    <ClCompile Include="connectionDB.cpp" />
-    <ClCompile Include="SQLDatabase.cpp" />
-    <ClCompile Include="DataReader.cpp" />
-    <ClCompile Include="DataWriter.cpp" />
-    <ClCompile Include="XML.cpp" />
+    <ClCompile Include="DatabaseConnection.cpp" />
+    <ClCompile Include="DatabaseImplementation.cpp" />
+    <ClCompile Include="UserInterfaceFactory.cpp" />
+    <ClCompile Include="UserInterface.cpp" />
+    <ClCompile Include="UserUI.cpp" />
     <ClCompile Include="XMLDom.cpp" />
-    <ClCompile Include="XMLDomReader.cpp" />
-    <ClCompile Include="XMLDomWritter.cpp" />
+    <ClCompile Include="XmlParser.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="MusicPlayerData.xml">
@@ -33,14 +32,13 @@
     <Xsd Include="MusicPlayerSchema.xsd" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="connectionDB.h" />
-    <ClInclude Include="SQLDatabase.h" />
-    <ClInclude Include="DataReader.h" />
-    <ClInclude Include="DataWriter.h" />
-    <ClInclude Include="XML.h" />
+    <ClInclude Include="DatabaseConnection.h" />
+    <ClInclude Include="DatabaseImplementation.h" />
+    <ClInclude Include="UserInterfaceFactory.h" />
+    <ClInclude Include="UserInterface.h" />
+    <ClInclude Include="UserUI.h" />
     <ClInclude Include="XMLDom.h" />
-    <ClInclude Include="XMLDomReader.h" />
-    <ClInclude Include="XMLDomWritter.h" />
+    <ClInclude Include="XmlParser.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F727FB19-C347-4211-8408-9E7F549C0A70}</ProjectGuid>
