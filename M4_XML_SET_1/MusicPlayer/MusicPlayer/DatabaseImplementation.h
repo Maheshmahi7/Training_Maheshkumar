@@ -34,15 +34,29 @@ public:
 	string deleteArtist();
 	string deletePlaylist();
 private:
-	string result(SQLRETURN, SQLHANDLE, string);
-	int getId(SQLRETURN, SQLHANDLE);
+	string result(SQLHANDLE, string);
+	int getId(SQLHANDLE);
+	int checkUserInput();
+
 	SQLHANDLE select(SQLHANDLE SqlHandle, SQLWCHAR* Query);
 	SQLHANDLE select(SQLHANDLE SqlHandle, SQLWCHAR* Query,char* name);
+	SQLHANDLE select(SQLHANDLE SqlHandle, SQLWCHAR* Query, char* name1, char* name2);
+	SQLHANDLE select(SQLHANDLE SqlHandle, SQLWCHAR* Query, char* name, int age);
+	SQLHANDLE select(SQLHANDLE SqlHandle, SQLWCHAR* Query, char* name1, int age, char* name2);
+	SQLHANDLE select(SQLHANDLE SqlHandle, SQLWCHAR* Query, int id1);
+	SQLHANDLE select(SQLHANDLE SqlHandle, SQLWCHAR* Query, int id1, int id2);
 
-	void displaySongByName(vector<string>);
-	void displayAlbumByName(vector<string>);
-	void displayPlaylistByName(vector<string>);
-	void displayArtistByName(vector<string>);
+	vector<string> getSongs();
+	vector<string> getAlbums();
+	vector<string> getPlaylists();
+	vector<string> getArtists();
+
+	void displaySongByName(char* name);
+	void displayAlbumsSongByName(char* name);
+	void displayAlbumsArtistByName(char* name);
+	void displayPlaylistByName(char* name);
+	void displayArtistsAlbumByName(char* name);
+	void displayArtistsSongByName(char* name);
 
 	string insertIntoAlbumSongs(char*, char*);
 	string insertIntoSongArtist(char*, char*);
@@ -52,7 +66,6 @@ private:
 	int getArtistIdByname(char*);
 	int getAlbumIdByname(char*);
 	int getPlaylistIdByname(char*);
-	int checkUserInput();
 
 	string insertIntoSongIntoDB(char*);
 	string insertIntoAlbumIntoDB(char*);

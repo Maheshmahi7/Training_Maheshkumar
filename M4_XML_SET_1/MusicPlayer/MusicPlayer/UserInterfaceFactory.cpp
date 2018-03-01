@@ -4,12 +4,14 @@
  
 UserInterface* UserInterfaceFactory::Create(string type)
 {
+	UserInterface* userInterface = NULL;
 	if (type == "XML")
 	{
-		return new XmlParser();
+		userInterface = new XmlParser();
 	}
 	else if (type == "Database")
 	{
-		return new DatabaseImplementation();
+		userInterface = new DatabaseImplementation();
 	}
+	return userInterface;
 }

@@ -37,11 +37,12 @@ void XMLDom::Instantiate()
 
 bool XMLDom::Instance()
 {
+	bool instance = true;
 	if (xmlDom == NULL)
 	{
-		return false;
+		instance = false;
 	}
-	return true;
+	return instance;
 }
 
 void XMLDom::setDomDoc(DOMDocument* Doc)

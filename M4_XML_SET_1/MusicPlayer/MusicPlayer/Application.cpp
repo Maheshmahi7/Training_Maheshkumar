@@ -1,7 +1,5 @@
 #include "UserUI.h"
 
-
-
 void main(){
 	UserUI UI;
 	UI.userOption();

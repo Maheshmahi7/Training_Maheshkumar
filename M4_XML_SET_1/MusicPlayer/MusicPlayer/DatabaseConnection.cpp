@@ -53,11 +53,12 @@ void DatabaseConnection::Instantiate()
 
 bool DatabaseConnection::Instance()
 {
+	bool instance = true;
 	if (Connection == NULL)
 	{
-		return false;
+		instance = false;
 	}
-	return true;
+	return instance;
 }
 
 /*This method will return the connection handler for establishing a connection with the database with in the application*/

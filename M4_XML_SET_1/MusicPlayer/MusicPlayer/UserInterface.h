@@ -8,9 +8,6 @@ using namespace std;
 class UserInterface
 {
 public:
-	UserInterface();
-	~UserInterface();
-
 	virtual void displaySongs() = 0;
 	virtual void displayAlbums() = 0;
 	virtual void displayPlaylists() = 0;
