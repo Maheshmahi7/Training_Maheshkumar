@@ -141,15 +141,3 @@
 #define DELETE_SONG_ARTIST_ARTIST  L"delete from Song_Artist where Song_Artist.artist_id=?"
 
 #define DELETE_SONG_PLAYLIST_PLAYLIST L"delete from Song_playlist where Song_Playlist.playlist_id=?"
-
-#define 
-
-#define 
-
-#define 
-
-#define 
-
-#define 
-
-#define 
