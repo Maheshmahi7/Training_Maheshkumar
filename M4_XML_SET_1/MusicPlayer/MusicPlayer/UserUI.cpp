@@ -5,7 +5,7 @@
 
 void UserUI::userOption()
 {
-	system("cls");
+	system(CLEAR_SCREEN);
 	int choice;
 	UserInterface* userInterface;
 	while (true)
@@ -15,18 +15,18 @@ void UserUI::userOption()
 		if (cin.fail() || 1 > choice || choice > 3){
 			choice = checkUserInput(3);
 		}
-		system("cls");
+		system(CLEAR_SCREEN);
 		switch (choice){
 		case 1:{
 			exit(0);
 		}
 		case 2:{
-			userInterface = UserInterfaceFactory::Create("XML");
+			userInterface = UserInterfaceFactory::Create(XML);
 			option(userInterface);
 			break;
 		}
 		case 3:{
-			userInterface = UserInterfaceFactory::Create("Database");
+			userInterface = UserInterfaceFactory::Create(DATABASE);
 			option(userInterface);
 			break;
 		}
@@ -56,7 +56,7 @@ void UserUI::option(UserInterface* userInterface)
 		if (cin.fail() || 1 > choice || choice > count){
 			choice = checkUserInput(count);
 		}
-		system("cls");
+		system(CLEAR_SCREEN);
 		/*switch statement to execute based on user choice*/
 		switch (choice){
 		case 1:{
@@ -181,7 +181,7 @@ void UserUI::reader(UserInterface* userInterface)
 		if (cin.fail() || 1 > readChoice || readChoice > 5){
 			readChoice = checkUserInput(5);
 		}
-		system("cls");
+		system(CLEAR_SCREEN);
 		switch (readChoice)
 		{
 		case 1:{
@@ -224,7 +224,7 @@ void UserUI::writer(UserInterface* userInterface)
 		if (cin.fail() || 1 > writeChoice || writeChoice > 5){
 			writeChoice = checkUserInput(5);
 		}
-		system("cls");
+		system(CLEAR_SCREEN);
 		switch (writeChoice){
 		case 1:{
 			writeLoop = false;
@@ -269,7 +269,7 @@ void UserUI::deleter(UserInterface* userInterface)
 		if (cin.fail() || 1 > deleteChoice || deleteChoice > 5){
 			deleteChoice = checkUserInput(5);
 		}
-		system("cls");
+		system(CLEAR_SCREEN);
 		switch (deleteChoice){
 		case 1:{
 			deleteLoop = false;
@@ -315,7 +315,7 @@ void UserUI::updater(UserInterface* userInterface)
 		if (cin.fail() || 1 > updateChoice || updateChoice > 8){
 			updateChoice = checkUserInput(8);
 		}
-		system("cls");
+		system(CLEAR_SCREEN);
 		switch (updateChoice){
 		case 1:{
 			updateLoop = false;

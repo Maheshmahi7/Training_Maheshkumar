@@ -5,11 +5,11 @@
 UserInterface* UserInterfaceFactory::Create(string type)
 {
 	UserInterface* userInterface = NULL;
-	if (type == "XML")
+	if (type == XML)
 	{
 		userInterface = new XmlParser();
 	}
-	else if (type == "Database")
+	else if (type == DATABASE)
 	{
 		userInterface = new DatabaseImplementation();
 	}

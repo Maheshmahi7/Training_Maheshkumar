@@ -14,6 +14,7 @@
 
 #include <iostream>
 #include <string>
+#include "Property.h"
 
 using namespace std;
 XERCES_CPP_NAMESPACE_USE;

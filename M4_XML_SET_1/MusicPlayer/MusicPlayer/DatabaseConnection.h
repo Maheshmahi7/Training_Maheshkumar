@@ -8,6 +8,7 @@
 #include <sqltypes.h>
 #include <sql.h>
 #include <string>
+#include "Property.h"
 #define SQL_RESULT_LEN 240
 #define SQL_RETURN_CODE_LEN 1000
 
@@ -22,5 +23,6 @@ private:
 	DatabaseConnection();
 	~DatabaseConnection();
 	static bool Instance();
+	static void createConnection();
 };
 

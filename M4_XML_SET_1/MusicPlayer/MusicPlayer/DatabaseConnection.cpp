@@ -30,22 +30,27 @@ void DatabaseConnection::Instantiate()
 		Connection = new DatabaseConnection();
 		SqlConnHandle = NULL;
 		SqlHandle = NULL;
-		if (SQL_SUCCESS == SQLAllocHandle(SQL_HANDLE_ENV, SQL_NULL_HANDLE, &SqlEnvHandle))
+		createConnection();
+	}
+}
+
+void DatabaseConnection::createConnection()
+{
+	if (SQL_SUCCESS == SQLAllocHandle(SQL_HANDLE_ENV, SQL_NULL_HANDLE, &SqlEnvHandle))
+	{
+		if (SQL_SUCCESS == SQLSetEnvAttr(SqlEnvHandle, SQL_ATTR_ODBC_VERSION, (SQLPOINTER)SQL_OV_ODBC3, 0))
 		{
-			if (SQL_SUCCESS == SQLSetEnvAttr(SqlEnvHandle, SQL_ATTR_ODBC_VERSION, (SQLPOINTER)SQL_OV_ODBC3, 0))
+			if (SQL_SUCCESS == SQLAllocHandle(SQL_HANDLE_DBC, SqlEnvHandle, &SqlConnHandle))
 			{
-				if (SQL_SUCCESS == SQLAllocHandle(SQL_HANDLE_DBC, SqlEnvHandle, &SqlConnHandle))
-				{
-					SQLDriverConnect(SqlConnHandle,
-						NULL,
-						L"DRIVER={SQL Server};SERVER=IN11W-TRAINEE6\\SQLEXPRESS,49416;DATABASE=MusicPlayer;Trusted=true;",
-						SQL_NTS,
-						RetConString,
-						1024,
-						NULL,
-						SQL_DRIVER_NOPROMPT);
-					SQLAllocHandle(SQL_HANDLE_STMT, SqlConnHandle, &SqlHandle);
-				}
+				SQLDriverConnect(SqlConnHandle,
+					NULL,
+					CONNECTION_DRIVER,
+					SQL_NTS,
+					RetConString,
+					1024,
+					NULL,
+					SQL_DRIVER_NOPROMPT);
+				SQLAllocHandle(SQL_HANDLE_STMT, SqlConnHandle, &SqlHandle);
 			}
 		}
 	}

@@ -33,6 +33,7 @@
   <ItemGroup>
     <ClInclude Include="DatabaseConnection.h" />
     <ClInclude Include="DatabaseImplementation.h" />
+    <ClInclude Include="Property.h" />
     <ClInclude Include="UserInterfaceFactory.h" />
     <ClInclude Include="UserInterface.h" />
     <ClInclude Include="UserUI.h" />

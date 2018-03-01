@@ -27,7 +27,7 @@ void XMLDom::Instantiate()
 		if (!parser)
 		{
 			parser = new XercesDOMParser();
-			parser->parse("./MusicPlayerData.xml");
+			parser->parse(XML_FILE);
 			if (parser){
 				DomDoc = parser->adoptDocument();
 			}
