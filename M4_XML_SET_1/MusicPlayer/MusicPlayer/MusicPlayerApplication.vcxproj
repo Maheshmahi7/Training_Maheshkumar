@@ -15,7 +15,6 @@
     <ClCompile Include="DatabaseConnection.cpp" />
     <ClCompile Include="DatabaseImplementation.cpp" />
     <ClCompile Include="UserInterfaceFactory.cpp" />
-    <ClCompile Include="UserInterface.cpp" />
     <ClCompile Include="UserUI.cpp" />
     <ClCompile Include="XMLDom.cpp" />
     <ClCompile Include="XmlParser.cpp" />

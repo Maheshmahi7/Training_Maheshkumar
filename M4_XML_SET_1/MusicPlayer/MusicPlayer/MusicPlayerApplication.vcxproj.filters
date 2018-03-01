@@ -33,9 +33,6 @@
     <ClCompile Include="DatabaseImplementation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="UserInterface.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="UserUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

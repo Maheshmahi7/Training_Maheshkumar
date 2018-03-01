@@ -56,8 +56,10 @@ void XMLDom::setDomDoc(DOMDocument* Doc)
 
 /*method to return the parsed xml file to the called function*/
 DOMDocument* XMLDom::getDomDoc(){
+	DOMDocument* instance = NULL;
 	if (Instance())
 	{
-		return DomDoc;
+		instance = DomDoc;
 	}
+	return instance;
 }
