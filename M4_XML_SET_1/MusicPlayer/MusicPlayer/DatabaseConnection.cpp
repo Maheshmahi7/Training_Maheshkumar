@@ -58,21 +58,12 @@ void DatabaseConnection::createConnection()
 
 bool DatabaseConnection::Instance()
 {
-	bool instance = true;
-	if (Connection == NULL)
-	{
-		instance = false;
-	}
-	return instance;
+	return (Connection == NULL) ? false : true;
 }
 
 /*This method will return the connection handler for establishing a connection with the database with in the application*/
-SQLHANDLE DatabaseConnection::get_connection_handler(){
-	SQLHANDLE instance = NULL;
-	if (Instance())
-	{
-		instance = SqlConnHandle;
-	}
-	return instance;
+SQLHANDLE DatabaseConnection::get_connection_handler()
+{
+	return (Instance()) ? SqlConnHandle : NULL;
 }
 

@@ -37,12 +37,7 @@ void XMLDom::Instantiate()
 
 bool XMLDom::Instance()
 {
-	bool instance = true;
-	if (xmlDom == NULL)
-	{
-		instance = false;
-	}
-	return instance;
+	return (xmlDom == NULL) ? false : true;
 }
 
 void XMLDom::setDomDoc(DOMDocument* Doc)
@@ -55,11 +50,7 @@ void XMLDom::setDomDoc(DOMDocument* Doc)
 
 
 /*method to return the parsed xml file to the called function*/
-DOMDocument* XMLDom::getDomDoc(){
-	DOMDocument* instance = NULL;
-	if (Instance())
-	{
-		instance = DomDoc;
-	}
-	return instance;
+DOMDocument* XMLDom::getDomDoc()
+{
+	return (Instance()) ? DomDoc : NULL;
 }
