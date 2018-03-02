@@ -537,7 +537,7 @@ string DatabaseImplementation::insertIntoSongIntoDB(char* name){
 	cout << "Enter the Song Duration:" << endl;
 	cin.getline(duration, 50);	
 	SQLFreeHandle(SQL_HANDLE_DBC, SqlConnHandle);
-	return result(SqlHandle = select(SqlHandle, INSERT_SONG, name, duration), "Insertion");
+	return result(SqlHandle = select(SqlHandle, INSERT_SONG, name, duration), INSERTION);
 }
 
 string DatabaseImplementation::insertAlbum(){
@@ -589,7 +589,7 @@ string DatabaseImplementation::insertIntoAlbumIntoDB(char* name){
 	SQLHANDLE SqlConnHandle = DatabaseConnection::get_connection_handler();
 	SQLAllocHandle(SQL_HANDLE_STMT, SqlConnHandle, &SqlHandle);
 	SQLFreeHandle(SQL_HANDLE_DBC, SqlConnHandle);
-	return result(SqlHandle = select(SqlHandle, INSERT_ALBUM, name), "Insertion");
+	return result(SqlHandle = select(SqlHandle, INSERT_ALBUM, name), INSERTION);
 }
 
 string DatabaseImplementation::insertArtist(){
@@ -659,7 +659,7 @@ string DatabaseImplementation::insertIntoArtistIntoDB(char* name){
 		age = checkUserInput();
 	}
 	SQLFreeHandle(SQL_HANDLE_DBC, SqlConnHandle);
-	return result(SqlHandle = select(SqlHandle, INSERT_ARTIST, name, age, emailId), "Insertion");
+	return result(SqlHandle = select(SqlHandle, INSERT_ARTIST, name, age, emailId), INSERTION);
 }
 
 string DatabaseImplementation::insertPlaylist(){
@@ -795,7 +795,7 @@ string DatabaseImplementation::insertIntoAlbumSongs(char* albumName, char* songN
 		}
 	}
 	SQLFreeHandle(SQL_HANDLE_DBC, SqlConnHandle);
-	return result(SqlHandle = select(SqlHandle, INSERT_ALBUM_SONG, songId, albumId), "Insertion");
+	return result(SqlHandle = select(SqlHandle, INSERT_ALBUM_SONG, songId, albumId), INSERTION);
 
 }
 
@@ -820,7 +820,7 @@ string DatabaseImplementation::insertIntoSongPlaylist(char* playlistName, char*s
 		else
 		{
 			SQLFreeHandle(SQL_HANDLE_DBC, SqlConnHandle);
-			status = result(SqlHandle = select(SqlHandle, INSERT_SONG_PLAYLIST, playlistId, songId), "Insertion");
+			status = result(SqlHandle = select(SqlHandle, INSERT_SONG_PLAYLIST, playlistId, songId), INSERTION);
 		}
 	}
 	return status;
@@ -873,7 +873,7 @@ string DatabaseImplementation::insertIntoSongArtist(char* artistName, char* song
 		}
 	}
 	SQLFreeHandle(SQL_HANDLE_DBC, SqlConnHandle);
-	return result(SqlHandle = select(SqlHandle, INSERT_SONG_ARTIST, songId, artistId), "Insertion");
+	return result(SqlHandle = select(SqlHandle, INSERT_SONG_ARTIST, songId, artistId), INSERTION);
 }
 
 
@@ -891,7 +891,7 @@ string DatabaseImplementation::updateSongName(){
 	cin.getline(newName, 50);
 	cout << endl;
 	SQLFreeHandle(SQL_HANDLE_DBC, SqlConnHandle);
-	return result(SqlHandle = select(SqlHandle, UPDATE_SONG_NAME, newName, oldname), "Updation");
+	return result(SqlHandle = select(SqlHandle, UPDATE_SONG_NAME, newName, oldname), UPDATION);
 }
 
 string DatabaseImplementation::updateSongDuration(){
@@ -907,7 +907,7 @@ string DatabaseImplementation::updateSongDuration(){
 	cin.getline(duration, 50);
 	cout << endl;
 	SQLFreeHandle(SQL_HANDLE_DBC, SqlConnHandle);
-	return result(SqlHandle = select(SqlHandle, UPDATE_SONG_DURATION, duration, name), "Updation");
+	return result(SqlHandle = select(SqlHandle, UPDATE_SONG_DURATION, duration, name), UPDATION);
 }
 
 string DatabaseImplementation::updateAlbum(){
@@ -922,7 +922,7 @@ string DatabaseImplementation::updateAlbum(){
 	cout << "Enter the new name" << endl;
 	cin.getline(newName, 50);
 	SQLFreeHandle(SQL_HANDLE_DBC, SqlConnHandle);
-	return result(SqlHandle = select(SqlHandle, UPDATE_ALBUM_NAME, newName, oldname), "Updation");
+	return result(SqlHandle = select(SqlHandle, UPDATE_ALBUM_NAME, newName, oldname), UPDATION);
 }
 
 string DatabaseImplementation::updatePlaylist(){
@@ -937,7 +937,7 @@ string DatabaseImplementation::updatePlaylist(){
 	cout << "Enter the new name" << endl;
 	cin.getline(newName, 50);
 	SQLFreeHandle(SQL_HANDLE_DBC, SqlConnHandle);
-	return result(SqlHandle = select(SqlHandle, UPDATE_PLAYLIST_NAME, newName, oldname), "Updation");
+	return result(SqlHandle = select(SqlHandle, UPDATE_PLAYLIST_NAME, newName, oldname), UPDATION);
 }
 
 string DatabaseImplementation::updateArtistName(){
@@ -953,7 +953,7 @@ string DatabaseImplementation::updateArtistName(){
 	cin.getline(newName, 50);
 	cout << endl;
 	SQLFreeHandle(SQL_HANDLE_DBC, SqlConnHandle);
-	return result(SqlHandle = select(SqlHandle, UPDATE_ARTIST_NAME, newName, oldname), "Updation");
+	return result(SqlHandle = select(SqlHandle, UPDATE_ARTIST_NAME, newName, oldname), UPDATION);
 }
 
 string DatabaseImplementation::updateArtistEmailId(){
@@ -969,7 +969,7 @@ string DatabaseImplementation::updateArtistEmailId(){
 	cin.getline(emailId, 50);
 	cout << endl;
 	SQLFreeHandle(SQL_HANDLE_DBC, SqlConnHandle);
-	return result(SqlHandle = select(SqlHandle, UPDATE_ARTIST_EMAIL_ID, emailId, name), "Updation");
+	return result(SqlHandle = select(SqlHandle, UPDATE_ARTIST_EMAIL_ID, emailId, name), UPDATION);
 }
 
 string DatabaseImplementation::updateArtistAge(){
@@ -985,7 +985,7 @@ string DatabaseImplementation::updateArtistAge(){
 	cin >> age;
 	cout << endl;
 	SQLFreeHandle(SQL_HANDLE_DBC, SqlConnHandle);
-	return result(SqlHandle = select(SqlHandle, UPDATE_ARTIST_AGE, name, age), "Updation");
+	return result(SqlHandle = select(SqlHandle, UPDATE_ARTIST_AGE, name, age), UPDATION);
 }
 
 
@@ -1004,7 +1004,7 @@ string DatabaseImplementation::deleteSong(){
 	deleteSongArtistBySong(songId);
 	deleteSongPlaylistBySong(songId);	
 	SQLFreeHandle(SQL_HANDLE_DBC, SqlConnHandle);
-	return result(SqlHandle = select(SqlHandle, DELETE_SONG, name), "Deletion");
+	return result(SqlHandle = select(SqlHandle, DELETE_SONG, name), DELETION);
 }
 
 string DatabaseImplementation::deleteAlbum(){
@@ -1020,7 +1020,7 @@ string DatabaseImplementation::deleteAlbum(){
 	deleteAlbumSongByAlbum(albumId);
 	
 	SQLFreeHandle(SQL_HANDLE_DBC, SqlConnHandle);
-	return result(SqlHandle = select(SqlHandle, DELETE_ALBUM, name), "Deletion");
+	return result(SqlHandle = select(SqlHandle, DELETE_ALBUM, name), DELETION);
 }
 
 string DatabaseImplementation::deleteArtist(){
@@ -1035,7 +1035,7 @@ string DatabaseImplementation::deleteArtist(){
 	artistId = getArtistIdByname(name);
 	deleteSongArtistByArtist(artistId);
 	SQLFreeHandle(SQL_HANDLE_DBC, SqlConnHandle);
-	return result(SqlHandle = select(SqlHandle, DELETE_ARTIST, name), "Deletion");
+	return result(SqlHandle = select(SqlHandle, DELETE_ARTIST, name), DELETION);
 }
 
 string DatabaseImplementation::deletePlaylist(){
@@ -1050,7 +1050,7 @@ string DatabaseImplementation::deletePlaylist(){
 	playlistId = getPlaylistIdByname(name);
 	deleteSongPlaylistByPlaylist(playlistId);
 	SQLFreeHandle(SQL_HANDLE_DBC, SqlConnHandle);
-	return result(SqlHandle = select(SqlHandle, DELETE_PLAYLIST, name), "Deletion");
+	return result(SqlHandle = select(SqlHandle, DELETE_PLAYLIST, name), DELETION);
 }
 
 
@@ -1060,7 +1060,7 @@ string DatabaseImplementation::deleteAlbumSongBySong(int id){
 	SQLHANDLE SqlConnHandle = DatabaseConnection::get_connection_handler();
 	SQLAllocHandle(SQL_HANDLE_STMT, SqlConnHandle, &SqlHandle);
 	SQLFreeHandle(SQL_HANDLE_DBC, SqlConnHandle);
-	return result(SqlHandle = select(SqlHandle, DELETE_ALBUM_SONG_SONG, id), "Deletion");
+	return result(SqlHandle = select(SqlHandle, DELETE_ALBUM_SONG_SONG, id), DELETION);
 }
 
 string DatabaseImplementation::deleteSongArtistBySong(int id){
@@ -1068,7 +1068,7 @@ string DatabaseImplementation::deleteSongArtistBySong(int id){
 	SQLHANDLE SqlConnHandle = DatabaseConnection::get_connection_handler();
 	SQLAllocHandle(SQL_HANDLE_STMT, SqlConnHandle, &SqlHandle);
 	SQLFreeHandle(SQL_HANDLE_DBC, SqlConnHandle);
-	return result(SqlHandle = select(SqlHandle, DELETE_SONG_ARTIST_SONG, id), "Deletion");
+	return result(SqlHandle = select(SqlHandle, DELETE_SONG_ARTIST_SONG, id), DELETION);
 }
 
 string DatabaseImplementation::deleteSongPlaylistBySong(int id){
@@ -1076,7 +1076,7 @@ string DatabaseImplementation::deleteSongPlaylistBySong(int id){
 	SQLHANDLE SqlConnHandle = DatabaseConnection::get_connection_handler();
 	SQLAllocHandle(SQL_HANDLE_STMT, SqlConnHandle, &SqlHandle);
 	SQLFreeHandle(SQL_HANDLE_DBC, SqlConnHandle);
-	return result(SqlHandle = select(SqlHandle, DELETE_SONG_PLAYLIST_SONG, id), "Deletion");
+	return result(SqlHandle = select(SqlHandle, DELETE_SONG_PLAYLIST_SONG, id), DELETION);
 }
 
 string DatabaseImplementation::deleteAlbumSongByAlbum(int id){
@@ -1084,7 +1084,7 @@ string DatabaseImplementation::deleteAlbumSongByAlbum(int id){
 	SQLHANDLE SqlConnHandle = DatabaseConnection::get_connection_handler();
 	SQLAllocHandle(SQL_HANDLE_STMT, SqlConnHandle, &SqlHandle);
 	SQLFreeHandle(SQL_HANDLE_DBC, SqlConnHandle);
-	return result(SqlHandle = select(SqlHandle, DELETE_ALBUM_SONG_ALBUM, id), "Deletion");
+	return result(SqlHandle = select(SqlHandle, DELETE_ALBUM_SONG_ALBUM, id), DELETION);
 }
 
 string DatabaseImplementation::deleteSongArtistByArtist(int id){
@@ -1092,7 +1092,7 @@ string DatabaseImplementation::deleteSongArtistByArtist(int id){
 	SQLHANDLE SqlConnHandle = DatabaseConnection::get_connection_handler();
 	SQLAllocHandle(SQL_HANDLE_STMT, SqlConnHandle, &SqlHandle);
 	SQLFreeHandle(SQL_HANDLE_DBC, SqlConnHandle);
-	return result(SqlHandle = select(SqlHandle, DELETE_SONG_ARTIST_ARTIST, id), "Deletion");
+	return result(SqlHandle = select(SqlHandle, DELETE_SONG_ARTIST_ARTIST, id), DELETION);
 }
 
 string DatabaseImplementation::deleteSongPlaylistByPlaylist(int id){
@@ -1100,7 +1100,7 @@ string DatabaseImplementation::deleteSongPlaylistByPlaylist(int id){
 	SQLHANDLE SqlConnHandle = DatabaseConnection::get_connection_handler();
 	SQLAllocHandle(SQL_HANDLE_STMT, SqlConnHandle, &SqlHandle);
 	SQLFreeHandle(SQL_HANDLE_DBC, SqlConnHandle);
-	return result(SqlHandle = select(SqlHandle, DELETE_SONG_PLAYLIST_PLAYLIST, id), "Deletion");
+	return result(SqlHandle = select(SqlHandle, DELETE_SONG_PLAYLIST_PLAYLIST, id), DELETION);
 }
 
 

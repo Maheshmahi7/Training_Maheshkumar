@@ -38,7 +38,7 @@ string XmlParser::getChildValue(const char* parentTag, int parentIndex, const ch
 /*method to get child element using attribute value*/
 string XmlParser::getChildByAttribute(const char* parentTag, const char* childTag , const char* attributevalue){
 	xercesc_3_2::DOMDocument* xmlDoc = XMLDom::getDomDoc();
-	const char* attributeTag = ID;
+	const char* attributeTag = "ID";
 	int parentIndex = 0;
 	const char* value;
 	XMLCh* temp = XMLString::transcode(parentTag);
@@ -70,7 +70,7 @@ string XmlParser::getChildByAttribute(const char* parentTag, const char* childTa
 string XmlParser::getChildAttribute(const char* parentTag, int parentIndex, const char* childTag, int childIndex)
 {
 	xercesc_3_2::DOMDocument* xmlDoc = XMLDom::getDomDoc();
-	const char* attributeTag = ID;
+	const char* attributeTag = "ID";
 	XMLCh* temp = XMLString::transcode(parentTag);
 	DOMNodeList* list = xmlDoc->getElementsByTagName(temp);
 	XMLString::release(&temp);
@@ -115,20 +115,20 @@ void XmlParser::displaySongs(){
 	string value,name;
 	cout << "Songs:" << endl;
 	int j;
-	for (int i = 1; i < getChildCount(SONGS, 0, SONG); i++){
-		value = getChildValue(SONG, i, SONG_NAME, 0);
+	for (int i = 1; i < getChildCount("songs", 0, "song"); i++){
+		value = getChildValue("song", i, "song_name", 0);
 		cout << "\t Song Name		" << value.c_str() << endl;
-		value = getChildValue(SONG, i, DURATION, 0);
+		value = getChildValue("song", i, "duration", 0);
 		cout << "\t Song Duration	\t" << value.c_str() << endl;
-		value = getChildValue(SONG, i, SONG_ALBUM, 0);
-		name = getChildByAttribute(ALBUM, ALBUM_NAME, value.c_str());
+		value = getChildValue("song", i, "song_album", 0);
+		name = getChildByAttribute("album", "album_name", value.c_str());
 		cout << "\t Song Album		" << name.c_str() << endl;
 		cout << "\t Artists:" << endl;
 		j = 0;
-		while (j < getChildCount(SONG_ARTISTS, i-1, SONG_ARTIST))
+		while (j < getChildCount("song_artists", i-1, "song_artist"))
 		{
-			value = getChildValue(SONG_ARTISTS, i-1, SONG_ARTIST, j);
-			name = getChildByAttribute(ARTIST, ARTIST_NAME, value.c_str());
+			value = getChildValue("song_artists", i-1, "song_artist", j);
+			name = getChildByAttribute("artist", "artist_name", value.c_str());
 		cout << "\t \t \t \t" << name.c_str() << endl;			j++;
 		}
 		cout << endl;
@@ -140,22 +140,22 @@ void XmlParser::displayArtists(){
 	string value,name;
 	int j;
 	cout << "Artists:" << endl;
-	for (int i = 1; i < getChildCount(ARTISTS,0,ARTIST); i++){
-		value = getChildValue(ARTIST, i, ARTIST_NAME, 0);
+	for (int i = 1; i < getChildCount("artists",0,"artist"); i++){
+		value = getChildValue("artist", i, "artist_name", 0);
 		cout << "\t Artist Name		" << value.c_str() << endl;
 		cout << "\t Artist Albums:	" << endl;
 		j = 0;
-		while (j < getChildCount(ARTIST_ALBUMS, i-1, ARTIST_ALBUM)){
-			value = getChildValue(ARTIST_ALBUMS, i-1, ARTIST_ALBUM, j);
-			name = getChildByAttribute(ALBUM, ALBUM_NAME, value.c_str());
+		while (j < getChildCount("artist_albums", i-1, "artist_album")){
+			value = getChildValue("artist_albums", i-1, "artist_album", j);
+			name = getChildByAttribute("album", "album_name", value.c_str());
 			cout << "\t \t \t \t" << name.c_str() << endl;
 			j++;
 		}
 		cout << "\t Artist Songs:	" << endl;
 		j = 0;
-		while (j < getChildCount(ARTIST_SONGS, i-1, ARTIST_SONG)){
-			value = getChildValue(ARTIST_SONGS, i-1, ARTIST_SONG, j);
-			name = getChildByAttribute(SONG, SONG_NAME, value.c_str());
+		while (j < getChildCount("artist_songs", i-1, "artist_song")){
+			value = getChildValue("artist_songs", i-1, "artist_song", j);
+			name = getChildByAttribute("song", "song_name", value.c_str());
 			cout << "\t \t \t \t" << name.c_str() << endl;	
 			j++;
 		}
@@ -168,24 +168,24 @@ void XmlParser::displayAlbums(){
 	string value,name;
 	int j;
 	cout << "Albums:" << endl;
-	for (int i = 1; i < getChildCount(ALBUMS, 0, ALBUM); i++){
-		value = getChildValue(ALBUM, i, ALBUM_NAME, 0);
+	for (int i = 1; i < getChildCount("albums", 0, "album"); i++){
+		value = getChildValue("album", i, "album_name", 0);
 		cout << "\t Album Name		" << value.c_str() << endl;
 		cout << "\t Album Artists:	" << endl;
 		j = 0;
-		while (j < getChildCount(ALBUM_ARTISTS, i-1, ALBUM_ARTIST))
+		while (j < getChildCount("album_artists", i-1, "album_artist"))
 		{
-			value = getChildValue(ALBUM_ARTISTS, i-1, ALBUM_ARTIST, j);
-			name = getChildByAttribute(ARTIST, ARTIST_NAME, value.c_str());
+			value = getChildValue("album_artists", i-1, "album_artist", j);
+			name = getChildByAttribute("artist", "artist_name", value.c_str());
 			cout << "\t \t \t \t" << name.c_str() << endl;
 			j++;
 		}
 		cout << "\t Album Songs:	" << endl;
 		j = 0;
-		while (j < getChildCount(ALBUM_SONGS, i-1, ALBUM_SONG))
+		while (j < getChildCount("album_songs", i-1, "album_song"))
 		{
-			value = getChildValue(ALBUM_SONGS, i-1, ALBUM_SONG, j);
-			name = getChildByAttribute(SONG, SONG_NAME, value.c_str());
+			value = getChildValue("album_songs", i-1, "album_song", j);
+			name = getChildByAttribute("song", "song_name", value.c_str());
 			cout << "\t \t \t \t" << name.c_str() << endl;
 			j++;
 		}
@@ -198,15 +198,15 @@ void XmlParser::displayPlaylists(){
 	string value,name;
 	int j;
 	cout << "Playlists:" << endl;
-	for (int i = 0; i < getChildCount(PLAYLISTS, 0, PLAYLIST); i++){
-		value = getChildValue(PLAYLIST, i, PLAYLIST_NAME, 0);
+	for (int i = 0; i < getChildCount("playlists", 0, "playlist"); i++){
+		value = getChildValue("playlist", i, "playlist_name", 0);
 		cout << "\t Playlist Name	" << value.c_str() << endl;
 		j = 0;
 		cout << "\t Playlist Songs:	" << endl;
-		while (j < getChildCount(PLAYLIST_SONGS, i, PLAYLIST_SONG))
+		while (j < getChildCount("playlist_songs", i, "playlist_song"))
 		{
-			value = getChildValue(PLAYLIST_SONGS, i, PLAYLIST_SONG, j);
-			name = getChildByAttribute(SONG, SONG_NAME, value.c_str());
+			value = getChildValue("playlist_songs", i, "playlist_song", j);
+			name = getChildByAttribute("song", "song_name", value.c_str());
 			cout << "\t	\t \t" << name.c_str() << endl;
 			j++;
 		}
@@ -220,7 +220,7 @@ void XmlParser::addElementToFile(){
 	DOMImplementation    *pImplement = NULL;
 	DOMLSSerializer      *pSerializer = NULL;
 	XMLFormatTarget      *pTarget = NULL;
-	pImplement = DOMImplementationRegistry::getDOMImplementation((XMLCh*)LS);
+	pImplement = DOMImplementationRegistry::getDOMImplementation(L"LS");
 	pSerializer = ((DOMImplementationLS*)pImplement)->createLSSerializer();
 	DOMConfiguration* pDomConfiguration = pSerializer->getDomConfig();
 	pDomConfiguration->setParameter(XMLUni::fgDOMWRTFormatPrettyPrint, true);
@@ -242,20 +242,20 @@ string XmlParser::insertSong(){
 	DOMElement * data = NULL;
 	DOMText* textNode = NULL;
 	DOMElement * childData = NULL;
-	DomDocImplementation = DOMImplementationRegistry::getDOMImplementation(XMLString::transcode(CORE));
-	DOMNodeList* list = xmlDoc->getElementsByTagName(XMLString::transcode(SONGS));
+	DomDocImplementation = DOMImplementationRegistry::getDOMImplementation(XMLString::transcode("core"));
+	DOMNodeList* list = xmlDoc->getElementsByTagName(XMLString::transcode("songs"));
 	DOMElement* p_RootElement = dynamic_cast<DOMElement*>(list->item(0));
-	p_DataElement = xmlDoc->createElement((XMLCh*)SONG);
-	songId = setId(SONGS, SONG);
+	p_DataElement = xmlDoc->createElement(L"song");
+	songId = setId("songs", "song");
 	songId.erase(0, 1);
 	id = stoi(songId);
 	id++;
 	songId = "s" + to_string(id);
 	wstring wSongId(songId.begin(), songId.end());
 	wSong = wSongId.c_str();
-	p_DataElement->setAttribute((XMLCh*)ID, wSong);
+	p_DataElement->setAttribute(L"ID", wSong);
 	p_RootElement->appendChild(p_DataElement);
-	data = xmlDoc->createElement((XMLCh*)SONG_NAME);
+	data = xmlDoc->createElement(L"song_name");
 	cout << "Enter the song name that you want to add" << endl;
 	cin.get();
 	getline(cin, name);
@@ -264,7 +264,7 @@ string XmlParser::insertSong(){
 	textNode = xmlDoc->createTextNode(wSong);
 	data->appendChild(textNode);
 	p_DataElement->appendChild(data);
-	data = xmlDoc->createElement((XMLCh*)DURATION);
+	data = xmlDoc->createElement(L"duration");
 	cout << "Enter the song duration" << endl;
 	getline(cin, duration);
 	wstring wDuration(duration.begin(), duration.end());
@@ -272,27 +272,27 @@ string XmlParser::insertSong(){
 	textNode = xmlDoc->createTextNode(wSong);
 	data->appendChild(textNode);
 	p_DataElement->appendChild(data);
-	data = xmlDoc->createElement((XMLCh*)SONG_ALBUM);
+	data = xmlDoc->createElement(L"song_album");
 	cout << "Enter the album name" << endl;
 	getline(cin, album);
-	album = getChildByName(ALBUM, ALBUM_NAME, album.c_str());
+	album = getChildByName("album", "album_name", album.c_str());
 	wstring wAlbum(album.begin(), album.end());
 	wSong = wAlbum.c_str();
 	textNode = xmlDoc->createTextNode(wSong);
 	data->appendChild(textNode);
 	p_DataElement->appendChild(data);
-	data = xmlDoc->createElement((XMLCh*)SONG_ARTISTS);
+	data = xmlDoc->createElement(L"song_artists");
 	cout << "Enter the number artists contributed" << endl;
 	cin >> index;
 	if (cin.fail()){
 		index = checkUserInput();
 	}
 	for (int i = 0; i < index; i++){
-		childData = xmlDoc->createElement((XMLCh*)SONG_ARTIST);
+		childData = xmlDoc->createElement(L"song_artist");
 		cout << "Enter the artist name" << endl;
 		cin.get();
 		getline(cin, artist);
-		artist = getChildByName(ARTIST, ARTIST_NAME, artist.c_str());
+		artist = getChildByName("artist", "artist_name", artist.c_str());
 		wstring wArtist(artist.begin(), artist.end());
 		wSong = wArtist.c_str();
 		textNode = xmlDoc->createTextNode(wSong);
@@ -316,20 +316,20 @@ string XmlParser::insertArtist(){
 	DOMElement * data = NULL;
 	DOMText* textNode = NULL;
 	DOMElement * childData = NULL;
-	DomDocImplementation = DOMImplementationRegistry::getDOMImplementation(XMLString::transcode(CORE));
-	DOMNodeList* list = xmlDoc->getElementsByTagName(XMLString::transcode(ARTISTS));
+	DomDocImplementation = DOMImplementationRegistry::getDOMImplementation(XMLString::transcode("core"));
+	DOMNodeList* list = xmlDoc->getElementsByTagName(XMLString::transcode("artists"));
 	DOMElement* p_RootElement = dynamic_cast<DOMElement*>(list->item(0));
-	p_DataElement = xmlDoc->createElement((XMLCh*)ARTIST);
-	artistId = setId(ARTISTS, ARTIST);
+	p_DataElement = xmlDoc->createElement(L"artist");
+	artistId = setId("artists", "artist");
 	artistId.erase(0, 1);
 	id = stoi(artistId);
 	id++;
 	artistId = "a" + to_string(id);
 	wstring wArtistId(artistId.begin(), artistId.end());
 	wArtist = wArtistId.c_str();
-	p_DataElement->setAttribute((XMLCh*)ID, wArtist);
+	p_DataElement->setAttribute(L"ID", wArtist);
 	p_RootElement->appendChild(p_DataElement);
-	data = xmlDoc->createElement((XMLCh*)ARTIST_NAME);
+	data = xmlDoc->createElement(L"artist_name");
 	cout << "Enter the artist name that you want to add" << endl;
 	cin.get();
 	getline(cin, name);
@@ -338,18 +338,18 @@ string XmlParser::insertArtist(){
 	textNode = xmlDoc->createTextNode(wArtist);
 	data->appendChild(textNode);
 	p_DataElement->appendChild(data);
-	data = xmlDoc->createElement((XMLCh*)ARTIST_ALBUMS);
+	data = xmlDoc->createElement(L"artist_albums");
 	cout << "Enter the number of albums artists contributed" << endl;
 	cin >> index;
 	if (cin.fail()){
 		index = checkUserInput();
 	}
 	for (int i = 0; i < index; i++){
-		childData = xmlDoc->createElement((XMLCh*)ARTIST_ALBUM);
+		childData = xmlDoc->createElement(L"artist_album");
 		cout << "Enter the album name" << endl;
 		cin.get();
 		getline(cin, album);
-		album = getChildByName(ALBUM, ALBUM_NAME, album.c_str());
+		album = getChildByName("album", "album_name", album.c_str());
 		wstring wAlbum(album.begin(), album.end());
 		wArtist = wAlbum.c_str();
 		textNode = xmlDoc->createTextNode(wArtist);
@@ -357,18 +357,18 @@ string XmlParser::insertArtist(){
 		data->appendChild(childData);
 	}
 	p_DataElement->appendChild(data);
-	data = xmlDoc->createElement((XMLCh*)ARTIST_SONGS);
+	data = xmlDoc->createElement(L"artist_songs");
 	cout << "Enter the number of songs" << endl;
 	cin >> index;
 	if (cin.fail()){
 		index = checkUserInput();
 	}
 	for (int i = 0; i < index; i++){
-		childData = xmlDoc->createElement((XMLCh*)ARTIST_SONG);
+		childData = xmlDoc->createElement(L"artist_song");
 		cout << "Enter the song name;" << endl;
 		cin.get();
 		getline(cin, song);
-		song = getChildByName(SONG, SONG_NAME, song.c_str());
+		song = getChildByName("song", "song_name", song.c_str());
 		wstring wSong(song.begin(), song.end());
 		wArtist = wSong.c_str();
 		textNode = xmlDoc->createTextNode(wArtist);
@@ -392,20 +392,20 @@ string XmlParser::insertAlbum(){
 	DOMElement * data = NULL;
 	DOMText* textNode = NULL;
 	DOMElement * childData = NULL;
-	DomDocImplementation = DOMImplementationRegistry::getDOMImplementation(XMLString::transcode(CORE));
-	DOMNodeList* list = xmlDoc->getElementsByTagName(XMLString::transcode(ALBUMS));
+	DomDocImplementation = DOMImplementationRegistry::getDOMImplementation(XMLString::transcode("core"));
+	DOMNodeList* list = xmlDoc->getElementsByTagName(XMLString::transcode("albums"));
 	DOMElement* p_RootElement = dynamic_cast<DOMElement*>(list->item(0));
-	p_DataElement = xmlDoc->createElement((XMLCh*)ALBUM);
-	albumId = setId(ALBUMS, ALBUM);
+	p_DataElement = xmlDoc->createElement(L"album");
+	albumId = setId("albums", "album");
 	albumId.erase(0, 2);
 	id = stoi(albumId);
 	id++;
 	albumId = "al" + to_string(id);
 	wstring wAlbumId(albumId.begin(), albumId.end());
 	wAlbum = wAlbumId.c_str();
-	p_DataElement->setAttribute((XMLCh*)ID, wAlbum);
+	p_DataElement->setAttribute(L"ID", wAlbum);
 	p_RootElement->appendChild(p_DataElement);
-	data = xmlDoc->createElement((XMLCh*)ALBUM_NAME);
+	data = xmlDoc->createElement(L"album_name");
 	cout << "Enter the album name that you want to add" << endl;
 	cin.get();
 	getline(cin, name);
@@ -414,18 +414,18 @@ string XmlParser::insertAlbum(){
 	textNode = xmlDoc->createTextNode(wAlbum);
 	data->appendChild(textNode);
 	p_DataElement->appendChild(data);
-	data = xmlDoc->createElement((XMLCh*)ALBUM_ARTISTS);
+	data = xmlDoc->createElement(L"album_artists");
 	cout << "Enter the number of artist contributed" << endl;
 	cin >> index;
 	if (cin.fail()){
 		index = checkUserInput();
 	}
 	for (int i = 0; i < index; i++){
-		childData = xmlDoc->createElement((XMLCh*)ALBUM_ARTIST);
+		childData = xmlDoc->createElement(L"album_artist");
 		cout << "Enter the artist name" << endl;
 		cin.get();
 		getline(cin, artist);
-		artist = getChildByName(ARTIST, ARTIST_NAME, artist.c_str());
+		artist = getChildByName("artist", "artist_name", artist.c_str());
 		wstring wArtist(artist.begin(), artist.end());
 		wAlbum = wArtist.c_str();
 		textNode = xmlDoc->createTextNode(wAlbum);
@@ -433,18 +433,18 @@ string XmlParser::insertAlbum(){
 		data->appendChild(childData);
 	}
 	p_DataElement->appendChild(data);
-	data = xmlDoc->createElement((XMLCh*)ALBUM_SONGS);
+	data = xmlDoc->createElement(L"album_songs");
 	cout << "Enter the number of songs" << endl;
 	cin >> index;
 	if (cin.fail()){
 		index = checkUserInput();
 	}
 	for (int i = 0; i < index; i++){
-		childData = xmlDoc->createElement((XMLCh*)ALBUM_SONG);
+		childData = xmlDoc->createElement(L"album_song");
 		cout << "Enter the song name;" << endl;
 		cin.get();
 		getline(cin, song);
-		song = getChildByName(SONG, SONG_NAME, song.c_str());
+		song = getChildByName("song", "song_name", song.c_str());
 		wstring wSong(song.begin(), song.end());
 		wAlbum = wSong.c_str();
 		textNode = xmlDoc->createTextNode(wAlbum);
@@ -468,20 +468,20 @@ string XmlParser::insertPlaylist(){
 	DOMElement * data = NULL;
 	DOMText* textNode = NULL;
 	DOMElement * childData = NULL;
-	DomDocImplementation = DOMImplementationRegistry::getDOMImplementation(XMLString::transcode(CORE));
-	DOMNodeList* list = xmlDoc->getElementsByTagName(XMLString::transcode(PLAYLISTS));
+	DomDocImplementation = DOMImplementationRegistry::getDOMImplementation(XMLString::transcode("core"));
+	DOMNodeList* list = xmlDoc->getElementsByTagName(XMLString::transcode("playlists"));
 	DOMElement* p_RootElement = dynamic_cast<DOMElement*>(list->item(0));
-	p_DataElement = xmlDoc->createElement((XMLCh*)PLAYLIST);
-	playlistId = setId(PLAYLISTS, PLAYLIST);
+	p_DataElement = xmlDoc->createElement(L"playlist");
+	playlistId = setId("playlists", "playlist");
 	playlistId.erase(0, 1);
 	id = stoi(playlistId);
 	id++;
 	playlistId = "p" + to_string(id);
 	wstring wPlaylistId(playlistId.begin(), playlistId.end());
 	wPlaylist = wPlaylistId.c_str();
-	p_DataElement->setAttribute((XMLCh*)ID, wPlaylist);
+	p_DataElement->setAttribute(L"ID", wPlaylist);
 	p_RootElement->appendChild(p_DataElement);
-	data = xmlDoc->createElement((XMLCh*)PLAYLIST_NAME);
+	data = xmlDoc->createElement(L"playlist_name");
 	cout << "Enter the playlist name that you want to add" << endl;
 	cin.get();
 	getline(cin, name);
@@ -490,7 +490,7 @@ string XmlParser::insertPlaylist(){
 	textNode = xmlDoc->createTextNode(wPlaylist);
 	data->appendChild(textNode);
 	p_DataElement->appendChild(data);
-	data = xmlDoc->createElement((XMLCh*)PLAYLIST_SONGS);
+	data = xmlDoc->createElement(L"playlist_songs");
 	cout << "Enter the number of songs" << endl;
 	cin >> index;
 	if (cin.fail()){
@@ -498,10 +498,10 @@ string XmlParser::insertPlaylist(){
 	}
 	cin.get();
 	for (int i = 0; i < index; i++){
-		childData = xmlDoc->createElement((XMLCh*)PLAYLIST_SONG);
+		childData = xmlDoc->createElement(L"playlist_song");
 		cout << "Enter the song name;" << endl;
 		getline(cin, songs);
-		songs = getChildByName(SONG, SONG_NAME, songs.c_str());
+		songs = getChildByName("song", "song_name", songs.c_str());
 		wstring wSong(songs.begin(), songs.end());
 		wPlaylist = wSong.c_str();
 		textNode = xmlDoc->createTextNode(wPlaylist);
@@ -535,7 +535,7 @@ int XmlParser::checkUserInput() {
 
 string XmlParser::getChildByName(const char* parentTag, const char* childTag, const char* childValue){
 	xercesc_3_2::DOMDocument* xmlDoc = XMLDom::getDomDoc();
-	const char* attributeTag = ID;
+	const char* attributeTag = "ID";
 	string value;
 	DOMNodeList* list = xmlDoc->getElementsByTagName(XMLString::transcode(parentTag));
 	for (int parentIndex = 0; parentIndex < (int)list->getLength(); parentIndex++){
@@ -544,7 +544,7 @@ string XmlParser::getChildByName(const char* parentTag, const char* childTag, co
 			dynamic_cast<DOMElement*>(parent->getElementsByTagName(XMLString::transcode(childTag))->item(0));
 		if (child) {
 			if (_strcmpi(childValue, XMLString::transcode(child->getTextContent())) == 0){
-				value = XMLString::transcode(parent->getAttribute(XMLString::transcode(ID)));
+				value = XMLString::transcode(parent->getAttribute(XMLString::transcode("ID")));
 				break;
 			}
 		}
@@ -558,7 +558,7 @@ string XmlParser::getChildByName(const char* parentTag, const char* childTag, co
 
 int XmlParser::getID(const char* parentTag, const char* childTag){
 	xercesc_3_2::DOMDocument* xmlDoc = XMLDom::getDomDoc();
-	const char* attributeTag = ID;
+	const char* attributeTag = "ID";
 	int parentIndex = 0;
 	DOMNodeList* list = xmlDoc->getElementsByTagName(XMLString::transcode(parentTag));
 	while (true){
@@ -571,7 +571,7 @@ int XmlParser::getID(const char* parentTag, const char* childTag){
 
 string XmlParser::setId(const char* parentTag, const char* childTag){
 	xercesc_3_2::DOMDocument* xmlDoc = XMLDom::getDomDoc();
-	const char* attributeTag = ID;
+	const char* attributeTag = "ID";
 	string value;
 	DOMNodeList* list = xmlDoc->getElementsByTagName(XMLString::transcode(parentTag));
 	DOMElement* parent = dynamic_cast<DOMElement*>(list->item(0));

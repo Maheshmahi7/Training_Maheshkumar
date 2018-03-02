@@ -8,63 +8,11 @@
 
 #define XML_FILE "./MusicPlayerData.xml"
 
-#define SONGS "songs"
+#define DELETION "Deletion"
 
-#define SONG "song"
+#define INSERTION "Insertion"
 
-#define SONG_NAME "song_name"
-
-#define DURATION "duration"
-
-#define ARTISTS "artists"
-
-#define ARTIST "artist"
-
-#define ALBUMS "albums"
-
-#define ALBUM "album"
-
-#define PLAYLISTS "playlists"
-
-#define PLAYLIST "playlist"
-
-#define SONG_ALBUM "song_album"
-
-#define ALBUM_NAME "album_name"
-
-#define ARTIST_NAME "artist_name"
-
-#define PLAYLIST_NAME "playlist_name"
-
-#define SONG_ARTISTS "song_artists"
-
-#define SONG_ARTIST "song_artist"
-
-#define ARTIST_ALBUMS "artist_albums"
-
-#define ARTIST_ALBUM "artist_album"
-
-#define ARTIST_SONGS "artist_songs"
-
-#define ARTIST_SONG "artist_song"
-
-#define ALBUM_ARTISTS "album_artists"
-
-#define ALBUM_ARTIST "album_artist"
-
-#define ALBUM_SONGS "album_songs"
-
-#define ALBUM_SONG "album_song"
-
-#define PLAYLIST_SONGS "playlist_songs"
-
-#define PLAYLIST_SONG "playlist_song"
-
-#define ID "ID"
-
-#define CORE "core"
-
-#define LS "LS"
+#define UPDATION "Updation"
 
 #define GET_SONGS L"select * from song order by song.name"
 
